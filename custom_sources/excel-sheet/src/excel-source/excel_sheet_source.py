@@ -43,6 +43,10 @@ class ExcelSourceConfig(ConfigModel):
         ".xlsx",
         description="When providing a folder to use to read files, set this field to control file extensions that you want the source to process. * is a special value that means process every file regardless of extension",
     )
+    sheet_name: Optional[str] = Field(
+        "Sheet1",
+        description="The excel sheet which contains the data to ingest, provide it as a string",
+    )
     table_pattern: AllowDenyPattern = AllowDenyPattern(allow=[".*"], deny=["^_.*"])
     platform: str = Field(
         description="The platform that all assets produced by this recipe belong to."
@@ -153,7 +157,7 @@ class ExcelSource(Source):
             platform_urn = make_data_platform_urn(self.source_config.platform)
 
             # Read the Excel file into a pandas DataFrame and replace all NaN with the empty string 
-            df = pd.read_excel(path)
+            df = pd.read_excel(path, sheet_name=self.source_config.sheet_name)
             df = df.fillna('')   
 
             fields: List[SchemaField] = []
