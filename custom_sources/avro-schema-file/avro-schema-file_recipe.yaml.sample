@@ -7,5 +7,3 @@ source:
     dataset_name: "name of the dataset"
     platform_instance: ""
     platform: "platform"
-#sink:
-#  type: "console"

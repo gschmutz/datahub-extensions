@@ -1,2 +1,3 @@
+Setuptools
 acryl-datahub
 avro
