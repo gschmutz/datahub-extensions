@@ -1,0 +1,11 @@
+source:
+  type: avro-source.avro_ingestion_source.AvroSource
+  config:
+    env: "env"
+    path: "path to avsc file or path only"
+    file_extension: ".avsc"
+    dataset_name: "name of the dataset"
+    platform_instance: ""
+    platform: "platform"
+#sink:
+#  type: "console"

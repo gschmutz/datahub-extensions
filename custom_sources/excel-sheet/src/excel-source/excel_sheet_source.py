@@ -36,7 +36,7 @@ from datahub.emitter.mce_builder import (
     make_data_platform_urn,
     make_dataset_urn_with_platform_instance
 )
-from datahub.metadata.schema_classes import DatasetPropertiesClass
+from datahub.metadata.schema_classes import (DatasetPropertiesClass, SchemalessClass)
 from datahub.metadata.urns import DatasetUrn
 from datahub.metadata.com.linkedin.pegasus2avro.schema import SchemaMetadata
 from datahub.metadata.schema_classes import OtherSchemaClass
@@ -144,10 +144,7 @@ class ExcelSource(Source):
                     description=description,
                     recursive=False,
                     nullable=True,
-                    isPartOfKey=False,
-                    globalTags=None,
-                    glossaryTerms=None,
-                    jsonProps=None,
+                    isPartOfKey=False
         )
         return field
         
@@ -162,45 +159,56 @@ class ExcelSource(Source):
             df = pd.read_excel(path)
 
             fields: List[SchemaField] = []
-            current_table = None
+            current = None
             for index, row in df.iterrows():
-                if current_table is None:                
-                    current_table = row['Tabellenname']
+                if current is None:                
+                    current = row
                     
-                field = self.table_to_mce_field(row, current_table)
+                field = self.table_to_mce_field(row, current['Tabellenname'])
 
-                if current_table == row['Tabellenname'] :
+                if current['Tabellenname'] == row['Tabellenname'] :
                     fields.append(field)
                 else:
-                    current_table = row['Tabellenname']
                     dataset_urn = make_dataset_urn_with_platform_instance(
                         platform=self.source_config.platform,
-                        name=self.source_config.dataset_name,
+                        name=current['Tabellenname'],
                         platform_instance=self.source_config.platform_instance,
                         env=self.source_config.env,
                     )
             
+                    dataset_properties = DatasetPropertiesClass(
+                                        description=current['Kurztext der Tabelle'],
+                                        name=None,
+                                        customProperties=None,
+                    )
+                    # Construct a MetadataChangeProposalWrapper object.
+                    yield MetadataChangeProposalWrapper(
+                                entityUrn=dataset_urn,
+                                entityType="dataset",
+                                aspect=dataset_properties
+                    ).as_workunit()
+                                
                     schema_metadata = SchemaMetadata(
-                        schemaName=self.source_config.dataset_name,
+                        schemaName=current['Tabellenname'],
                         platform=platform_urn,
                         # version is server assigned
                         version=0,
                         hash="",
                         fields=fields,
-                        platformSchema=OtherSchemaClass(rawSchema=None),
+                        platformSchema=SchemalessClass(),
                     )
+                    logger.info("create schema with " + str(len(fields)))
                     
+                    current = row
+                    fields = []
+                    fields.append(field)
+
                     # Construct a MetadataChangeProposalWrapper object.
                     yield MetadataChangeProposalWrapper(
                                 entityUrn=dataset_urn,
                                 entityType="dataset",
-                                aspect=schema_metadata,
-
-                    fields = []
-                    fields.append(field)
-                    
-                    
-            ).as_workunit()
+                                aspect=schema_metadata
+                    ).as_workunit()
 
     def get_report(self) -> SourceReport:
         return self.report

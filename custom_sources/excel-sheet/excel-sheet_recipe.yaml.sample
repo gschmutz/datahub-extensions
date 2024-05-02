@@ -1,0 +1,10 @@
+source:
+  type: excel-source.excel_sheet_source.ExcelSource
+  config:
+    env: "env"
+    path: "path-to-excel-file or path only"
+    file_extension: ".xlsx"
+    platform_instance: ""
+    platform: "paltform"
+#sink:
+#  type: "console"
