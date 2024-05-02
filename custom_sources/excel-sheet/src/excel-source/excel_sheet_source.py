@@ -1,6 +1,7 @@
 import logging
 import pathlib
 from typing import Dict, Iterable, List, Optional, Type
+from dataclasses import dataclass, field
 
 from pydantic.fields import Field
 import pandas as pd
@@ -23,13 +24,16 @@ from datahub.metadata.com.linkedin.pegasus2avro.schema import (
     UnionTypeClass,
 )   
 
-from datahub.configuration.common import ConfigModel
+from datahub.configuration.common import (ConfigModel, AllowDenyPattern)
 from datahub.ingestion.api.common import PipelineContext
 from datahub.ingestion.api.source import Source, SourceReport
 from datahub.ingestion.api.workunit import MetadataWorkUnit
 from datahub.metadata.com.linkedin.pegasus2avro.mxe import MetadataChangeEvent
 
 from datahub.ingestion.extractor import schema_util
+from datahub.ingestion.source.state.stale_entity_removal_handler import (
+    StaleEntityRemovalSourceReport,
+)
 
 from datahub.emitter.mcp import MetadataChangeProposalWrapper
 from datahub.emitter.mce_builder import (
@@ -52,7 +56,7 @@ import requests
 logger = logging.getLogger(__name__)
 
 class ExcelSourceConfig(ConfigModel):
-    env: str = Field("PROD",
+    env: Optional[str] = Field("PROD",
                      description="The environment that all assets produced by this connector belong to"
     )
     path: str = Field(
@@ -62,12 +66,24 @@ class ExcelSourceConfig(ConfigModel):
         ".xlsx",
         description="When providing a folder to use to read files, set this field to control file extensions that you want the source to process. * is a special value that means process every file regardless of extension",
     )
+    table_pattern: AllowDenyPattern = AllowDenyPattern(allow=[".*"], deny=["^_.*"])
     platform: str = Field(
         description="The platform that all assets produced by this recipe belong to."
     )
     platform_instance: str = Field(
         description="The instance of the platform that all assets produced by this recipe belong to."
     )
+
+@dataclass
+class ExcelSourceReport(StaleEntityRemovalSourceReport):
+    tables_scanned: int = 0
+    filtered: List[str] = field(default_factory=list)
+
+    def report_table_scanned(self, table: str) -> None:
+        self.tables_scanned += 1
+
+    def report_dropped(self, table: str) -> None:
+        self.filtered.append(table)
 
 class ExcelSource(Source):
     
@@ -95,6 +111,7 @@ class ExcelSource(Source):
     def __init__(self, config: ExcelSourceConfig, ctx: PipelineContext):
         super().__init__(ctx)
         self.source_config = config
+        self.report: ExcelSourceReport = ExcelSourceReport()
 
     @classmethod
     def create(cls, config_dict, ctx):
@@ -107,6 +124,9 @@ class ExcelSource(Source):
         assert TypeClass is not None
         dt = SchemaFieldDataType(type=TypeClass())
         return dt
+
+    def get_report(self) -> ExcelSourceReport:
+        return self.report
 
     def get_filenames(self) -> Iterable[str]:
         path_parsed = parse.urlparse(str(self.source_config.path))
@@ -155,8 +175,9 @@ class ExcelSource(Source):
 
             platform_urn = make_data_platform_urn(self.source_config.platform)
 
-            # Read the Excel file into a pandas DataFrame
+            # Read the Excel file into a pandas DataFrame and replace all NaN with the empty string 
             df = pd.read_excel(path)
+            df = df.fillna('')   
 
             fields: List[SchemaField] = []
             current = None
@@ -169,47 +190,56 @@ class ExcelSource(Source):
                 if current['Tabellenname'] == row['Tabellenname'] :
                     fields.append(field)
                 else:
-                    dataset_urn = make_dataset_urn_with_platform_instance(
-                        platform=self.source_config.platform,
-                        name=current['Tabellenname'],
-                        platform_instance=self.source_config.platform_instance,
-                        env=self.source_config.env,
-                    )
+                    # we have a new table, so let's use the current table to produce the MetaChangeProposal events
+                    table_name = current['Tabellenname']
+                    
+                    self.report.report_table_scanned(table_name)
+                    
+                    if self.source_config.table_pattern.allowed(table_name):
+                        logger.info("process table " + table_name)
+
+                        dataset_urn = make_dataset_urn_with_platform_instance(
+                            platform=self.source_config.platform,
+                            name=table_name,
+                            platform_instance=self.source_config.platform_instance,
+                            env=self.source_config.env,
+                        )
             
-                    dataset_properties = DatasetPropertiesClass(
-                                        description=current['Kurztext der Tabelle'],
-                                        name=None,
-                                        customProperties=None,
-                    )
-                    # Construct a MetadataChangeProposalWrapper object.
-                    yield MetadataChangeProposalWrapper(
-                                entityUrn=dataset_urn,
-                                entityType="dataset",
-                                aspect=dataset_properties
-                    ).as_workunit()
-                                
-                    schema_metadata = SchemaMetadata(
-                        schemaName=current['Tabellenname'],
-                        platform=platform_urn,
-                        # version is server assigned
-                        version=0,
-                        hash="",
-                        fields=fields,
-                        platformSchema=SchemalessClass(),
-                    )
-                    logger.info("create schema with " + str(len(fields)))
+                        dataset_properties = DatasetPropertiesClass(
+                                            description=current['Kurztext der Tabelle'],
+                                            name=None,
+                                            customProperties=None,
+                        )
+                        # Construct a MetadataChangeProposalWrapper object.
+                        yield MetadataChangeProposalWrapper(
+                                    entityUrn=dataset_urn,
+                                    entityType="dataset",
+                                    aspect=dataset_properties
+                        ).as_workunit()
+                                    
+                        schema_metadata = SchemaMetadata(
+                            schemaName=table_name,
+                            platform=platform_urn,
+                            # version is server assigned
+                            version=0,
+                            hash="",
+                            fields=fields,
+                            platformSchema=SchemalessClass(),
+                        )
+                        
+                        # Construct a MetadataChangeProposalWrapper object.
+                        yield MetadataChangeProposalWrapper(
+                                    entityUrn=dataset_urn,
+                                    entityType="dataset",
+                                    aspect=schema_metadata
+                        ).as_workunit()
+                    else:
+                        self.report.report_dropped(table_name)
                     
                     current = row
                     fields = []
                     fields.append(field)
-
-                    # Construct a MetadataChangeProposalWrapper object.
-                    yield MetadataChangeProposalWrapper(
-                                entityUrn=dataset_urn,
-                                entityType="dataset",
-                                aspect=schema_metadata
-                    ).as_workunit()
-
+    
     def get_report(self) -> SourceReport:
         return self.report
 
