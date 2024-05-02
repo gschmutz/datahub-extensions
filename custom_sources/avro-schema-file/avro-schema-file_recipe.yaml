@@ -1,0 +1,10 @@
+source:
+  type: avro-source.avro_ingestion_source.AvroSource
+  config:
+    env: "DEV"
+    path: "/Users/guido.schmutz/Downloads/datahub-restingest/target/generated-sources/avro/schema/NctsGoodsDeclaration.avsc"
+    dataset_name: "NctsGoodsDeclaration"
+    platform_instance: ""
+    platform: "PA"
+#sink:
+#  type: "console"
