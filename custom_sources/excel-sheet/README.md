@@ -72,8 +72,6 @@ pip install -r requirements.txt
 
 ## Execute
 
-
-
 ```bash
 datahub ingest -c my-source_recipe.yaml
 ```

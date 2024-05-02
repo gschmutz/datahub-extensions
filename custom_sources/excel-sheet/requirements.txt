@@ -1,3 +1,4 @@
+setuptools
 acryl-datahub
 pandas
 openpyxl

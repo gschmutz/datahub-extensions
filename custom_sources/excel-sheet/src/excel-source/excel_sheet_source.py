@@ -1,57 +1,34 @@
+import json
 import logging
+import os
 import pathlib
-from typing import Dict, Iterable, List, Optional, Type
 from dataclasses import dataclass, field
+from typing import Dict, Iterable, List, Optional, Type
+from urllib import parse
 
-from pydantic.fields import Field
 import pandas as pd
-
-from datahub.metadata.com.linkedin.pegasus2avro.schema import (
-    ArrayTypeClass,
-    BooleanTypeClass,
-    BytesTypeClass,
-    DateTypeClass,
-    EnumTypeClass,
-    FixedTypeClass,
-    MapTypeClass,
-    NullTypeClass,
-    NumberTypeClass,
-    RecordTypeClass,
-    SchemaField,
-    SchemaFieldDataType,
-    StringTypeClass,
-    TimeTypeClass,
-    UnionTypeClass,
-)   
-
-from datahub.configuration.common import (ConfigModel, AllowDenyPattern)
+import requests
+from datahub.configuration.common import AllowDenyPattern, ConfigModel
+from datahub.emitter.mce_builder import (
+    make_data_platform_urn, make_dataset_urn_with_platform_instance)
+from datahub.emitter.mcp import MetadataChangeProposalWrapper
+from datahub.emitter.rest_emitter import DatahubRestEmitter
 from datahub.ingestion.api.common import PipelineContext
 from datahub.ingestion.api.source import Source, SourceReport
 from datahub.ingestion.api.workunit import MetadataWorkUnit
-from datahub.metadata.com.linkedin.pegasus2avro.mxe import MetadataChangeEvent
-
 from datahub.ingestion.extractor import schema_util
-from datahub.ingestion.source.state.stale_entity_removal_handler import (
-    StaleEntityRemovalSourceReport,
-)
-
-from datahub.emitter.mcp import MetadataChangeProposalWrapper
-from datahub.emitter.mce_builder import (
-    make_data_platform_urn,
-    make_dataset_urn_with_platform_instance
-)
-from datahub.metadata.schema_classes import (DatasetPropertiesClass, SchemalessClass)
+from datahub.ingestion.source.state.stale_entity_removal_handler import \
+    StaleEntityRemovalSourceReport
+from datahub.metadata.com.linkedin.pegasus2avro.mxe import MetadataChangeEvent
+from datahub.metadata.com.linkedin.pegasus2avro.schema import (
+    ArrayTypeClass, BooleanTypeClass, BytesTypeClass, DateTypeClass,
+    EnumTypeClass, FixedTypeClass, MapTypeClass, NullTypeClass,
+    NumberTypeClass, RecordTypeClass, SchemaField, SchemaFieldDataType,
+    SchemaMetadata, StringTypeClass, TimeTypeClass, UnionTypeClass)
+from datahub.metadata.schema_classes import (DatasetPropertiesClass,
+                                             OtherSchemaClass, SchemalessClass)
 from datahub.metadata.urns import DatasetUrn
-from datahub.metadata.com.linkedin.pegasus2avro.schema import SchemaMetadata
-from datahub.metadata.schema_classes import OtherSchemaClass
-from datahub.emitter.rest_emitter import DatahubRestEmitter
-
-from urllib import parse
-
-import json
-import os
-
-import requests
+from pydantic.fields import Field
 
 logger = logging.getLogger(__name__)
 
