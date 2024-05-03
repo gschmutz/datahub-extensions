@@ -11,7 +11,7 @@ This is a custom source which reads an Excel file and registers the data as data
 
 ### CLI based Ingestion
 
-#### Install the Plugin
+Install the Plugin
 
 ```bash
 python setup.py install

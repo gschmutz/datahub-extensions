@@ -1,6 +1,6 @@
-# Avro Source
+# Process Archive Source
 
-This is a custom source which reads Avro files (avsc) and register them as DataSets in DataHub.
+This is a custom source which reads Avro files (avdl) from the Process Archive and register them as DataSets in DataHub.
 
 ## Important Capabilities
 
@@ -8,6 +8,8 @@ This is a custom source which reads Avro files (avsc) and register them as DataS
 |-------|-------------|--------|
 | Descriptions | ok | Enabled by default | 
 | [Platform Instance](https://datahubproject.io/docs/platform-instances) | ok | Enabled by default |
+
+The ingestion can be started for all versions declared in the <archive-type>.json file, but there seem to be a problem with not all versions properly being registered in DataHub. Therefore there is the option to specify a version in the recipe, so that each version can be ingested in a separate run. 
 
 ### CLI based Ingestion
 
@@ -25,12 +27,11 @@ For general pointers on writing and running a recipe, see the [main recipe guide
 
 ```yaml
 source:
-  type: avro-source.avro_ingestion_source.AvroSource
+  type: process-archive-source.process_archive_source.ProcessArchiveSource
   config:
     env: "env"
-    path: "path to avsc file or path only"
-    file_extension: ".avsc"
-    dataset_name: "name of the dataset"
+    path: "path to json archive file"
+    version:
     platform_instance: ""
     platform: "platform"
 ```
@@ -43,7 +44,7 @@ Note that a `.` is used to denote nested fields in the YAML recipe.
 |-------|-------------|---------|
 | **env** <br>string | The environment that all assets produced by this connector belong to | `PROD` 
 | **path** <br>string | File path to folder or file to ingest, or URL to a remote file. If pointed to a folder, all files with extension {file_extension} (default json) within that folder will be processed. |
-| **file_extension** <br>string | When providing a folder to use to read files, set this field to control file extensions that you want the source to process. * is a special value that means process every file regardless of extension|`.avsc`|
+| **version** <br>string | specify a single version to ingest.  |``|
 | **platform_instance** <br>string | The instance of the platform that all assets produced by this recipe belong to |
 | **platform** <br>string | the platform type that all assets produced belong to |  |
 
@@ -60,5 +61,5 @@ pip install -r requirements.txt
 ## Execute
 
 ```bash
-datahub ingest -c my-source_recipe.yaml
+datahub ingest -c process-archive_recipe.yaml
 ```

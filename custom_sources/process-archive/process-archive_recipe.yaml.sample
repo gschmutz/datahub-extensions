@@ -1,0 +1,8 @@
+source:
+  type: process-archive-source.process_archive_source.ProcessArchiveSource
+  config:
+    env: "env"
+    path: "path to json archive file"
+    version:
+    platform_instance: ""
+    platform: "platform"
