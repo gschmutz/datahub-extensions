@@ -45,7 +45,7 @@ class ExcelSourceConfig(ConfigModel):
     )
     sheet_name: Optional[str] = Field(
         "Sheet1",
-        description="The excel sheet which contains the data to ingest, provide it as a string",
+        description="The name of the sheet in the excel which contains the data to ingest",
     )
     table_pattern: AllowDenyPattern = AllowDenyPattern(allow=[".*"], deny=["^_.*"])
     platform: str = Field(
