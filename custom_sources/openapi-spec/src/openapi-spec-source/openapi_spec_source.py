@@ -122,11 +122,10 @@ class OpenApiSpecSource(Source):
         Get all the URLs, together with their description and the tags
         """
         url_details = {}
-        
         for path in specification.paths:
             for operation in path.operations:
                 for response in operation.responses:
-                    if (response.code == 200):
+                    if (response.code == 200 and response.content is not None ):
                         desc = operation.summary
                         tags = operation.tags
                         method = operation.method.value
@@ -238,7 +237,7 @@ class OpenApiSpecSource(Source):
                 fieldType = StringTypeClass()
             elif schema.schema.type == DataType.INTEGER:
                 nativeType = DataType.INTEGER.value
-                fieldType = IntegerTypeClass()
+                fieldType = NumberTypeClass()
             elif schema.schema.type == DataType.NUMBER:
                 nativeType = DataType.NUMBER.value
                 fieldType = NumberTypeClass()
