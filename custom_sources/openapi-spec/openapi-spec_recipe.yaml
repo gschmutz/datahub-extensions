@@ -1,0 +1,7 @@
+source:
+  type: openapi-spec-source.openapi_spec_source.OpenApiSpecSource
+  config:
+    env: "PROD"
+    path: "/Users/guido.schmutz/Downloads/openapi.json"
+    platform_instance: ""
+    platform: "OpenApi"

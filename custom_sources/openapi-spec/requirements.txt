@@ -1,0 +1,3 @@
+setuptools
+acryl-datahub
+openapi3-parser
