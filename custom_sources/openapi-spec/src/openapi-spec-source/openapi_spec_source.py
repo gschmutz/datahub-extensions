@@ -284,7 +284,7 @@ class OpenApiSpecSource(Source):
         
         config = self.config
         
-        specification = parse('openapi.json', strict_enum=False)
+        specification = parse(config.path, strict_enum=False)
 
         url_endpoints = self.get_endpoints(specification)
         
