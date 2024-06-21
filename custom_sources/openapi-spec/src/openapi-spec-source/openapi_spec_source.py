@@ -8,6 +8,7 @@ import requests
 from dataclasses import dataclass, field
 from typing import Dict, Iterable, List, Optional, Tuple, Type
 from urllib import parse
+from collections import defaultdict
 
 import requests
 from datahub.configuration.common import ConfigModel
@@ -125,12 +126,18 @@ class OpenApiSpecSource(Source):
         for path in specification.paths:
             for operation in path.operations:
                 for response in operation.responses:
+                    tags = defaultdict(list)
                     if (response.code == 200 and response.content is not None ):
-                        desc = operation.summary
-                        tags = operation.tags
-                        method = operation.method.value
                         schema = response.content[0].schema
-                        url_details[path.url] = {"description": desc, "tags": tags, "schema": schema, "method": method}
+                    else:
+                        schema = None
+                            
+                    desc = operation.summary
+                    if (operation.tags is not None):
+                        tags = operation.tags
+                    tags.append(operation.method.value)    
+                    method = operation.method.value
+                    url_details[path.url] = {"description": desc, "tags": tags, "schema": schema, "method": method}
         
         return dict(sorted(url_details.items()))
 
@@ -186,8 +193,6 @@ class OpenApiSpecSource(Source):
         # dataset_snapshot.aspects.append(inst_memory)
 
         return dataset_snapshot, dataset_name
-
-    #def handle_datatype(self, dataType: DataType):        
 
     def handle_schema(self, schema: Schema, prefix, canonical_schema: List[SchemaField]):        
         if (isinstance(schema, Array)):
