@@ -1,0 +1,12 @@
+source:
+  type: arch-repo-source.arch_repo_ingestion_source.ArchRepoSource
+  config:
+    env: "prod"
+    api_model_path: "/Users/guido.schmutz/Documents/GitHub/gschmutz/datahub-extensions/custom_sources/arch-repo/arch-repo-api-model.json"
+    api_relationship_path: "/Users/guido.schmutz/Documents/GitHub/gschmutz/datahub-extensions/custom_sources/arch-repo/arch-repo-api-relation_<system>.json"
+    provider_system: "DataHub"
+    platform_instance: ""
+    platform: "system"
+
+#sink:
+#  type: "console"

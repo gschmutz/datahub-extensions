@@ -1,0 +1,9 @@
+source:
+  type: arch-repo-source.arch_repo_ingestion_source.ArchRepoSource
+  config:
+    env: "env"
+    path: "path to avsc file or path only"
+    file_extension: ".json"
+    dataset_name: "name of the dataset"
+    platform_instance: ""
+    platform: "platform"
