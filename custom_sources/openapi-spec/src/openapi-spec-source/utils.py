@@ -132,9 +132,9 @@ def main():
 
     parser.add_argument('command', type=str, help='the command to execute')
     parser.add_argument('-mp', '--model-path', type=str, action='store', help='Specify the path to the model REST resource, if command is `download_model` or `download_api_specs`', required=True)
-    parser.add_argument('-relurl', '--relations-url', type=str, action='store', help='Specify the path to the relation REST resource, if command is `download_relation`', required=True)
+    parser.add_argument('-relurl', '--relations-url', type=str, action='store', help='Specify the path to the relation REST resource, if command is `download_relation`', required=False)
     parser.add_argument('-apiurl', '--api-spec-url', type=str, action='store', help='Specify the api-spec url, if command is `download_api_specs`', required=False)
-    parser.add_argument('-of', '--output-file', type=str, action='store', help='Specify the output file, if command is `download_model` or `download_relations` or `download_api_specs`', required=False)
+    parser.add_argument('-of', '--output-file', type=str, action='store', help='Specify the output file, if command is `download_model` or `download_relations` or `download_api_specs`', required=True)
     parser.add_argument('-s', '--system', action='store', type=str, help='Specify the system to use, if command is `download_api_spec`', required=False)
     parser.add_argument('-sc', '--system-component', type=str, action='store', help='Specify the model path, if command is `download_api_spec`', required=False)
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose mode', required=False)
