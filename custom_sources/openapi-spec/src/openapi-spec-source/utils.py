@@ -108,8 +108,8 @@ def get_api_spec(url: str, system: str, system_component: str):
             response = requests.get(url)
             if (response.status_code == 200):
                 api_spec_json = response.json()
-        except json.JSONDecodeError as je:
-            print(f"Got a JSONDecodeError when parsing for {system}.{system_component}")
+        except Exception as e:
+            print(f"Got an Error {e} when parsing for {system}.{system_component}")
     return api_spec_json
 
 def download_model(model_path: str, model_output_file: str):
