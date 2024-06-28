@@ -81,14 +81,14 @@ def download_model(model_path: str, model_output_file: str):
     with open(model_output_file, 'w') as file:
         file.write(arch_repo_model_str) 
                        
-def download_relations(model_path: str, relations_path: str, relation_output_file: str, p_system: str):
+def download_relations(model_path: str, relations_url: str, relation_output_file: str, p_system: str):
     arch_repo_model_json = get_arch_repo_json(model_path)
     for system in arch_repo_model_json["systems"]:
         system_name = system["name"]
         if (p_system is None or system_name == p_system):       
             print ("Processing System: " + system_name)
-            relations_path = relations_path.replace("{system}", system_name)
-            arch_repo_model_json = get_arch_repo_json(relations_path)                            
+            relations_url = relations_url.replace("{system}", system_name)
+            arch_repo_model_json = get_arch_repo_json(relations_url)                            
             arch_repo_model_str = json.dumps(arch_repo_model_json, indent=4)
             
             relation_output_file = relation_output_file.replace("{system}", system_name)
@@ -132,7 +132,7 @@ def main():
 
     parser.add_argument('command', type=str, help='the command to execute')
     parser.add_argument('-mp', '--model-path', type=str, action='store', help='Specify the path to the model REST resource, if command is `download_model` or `download_api_specs`', required=True)
-    parser.add_argument('-rp', '--relation-path', type=str, action='store', help='Specify the path to the relation REST resource, if command is `download_relation`', required=True)
+    parser.add_argument('-relurl', '--relations-url', type=str, action='store', help='Specify the path to the relation REST resource, if command is `download_relation`', required=True)
     parser.add_argument('-apiurl', '--api-spec-url', type=str, action='store', help='Specify the api-spec url, if command is `download_api_specs`', required=False)
     parser.add_argument('-of', '--output-file', type=str, action='store', help='Specify the output file, if command is `download_model` or `download_relations` or `download_api_specs`', required=False)
     parser.add_argument('-s', '--system', action='store', type=str, help='Specify the system to use, if command is `download_api_spec`', required=False)
@@ -144,7 +144,7 @@ def main():
     if (args.command == "download_model"):
         download_model(model_path=args.model_path, model_output_file=args.output_file)
     if (args.command == "download_relations"):
-        download_model(model_path=args.model_path, relations_path=args.relations_path, relation_output_file=args.output_file, p_system=args.system)
+        download_model(model_path=args.model_path, relations_url=args.relations_url, relation_output_file=args.output_file, p_system=args.system)
     elif (args.command == "download_api_spec"):
                     
         download_api_specs(model_path=args.model_path, api_spec_url=args.api_spec_url, output_file=args.output_file, p_system=args.system, p_system_component=args.system_component)
