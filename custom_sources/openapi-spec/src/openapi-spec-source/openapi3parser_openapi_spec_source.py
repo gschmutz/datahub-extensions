@@ -4,10 +4,11 @@ import logging
 import os
 import pathlib
 import subprocess
+import urllib.parse
 import requests
 from dataclasses import dataclass, field
 from typing import Dict, Iterable, List, Optional, Tuple, Type
-from urllib import parse
+import urllib
 from collections import defaultdict
 
 import requests
@@ -77,8 +78,17 @@ class OpenApiSpecSourceConfig(ConfigModel):
     env: str = Field("PROD",
                      description="The environment that all assets produced by this connector belong to"
     )
-    path: str = Field(
+    api_model_path: str = Field(
+        description="File path to folder or file to ingest, or URL to a remote file. If pointed to a folder, all files with extension {file_extension} (default json) within that folder will be processed."
+    )
+    api_spec_path: str = Field(
         description="File path or URL to a to an openapi specification file."
+    )
+    system: Optional[str] = Field(
+        description="the name of the system to ingest openapi specs"
+    )
+    system_component: Optional[str] = Field(
+        description="the name of the system component to ingest openapi specs"
     )
     ignore_endpoints: list = Field(
         default=[], description="List of endpoints to ignore during ingestion."
@@ -179,18 +189,6 @@ class OpenApiSpecSource(Source):
         gtc = GlobalTagsClass(tags_tac)
         dataset_snapshot.aspects.append(gtc)
 
-        # the link will appear in the "documentation"
-        # link_url = clean_url(config.url + self.url_basepath + endpoint_k)
-        # link_description = "Link to call for the dataset."
-        # creation = AuditStampClass(
-        #     time=int(time.time()), actor="urn:li:corpuser:etl", impersonator=None
-        # )
-        # link_metadata = InstitutionalMemoryMetadataClass(
-        #     url=link_url, description=link_description, createStamp=creation
-        # )
-        # inst_memory = InstitutionalMemoryClass([link_metadata])
-        # dataset_snapshot.aspects.append(inst_memory)
-
         return dataset_snapshot, dataset_name
 
     def handle_schema(self, schema: Schema, prefix, canonical_schema: List[SchemaField]):        
@@ -278,6 +276,30 @@ class OpenApiSpecSource(Source):
         )
         return schema_metadata
 
+    def get_arch_repo_json(self, path): 
+        self.report.current_file_name = path
+        path_parsed = urllib.parse.urlparse(path)
+        if path_parsed.scheme not in ("http", "https"):  # A local file
+            with open(path, "r") as arch_repo_json_file:
+                arch_repo_json = json.load(arch_repo_json_file)
+        else:
+            try:
+                response = requests.get(path)
+                if (response.status_code == 200):
+                    arch_repo_json = response.json()
+            except Exception as e:
+                raise Exception(f"Cannot read remote file {path}, error:{e}")
+        return arch_repo_json
+    
+    def get_api_spec(self, path: str, system: str, system_component: str) -> Specification:
+        specification: Specification = None
+        openapi_path = path.replace("{system}", system).replace("{system-component}", system_component)
+        
+        print ("path to OpenAPI Spec: " + openapi_path)
+
+        specification = parse(openapi_path, strict_enum=False)
+        return specification
+
     def build_wu(
         self, dataset_snapshot: DatasetSnapshot, dataset_name: str
     ) -> MetadataWorkUnit:
@@ -288,23 +310,36 @@ class OpenApiSpecSource(Source):
         
         config = self.config
         
-        specification = parse(config.path, strict_enum=False)
+        # we assume that there is only one model
+        arch_repo_model_json: dict = self.get_arch_repo_json(config.api_model_path)
+        for system in arch_repo_model_json["systems"]:
+            system_name = system["name"]
+            if (config.system is None or system_name == config.system):       
+                print ("Processing System: " + system_name )
+                     
+                for system_component in system["systemComponents"]:
+                    system_component_name = system_component["name"]
+                    if (config.system_component is None or system_component_name == config.system_component):            
+                        print ("Processing System-Component: " + system_component_name)
 
-        url_endpoints = self.get_endpoints(specification)
-        
-        # looping on all the urls
-        for endpoint_k, endpoint_dets in url_endpoints.items():
-            if endpoint_k in config.ignore_endpoints:
-                continue
-        
-            dataset_snapshot, dataset_name = self.init_dataset(
-                endpoint_k, endpoint_dets
-            )
-            
-            schema_metadata = self.set_metadata(dataset_name, endpoint_dets["schema"], platform=config.platform)
-            dataset_snapshot.aspects.append(schema_metadata)        
-            
-            yield self.build_wu(dataset_snapshot, dataset_name)
+                        specification = self.get_api_spec(path = config.api_spec_path, system=system_name, system_component=system_component_name)
+                        print (specification)
+                        if specification is not None:
+                            url_endpoints = self.get_endpoints(specification)
+                            
+                            # looping on all the urls
+                            for endpoint_k, endpoint_dets in url_endpoints.items():
+                                if endpoint_k in config.ignore_endpoints:
+                                    continue
+                            
+                                dataset_snapshot, dataset_name = self.init_dataset(
+                                    endpoint_k, endpoint_dets
+                                )
+                                
+                                schema_metadata = self.set_metadata(dataset_name, endpoint_dets["schema"], platform=config.platform)
+                                dataset_snapshot.aspects.append(schema_metadata)        
+                                
+                                yield self.build_wu(dataset_snapshot, dataset_name)
 
     def get_report(self) -> SourceReport:
         return self.report

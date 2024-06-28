@@ -239,7 +239,7 @@ class OpenApiSpecSource(Source):
             print("===>Set_metadata: LIST ")
 
             for item in schema:
-                self.handle_schema(item, None, prefix, canonical_schema)
+                self.handle_schema(item, "item", prefix, canonical_schema)
 
         else:
             if property_name is None:
