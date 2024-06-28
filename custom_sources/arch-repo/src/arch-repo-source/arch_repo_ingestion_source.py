@@ -119,10 +119,10 @@ class ArchRepoSource(Source):
         else:
             try:
                 response = requests.get(path)
-                if (response.status.code == 200):
+                if (response.status_code == 200):
                     arch_repo_json = response.json()
             except Exception as e:
-                raise ConfigurationError(f"Cannot read remote file {path}, error:{e}")
+                raise Exception(f"Cannot read remote file {path}, error:{e}")
         return arch_repo_json
 
     def construct_flow_workunits(self,

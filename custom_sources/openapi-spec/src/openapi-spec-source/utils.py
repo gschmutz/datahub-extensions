@@ -15,7 +15,7 @@ def get_arch_repo_json(path: str):
     else:
         try:
             response = requests.get(path)
-            if (response.status.code == 200):
+            if (response.status_code == 200):
                 arch_repo_json = response.json()
         except Exception as e:
             raise Exception(f"Cannot read remote file {path}, error:{e}")
@@ -30,7 +30,7 @@ def get_api_spec(url: str, system: str, system_component: str):
     else:
         try:
             response = requests.get(url)
-            if (response.status.code == 200):
+            if (response.status_code == 200):
                 api_spec_json = response.json()
         except Exception as e:
             raise Exception(f"Cannot read remote file {url}, error:{e}")
@@ -38,9 +38,10 @@ def get_api_spec(url: str, system: str, system_component: str):
 
 def download_model(model_path: str, model_file: str):
     arch_repo_model_json = get_arch_repo_json(model_path)                            
-
+    arch_repo_model_str = json.dumps(arch_repo_model_json, indent=4)
+    
     with open(model_file, 'w') as file:
-        file.write(arch_repo_model_json) 
+        file.write(arch_repo_model_str) 
                        
 def download_api_specs(model_path: str, api_spec_url: str, output_folder: str, p_system: str = None, p_system_component: str = None):
     arch_repo_model_json = get_arch_repo_json(model_path)
@@ -56,10 +57,11 @@ def download_api_specs(model_path: str, api_spec_url: str, output_folder: str, p
                     print ("Processing System-Component: " + system_component_name)
 
                     api_spec_json = get_api_spec(api_spec_url, system_name, system_component_name)
+                    api_spec_json_str = json.dumps(api_spec_json, indent=4)                      
                     
                     api_output_folder = output_folder.replace("<system>", system_name).replace("<system_component>", system_component_name)
                     with open(api_output_folder + "/raw", 'w') as file:
-                        file.write(api_spec_json)
+                        file.write(api_spec_json_str)
                         
 def main():
     parser = argparse.ArgumentParser(description="An API for downloading Arch Repo Model and Open API specifications")
