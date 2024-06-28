@@ -119,12 +119,12 @@ def download_api_specs(model_path: str, api_spec_url: str, output_file: str, p_s
                     remove_json_element(api_spec_json, "recommendedSchema")
                     remove_json_element(api_spec_json, "specificData")
                     
-                    api_spec_json_str = json.dumps(api_spec_json, indent=4)                      
+                    api_spec_json_str = json.dumps(api_spec_json, indent=4)     
+                    
+                    print ("api spec json as string: " + api_spec_json_str)                 
 
                     api_output_file = output_file.replace("{system}", system_name).replace("{system-component}", system_component_name)
                     with open(api_output_file, 'w') as file:
-                        
-                        
                         file.write(api_spec_json_str)
                         
 def main():
@@ -146,7 +146,6 @@ def main():
     if (args.command == "download_relations"):
         download_relations(model_path=args.model_path, relations_url=args.relations_url, relation_output_file=args.output_file, p_system=args.system)
     elif (args.command == "download_api_spec"):
-                    
         download_api_specs(model_path=args.model_path, api_spec_url=args.api_spec_url, output_file=args.output_file, p_system=args.system, p_system_component=args.system_component)
     
 if __name__ == '__main__':
