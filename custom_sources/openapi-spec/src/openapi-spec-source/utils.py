@@ -112,23 +112,24 @@ def download_api_specs(model_path: str, api_spec_url: str, output_file: str, p_s
                     print ("Processing System-Component: " + system_component_name)
 
                     api_spec_json:dict = get_api_spec(api_spec_url, system_name, system_component_name)
+
+                    # if this system_component has an API spec                    
+                    if len(api_spec_json) > 0:
                     
-                    print (json.dumps(api_spec_json, indent=4))
-                    
-                    add_version(api_spec_json, version="1.0.0")
-                    
-                    remove_json_property(api_spec_json, "example")
-                    remove_json_property(api_spec_json, "Schema")
-                    remove_json_property(api_spec_json, "SpecifcData")
-                    remove_json_element(api_spec_json, "schema")
-                    remove_json_element(api_spec_json, "recommendedSchema")
-                    remove_json_element(api_spec_json, "specificData")
-                    
-                    api_spec_json_str = json.dumps(api_spec_json, indent=4)
-                    
-                    api_output_file = output_file.replace("{system}", system_name).replace("{system-component}", system_component_name)
-                    with open(api_output_file, 'w') as file:
-                        file.write(api_spec_json_str)
+                        add_version(api_spec_json, version="1.0.0")
+                        
+                        remove_json_property(api_spec_json, "example")
+                        remove_json_property(api_spec_json, "Schema")
+                        remove_json_property(api_spec_json, "SpecifcData")
+                        remove_json_element(api_spec_json, "schema")
+                        remove_json_element(api_spec_json, "recommendedSchema")
+                        remove_json_element(api_spec_json, "specificData")
+                        
+                        api_spec_json_str = json.dumps(api_spec_json, indent=4)
+                        
+                        api_output_file = output_file.replace("{system}", system_name).replace("{system-component}", system_component_name)
+                        with open(api_output_file, 'w') as file:
+                            file.write(api_spec_json_str)
                         
 def main():
     parser = argparse.ArgumentParser(description="An API for downloading Arch Repo Model and Open API specifications")
