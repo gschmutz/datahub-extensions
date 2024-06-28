@@ -6,6 +6,44 @@ import requests
 from urllib import parse
 import argparse
 
+def add_version(data, version: str):
+    # add the required version field
+    data["info"]["version"] = version  # Specify the version you want to add
+
+def remove_json_property(data: dict, property_name: str):
+    """
+    Recursively remove all keys named 'example' from the given data structure.
+    """
+    if isinstance(data, dict):
+        # Create a list of keys to remove to avoid modifying the dictionary while iterating
+        keys_to_remove = [key for key in data if key == property_name]
+        for key in keys_to_remove:
+            del data[key]
+        
+        # Recursively call the function for the remaining keys
+        for key in data:
+            remove_json_property(data[key], property_name)
+    
+    elif isinstance(data, list):
+        for item in data:
+            remove_json_property(item, property_name)
+
+def remove_json_element(data: dict, elt_name: str):
+    """
+    Recursively remove the specific 'schema' key with the specified value from the given data structure.
+    """
+    if isinstance(data, dict):
+        # Check if the 'schema' key exists and matches the specific value
+        if elt_name in data and data[elt_name] == {"$ref": "#/components/schemas/Schema"}:
+            del data[elt_name]
+        
+        # Recursively call the function for the remaining keys
+        for key, value in list(data.items()):
+            remove_json_element(elt_name, value)
+    
+    elif isinstance(data, list):
+        for item in data:
+            remove_json_element(elt_name, item)
 
 def get_arch_repo_json(path: str): 
     path_parsed = parse.urlparse(path)
@@ -57,10 +95,22 @@ def download_api_specs(model_path: str, api_spec_url: str, output_file: str, p_s
                     print ("Processing System-Component: " + system_component_name)
 
                     api_spec_json = get_api_spec(api_spec_url, system_name, system_component_name)
-                    api_spec_json_str = json.dumps(api_spec_json, indent=4)                      
                     
+                    add_version(api_spec_json)
+                    
+                    remove_json_property(api_spec_json, "example")
+                    remove_json_property(api_spec_json, "Schema")
+                    remove_json_property(api_spec_json, "SpecifcData")
+                    remove_json_element(api_spec_json, "schema")
+                    remove_json_element(api_spec_json, "recommendedSchema")
+                    remove_json_element(api_spec_json, "specificData")
+                    
+                    api_spec_json_str = json.dumps(api_spec_json, indent=4)                      
+
                     api_output_file = output_file.replace("{system}", system_name).replace("{system-component}", system_component_name)
                     with open(api_output_file, 'w') as file:
+                        
+                        
                         file.write(api_spec_json_str)
                         
 def main():
