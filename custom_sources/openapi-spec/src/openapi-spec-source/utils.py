@@ -144,7 +144,7 @@ def main():
     if (args.command == "download_model"):
         download_model(model_path=args.model_path, model_output_file=args.output_file)
     if (args.command == "download_relations"):
-        download_model(model_path=args.model_path, relations_url=args.relations_url, relation_output_file=args.output_file, p_system=args.system)
+        download_relations(model_path=args.model_path, relations_url=args.relations_url, relation_output_file=args.output_file, p_system=args.system)
     elif (args.command == "download_api_spec"):
                     
         download_api_specs(model_path=args.model_path, api_spec_url=args.api_spec_url, output_file=args.output_file, p_system=args.system, p_system_component=args.system_component)
