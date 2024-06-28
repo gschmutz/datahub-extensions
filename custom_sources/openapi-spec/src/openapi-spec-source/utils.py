@@ -60,7 +60,7 @@ def get_arch_repo_json(path: str):
     return arch_repo_json
      
 def get_api_spec(url: str, system: str, system_component: str): 
-    api_spec_json: dict = None
+    api_spec_json: dict = {}
     
     url = url.replace("{system}", system)
     url = url.replace("{system-component}", system_component)
