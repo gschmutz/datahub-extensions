@@ -96,7 +96,7 @@ def download_api_specs(model_path: str, api_spec_url: str, output_file: str, p_s
 
                     api_spec_json = get_api_spec(api_spec_url, system_name, system_component_name)
                     
-                    add_version(api_spec_json)
+                    add_version(api_spec_json, "1.0.0")
                     
                     remove_json_property(api_spec_json, "example")
                     remove_json_property(api_spec_json, "Schema")
