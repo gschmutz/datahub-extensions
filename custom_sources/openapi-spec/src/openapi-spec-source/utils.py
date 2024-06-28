@@ -110,8 +110,6 @@ def get_api_spec(url: str, system: str, system_component: str):
                 api_spec_json = response.json()
         except json.JSONDecodeError as je:
             print(f"Got a JSONDecodeError when parsing for {system}.{system_component}")
-        except Exception as e:
-            raise Exception(f"Cannot read remote file {url}, error:{e}")
     return api_spec_json
 
 def download_model(model_path: str, model_output_file: str):
