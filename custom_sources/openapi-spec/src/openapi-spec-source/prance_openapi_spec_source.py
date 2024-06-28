@@ -305,9 +305,11 @@ class OpenApiSpecSource(Source):
         return arch_repo_json
     
     def get_api_spec(self, path: str, system: str, system_component: str) -> dict:
-        path = path.replace("{system}", system)
-        path = path.replace("{system-component}", system_component)
-        parser = ResolvingParser(path, 
+        openapi_path = path.replace("{system}", system).replace("{system-component}", system_component)
+        
+        print ("path to OpenAPI Spec: " + openapi_path)
+
+        parser = ResolvingParser(openapi_path, 
                                  recursion_limit=1, 
                                  strict=False, 
                                  recursion_limit_handler=self.recursion_limit_handler_none)
