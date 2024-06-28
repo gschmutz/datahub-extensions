@@ -131,7 +131,8 @@ def main():
     parser = argparse.ArgumentParser(description="An API for downloading Arch Repo Model and Open API specifications")
 
     parser.add_argument('command', type=str, help='the command to execute')
-    parser.add_argument('-mp', '--model-path', type=str, action='store', help='Specify the model path, if command is `download_model` or `download_api_specs`', required=True)
+    parser.add_argument('-mp', '--model-path', type=str, action='store', help='Specify the path to the model REST resource, if command is `download_model` or `download_api_specs`', required=True)
+    parser.add_argument('-rp', '--relation-path', type=str, action='store', help='Specify the path to the relation REST resource, if command is `download_relation`', required=True)
     parser.add_argument('-apiurl', '--api-spec-url', type=str, action='store', help='Specify the api-spec url, if command is `download_api_specs`', required=False)
     parser.add_argument('-of', '--output-file', type=str, action='store', help='Specify the output file, if command is `download_model` or `download_relations` or `download_api_specs`', required=False)
     parser.add_argument('-s', '--system', action='store', type=str, help='Specify the system to use, if command is `download_api_spec`', required=False)
@@ -143,7 +144,7 @@ def main():
     if (args.command == "download_model"):
         download_model(model_path=args.model_path, model_output_file=args.output_file)
     if (args.command == "download_relations"):
-        download_model(model_path=args.model_path, relation_output_file=args.output_file, p_system=args.system)
+        download_model(model_path=args.model_path, relations_path=args.relations_path, relation_output_file=args.output_file, p_system=args.system)
     elif (args.command == "download_api_spec"):
                     
         download_api_specs(model_path=args.model_path, api_spec_url=args.api_spec_url, output_file=args.output_file, p_system=args.system, p_system_component=args.system_component)
