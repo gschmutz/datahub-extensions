@@ -70,7 +70,7 @@ def main():
     parser.add_argument('-mp', '--model-path', type=str, action='store', help='Specify the model path, if command is `download_model` or `download_api_specs`', required=True)
     parser.add_argument('-mf', '--model-file', type=str, action='store', help='Specify the model file, if command is `download_model`', required=False)
     parser.add_argument('-apiurl', '--api-spec-url', type=str, action='store', help='Specify the api-spec url, if command is `download_api_specs`', required=False)
-    parser.add_argument('-apiout', '--api-output-folder', type=str, action='store', help='Specify the api-spec output folder, if command is `download_api_specs`', required=False)
+    parser.add_argument('-apiout', '--api-spec-output-folder', type=str, action='store', help='Specify the api-spec output folder, if command is `download_api_specs`', required=False)
     parser.add_argument('-s', '--system', action='store', type=str, help='Specify the system to use, if command is `download_api_spec`', required=False)
     parser.add_argument('-sc', '--system-component', type=str, action='store', help='Specify the model path, if command is `download_api_spec`', required=False)
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose mode', required=False)
