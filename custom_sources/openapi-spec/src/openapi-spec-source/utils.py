@@ -67,11 +67,13 @@ def get_api_spec(url: str, system: str, system_component: str):
         raise Exception(f"Must be a valid url: {url}, error:{e}")
     else:
         try:
+            print ("invoking: " + url)
             response = requests.get(url)
             if (response.status_code == 200):
                 api_spec_json = response.json()
         except Exception as e:
             raise Exception(f"Cannot read remote file {url}, error:{e}")
+    print (api_spec_json.keys())    
     return api_spec_json
 
 def download_model(model_path: str, model_output_file: str):
@@ -109,7 +111,7 @@ def download_api_specs(model_path: str, api_spec_url: str, output_file: str, p_s
                     print ("Processing System-Component: " + system_component_name)
 
                     api_spec_json:dict = get_api_spec(api_spec_url, system_name, system_component_name)
-                    
+
                     print ("got api spec json: " + str(len(api_spec_json)))
                     
                     add_version(api_spec_json, "1.0.0")
