@@ -195,18 +195,6 @@ class OpenApiSpecSource(Source):
         gtc = GlobalTagsClass(tags_tac)
         dataset_snapshot.aspects.append(gtc)
 
-        # the link will appear in the "documentation"
-        # link_url = clean_url(config.url + self.url_basepath + endpoint_k)
-        # link_description = "Link to call for the dataset."
-        # creation = AuditStampClass(
-        #     time=int(time.time()), actor="urn:li:corpuser:etl", impersonator=None
-        # )
-        # link_metadata = InstitutionalMemoryMetadataClass(
-        #     url=link_url, description=link_description, createStamp=creation
-        # )
-        # inst_memory = InstitutionalMemoryClass([link_metadata])
-        # dataset_snapshot.aspects.append(inst_memory)
-
         return dataset_snapshot, dataset_name
 
     def handle_schema(self, schema: dict, property_name: str, prefix: str, canonical_schema: List[SchemaField]):
@@ -310,15 +298,15 @@ class OpenApiSpecSource(Source):
         else:
             try:
                 response = requests.get(path)
-                if (response.status.code == 200):
+                if (response.status_code == 200):
                     arch_repo_json = response.json()
             except Exception as e:
-                raise ConfigurationError(f"Cannot read remote file {path}, error:{e}")
+                raise Exception(f"Cannot read remote file {path}, error:{e}")
         return arch_repo_json
     
     def get_api_spec(self, path: str, system: str, system_component: str) -> dict:
-        path = path.replace("<system>", system)
-        path = path.replace("<system_component>", system_component)
+        path = path.replace("{system}", system)
+        path = path.replace("{system-component}", system_component)
         parser = ResolvingParser(path, 
                                  recursion_limit=1, 
                                  strict=False, 
