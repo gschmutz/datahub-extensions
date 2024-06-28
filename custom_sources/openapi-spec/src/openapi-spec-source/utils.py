@@ -23,7 +23,7 @@ def get_arch_repo_json(path: str):
 
 def get_api_spec(url: str, system: str, system_component: str): 
     url = url.replace("{system}", system)
-    url = url.replace("{system_component}", system_component)
+    url = url.replace("{system-component}", system_component)
     url_parsed = parse.urlparse(url)
     if url_parsed.scheme not in ("http", "https"):  # A local file
         raise Exception(f"Must be a valid url: {url}, error:{e}")
@@ -59,7 +59,7 @@ def download_api_specs(model_path: str, api_spec_url: str, output_file: str, p_s
                     api_spec_json = get_api_spec(api_spec_url, system_name, system_component_name)
                     api_spec_json_str = json.dumps(api_spec_json, indent=4)                      
                     
-                    api_output_file = output_file.replace("{system}", system_name).replace("{system_component}", system_component_name)
+                    api_output_file = output_file.replace("{system}", system_name).replace("{system-component}", system_component_name)
                     with open(api_output_file, 'w') as file:
                         file.write(api_spec_json_str)
                         
