@@ -28,22 +28,57 @@ def remove_json_property(data: dict, property_name: str):
         for item in data:
             remove_json_property(item, property_name)
 
-def remove_json_element(data: dict, elt_name: str):
+def remove_specific_schema(data):
     """
     Recursively remove the specific 'schema' key with the specified value from the given data structure.
     """
     if isinstance(data, dict):
         # Check if the 'schema' key exists and matches the specific value
-        if elt_name in data and data[elt_name] == {"$ref": "#/components/schemas/Schema"}:
-            del data[elt_name]
+        if "schema" in data and data["schema"] == {"$ref": "#/components/schemas/Schema"}:
+            del data["schema"]
         
         # Recursively call the function for the remaining keys
         for key, value in list(data.items()):
-            remove_json_element(elt_name, value)
+            remove_specific_schema(value)
     
     elif isinstance(data, list):
         for item in data:
-            remove_json_element(elt_name, item)
+            remove_specific_schema(item)
+
+def remove_recommended_schema(data):
+    """
+    Recursively remove the specific 'schema' key with the specified value from the given data structure.
+    """
+    if isinstance(data, dict):
+        # Check if the 'schema' key exists and matches the specific value
+        if "recommendedSchema" in data and data["recommendedSchema"] == {"$ref": "#/components/schemas/Schema"}:
+            del data["recommendedSchema"]
+        
+        # Recursively call the function for the remaining keys
+        for key, value in list(data.items()):
+            remove_recommended_schema(value)
+    
+    elif isinstance(data, list):
+        for item in data:
+            remove_recommended_schema(item)
+
+
+def remove_specific_data(data):
+    """
+    Recursively remove the specific 'recommendedSchema' key with the specified value from the given data structure.
+    """
+    if isinstance(data, dict):
+        # Check if the 'schema' key exists and matches the specific value
+        if "specificData" in data and data["specificData"] == {"$ref": "#/components/schemas/SpecificData"}:
+            del data["specificData"]
+        
+        # Recursively call the function for the remaining keys
+        for key, value in list(data.items()):
+            remove_specific_data(value)
+    
+    elif isinstance(data, list):
+        for item in data:
+            remove_specific_data(item)
 
 def get_arch_repo_json(path: str): 
     path_parsed = parse.urlparse(path)
@@ -121,9 +156,9 @@ def download_api_specs(model_path: str, api_spec_url: str, output_file: str, p_s
                         remove_json_property(api_spec_json, "example")
                         remove_json_property(api_spec_json, "Schema")
                         remove_json_property(api_spec_json, "SpecifcData")
-                        remove_json_element(api_spec_json, "schema")
-                        remove_json_element(api_spec_json, "recommendedSchema")
-                        remove_json_element(api_spec_json, "specificData")
+                        remove_specific_schema(api_spec_json)
+                        remove_recommended_schema(api_spec_json)
+                        remove_specific_data(api_spec_json)
                         
                         api_spec_json_str = json.dumps(api_spec_json, indent=4)
                         
