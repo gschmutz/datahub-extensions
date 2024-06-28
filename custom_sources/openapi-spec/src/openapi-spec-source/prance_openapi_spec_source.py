@@ -137,10 +137,12 @@ class OpenApiSpecSource(Source):
                 method_def = methods[method]
 
                 tags = defaultdict(list)
+                desc: str = ""
                 if "summary" in method_def: 
                     desc = method_def["summary"]
-                if (method_def["tags"] is not None):
-                    tags = method_def["tags"]
+                # tags were causing problems therefore we removed it
+                #if (method_def["tags"] is not None):
+                #    tags = method_def["tags"]
                 method = method
 
                 for responseNumber in method_def["responses"]:
@@ -243,7 +245,7 @@ class OpenApiSpecSource(Source):
 
         else:
             if property_name is None:
-                logger.info(schema)
+                property_name = "unknown"
             logger.info("===>Set_metadata: PROPERTY: " + property_name)
 
             full_name = prefix + '.' + property_name if prefix is not None else property_name
