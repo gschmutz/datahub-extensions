@@ -1,6 +1,6 @@
-# Avro Source
+# Arch Repo Relationships Source
 
-This is a custom source which reads Avro files (avsc) and register them as DataSets in DataHub.
+This is a custom source which reads System and System Components and register them as DataFlows and DataJobs in DataHub as well as the relationships from/to a system and creates the lineage information to an API specification (dataset).
 
 ## Important Capabilities
 
@@ -25,11 +25,12 @@ For general pointers on writing and running a recipe, see the [main recipe guide
 
 ```yaml
 source:
-  type: avro-source.avro_ingestion_source.AvroSource
+  type: arch-repo-source.arch_repo_ingestion_source.ArchRepoSource
   config:
     env: "env"
-    path: "path to avsc file or path only"
-    file_extension: ".avsc"
+    api_model_path: "path to model file or URL"
+    api_relationship_path: "path to get the relationships, can include <system> as a placeholder"
+    provider_system: "for which system to retrieve relationships"
     dataset_name: "name of the dataset"
     platform_instance: ""
     platform: "platform"
@@ -42,8 +43,9 @@ Note that a `.` is used to denote nested fields in the YAML recipe.
 | Field | Description | Default |
 |-------|-------------|---------|
 | **env** <br>string | The environment that all assets produced by this connector belong to | `PROD` 
-| **path** <br>string | File path to folder or file to ingest, or URL to a remote file. If pointed to a folder, all files with extension {file_extension} (default json) within that folder will be processed. |
-| **file_extension** <br>string | When providing a folder to use to read files, set this field to control file extensions that you want the source to process. * is a special value that means process every file regardless of extension|`.avsc`|
+| **api_model_path** <br>string | File path to folder or file to ingest, or URL to a remote file over which to retrieve the model information of the arch repo  |
+| **api_relationship_path** <br>string | File path to folder or file to ingest, or URL to a remote file over which to retrieve the reliationship information of the arch repo. You can use the placeholder `<system>`, which gets automatically replaced by the given provider system to use (see next parameter). |
+| **provider_system** <br>string | the system to retrieve the relationships to/from, optional, if not set all systems are retrieved |
 | **platform_instance** <br>string | The instance of the platform that all assets produced by this recipe belong to |
 | **platform** <br>string | the platform type that all assets produced belong to |  |
 
