@@ -58,7 +58,7 @@ def get_arch_repo_json(path: str):
         except Exception as e:
             raise Exception(f"Cannot read remote file {path}, error:{e}")
     return arch_repo_json
-
+     
 def get_api_spec(url: str, system: str, system_component: str): 
     url = url.replace("{system}", system)
     url = url.replace("{system-component}", system_component)
@@ -74,13 +74,27 @@ def get_api_spec(url: str, system: str, system_component: str):
             raise Exception(f"Cannot read remote file {url}, error:{e}")
     return api_spec_json
 
-def download_model(model_path: str, model_file: str):
+def download_model(model_path: str, model_output_file: str):
     arch_repo_model_json = get_arch_repo_json(model_path)                            
     arch_repo_model_str = json.dumps(arch_repo_model_json, indent=4)
     
-    with open(model_file, 'w') as file:
+    with open(model_output_file, 'w') as file:
         file.write(arch_repo_model_str) 
                        
+def download_relations(model_path: str, relations_path: str, relation_output_file: str, p_system: str):
+    arch_repo_model_json = get_arch_repo_json(model_path)
+    for system in arch_repo_model_json["systems"]:
+        system_name = system["name"]
+        if (p_system is None or system_name == p_system):       
+            print ("Processing System: " + system_name)
+            relations_path = relations_path.replace("{system}", system_name)
+            arch_repo_model_json = get_arch_repo_json(relations_path)                            
+            arch_repo_model_str = json.dumps(arch_repo_model_json, indent=4)
+            
+            relation_output_file = relation_output_file.replace("{system}", system_name)
+            with open(relation_output_file, 'w') as file:
+                file.write(arch_repo_model_str) 
+
 def download_api_specs(model_path: str, api_spec_url: str, output_file: str, p_system: str = None, p_system_component: str = None):
     arch_repo_model_json = get_arch_repo_json(model_path)
     for system in arch_repo_model_json["systems"]:
@@ -118,9 +132,8 @@ def main():
 
     parser.add_argument('command', type=str, help='the command to execute')
     parser.add_argument('-mp', '--model-path', type=str, action='store', help='Specify the model path, if command is `download_model` or `download_api_specs`', required=True)
-    parser.add_argument('-mf', '--model-file', type=str, action='store', help='Specify the model file, if command is `download_model`', required=False)
     parser.add_argument('-apiurl', '--api-spec-url', type=str, action='store', help='Specify the api-spec url, if command is `download_api_specs`', required=False)
-    parser.add_argument('-apiout', '--api-spec-output-file', type=str, action='store', help='Specify the api-spec output file, if command is `download_api_specs`', required=False)
+    parser.add_argument('-of', '--output-file', type=str, action='store', help='Specify the output file, if command is `download_model` or `download_relations` or `download_api_specs`', required=False)
     parser.add_argument('-s', '--system', action='store', type=str, help='Specify the system to use, if command is `download_api_spec`', required=False)
     parser.add_argument('-sc', '--system-component', type=str, action='store', help='Specify the model path, if command is `download_api_spec`', required=False)
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose mode', required=False)
@@ -128,10 +141,12 @@ def main():
     args = parser.parse_args()
     
     if (args.command == "download_model"):
-        download_model(model_path=args.model_path, model_file=args.model_file)
+        download_model(model_path=args.model_path, model_output_file=args.output_file)
+    if (args.command == "download_relations"):
+        download_model(model_path=args.model_path, relation_output_file=args.output_file, p_system=args.system)
     elif (args.command == "download_api_spec"):
                     
-        download_api_specs(model_path=args.model_path, api_spec_url=args.api_spec_url, output_file=args.api_spec_output_file, p_system=args.system, p_system_component=args.system_component)
+        download_api_specs(model_path=args.model_path, api_spec_url=args.api_spec_url, output_file=args.output_file, p_system=args.system, p_system_component=args.system_component)
     
 if __name__ == '__main__':
     main()    

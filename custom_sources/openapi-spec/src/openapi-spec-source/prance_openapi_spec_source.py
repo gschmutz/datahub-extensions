@@ -273,7 +273,7 @@ class OpenApiSpecSource(Source):
             )
             canonical_schema.append(field)
 
-    def set_metadata(self, dataset_name: str, schema: dict, platform: str = "api"
+    def set_metadata(self, dataset_name: str, schema: dict, platform: str = "OpenApi"
     ) -> SchemaMetadata:
         canonical_schema: List[SchemaField] = []
 
@@ -347,7 +347,7 @@ class OpenApiSpecSource(Source):
                                 endpoint_k, endpoint_dets
                             )
                             
-                            schema_metadata = self.set_metadata(dataset_name, endpoint_dets["schema"])
+                            schema_metadata = self.set_metadata(dataset_name, endpoint_dets["schema"], platform=config.platform)
                             dataset_snapshot.aspects.append(schema_metadata)        
                             
                             yield self.build_wu(dataset_snapshot, dataset_name)
