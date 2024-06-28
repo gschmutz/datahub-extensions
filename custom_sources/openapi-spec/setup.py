@@ -6,5 +6,5 @@ setup_output = setup(
     description="Ingest OpenAPI Specifications as DataSets",
     package_dir={"": "src"},
     packages=find_packages("src"),
-    install_requires=["openapi3-parser"],
+    install_requires=["openapi3-parser","prance","openapi-spec-validator"],
 )

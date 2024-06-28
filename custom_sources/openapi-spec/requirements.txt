@@ -1,3 +1,5 @@
 setuptools
 acryl-datahub
 openapi3-parser
+prance
+openapi-spec-validator

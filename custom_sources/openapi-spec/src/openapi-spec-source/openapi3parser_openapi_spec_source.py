@@ -77,9 +77,6 @@ class OpenApiSpecSourceConfig(ConfigModel):
     env: str = Field("PROD",
                      description="The environment that all assets produced by this connector belong to"
     )
-    parser_type: str = Field(default="prance",
-                    description="the parser implementation to use, either 'prance' or 'openapi3-parser'. Defaults to 'prance'".
-    )
     path: str = Field(
         description="File path or URL to a to an openapi specification file."
     )
@@ -168,7 +165,6 @@ class OpenApiSpecSource(Source):
             urn=dataset_urn,
             aspects=[],
         )
-
 
         print (endpoint_dets["description"])
         # adding description
