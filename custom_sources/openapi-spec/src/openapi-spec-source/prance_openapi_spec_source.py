@@ -326,7 +326,7 @@ class OpenApiSpecSource(Source):
         config = self.config
         
         # we assume that there is only one model
-        arch_repo_model_json = self.get_arch_repo_json(config.api_model_path)
+        arch_repo_model_json: dict = self.get_arch_repo_json(config.api_model_path)
         for system in arch_repo_model_json["systems"]:
             system_name = system["name"]
             if (config.system is None or system_name == config.system):       
@@ -336,23 +336,24 @@ class OpenApiSpecSource(Source):
                     system_component_name = system_component["name"]
                     if (config.system_component is None or system_component_name == config.system_component):            
                         print ("Processing System-Component: " + system_component_name)
-                        specification = self.get_api_spec(path = config.api_spec_path, system=system_name, system_component=system_component_name)
+                        specification: dict = self.get_api_spec(path = config.api_spec_path, system=system_name, system_component=system_component_name)
 
-                        url_endpoints = self.get_endpoints(specification)
-        
-                        # looping on all the urls
-                        for endpoint_k, endpoint_dets in url_endpoints.items():
-                            if endpoint_k in config.ignore_endpoints:
-                                continue
-                        
-                            dataset_snapshot, dataset_name = self.init_dataset(
-                                endpoint_k, endpoint_dets
-                            )
+                        if len(specification):    
+                            url_endpoints = self.get_endpoints(specification)
+            
+                            # looping on all the urls
+                            for endpoint_k, endpoint_dets in url_endpoints.items():
+                                if endpoint_k in config.ignore_endpoints:
+                                    continue
                             
-                            schema_metadata = self.set_metadata(dataset_name, endpoint_dets["schema"], platform=config.platform)
-                            dataset_snapshot.aspects.append(schema_metadata)        
-                            
-                            yield self.build_wu(dataset_snapshot, dataset_name)
+                                dataset_snapshot, dataset_name = self.init_dataset(
+                                    endpoint_k, endpoint_dets
+                                )
+                                
+                                schema_metadata = self.set_metadata(dataset_name, endpoint_dets["schema"], platform=config.platform)
+                                dataset_snapshot.aspects.append(schema_metadata)        
+                                
+                                yield self.build_wu(dataset_snapshot, dataset_name)
 
     def get_report(self) -> SourceReport:
         return self.report
