@@ -113,7 +113,7 @@ def download_api_specs(model_path: str, api_spec_url: str, output_file: str, p_s
 
                     api_spec_json:dict = get_api_spec(api_spec_url, system_name, system_component_name)
                     
-                    print (json.dumps(api_spec_json, ident=4))
+                    print (json.dumps(api_spec_json, indent=4))
                     
                     add_version(api_spec_json, version="1.0.0")
                     
