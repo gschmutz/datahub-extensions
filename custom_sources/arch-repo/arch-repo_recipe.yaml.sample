@@ -2,8 +2,9 @@ source:
   type: arch-repo-source.arch_repo_ingestion_source.ArchRepoSource
   config:
     env: "env"
-    path: "path to avsc file or path only"
-    file_extension: ".json"
+    api_model_path: "path to model file or URL"
+    api_relationship_path: "path to get the relationships, can include <system> as a placeholder"
+    provider_system: "for which system to retrieve relationships"
     dataset_name: "name of the dataset"
     platform_instance: ""
     platform: "platform"
