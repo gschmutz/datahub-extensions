@@ -108,7 +108,9 @@ def download_api_specs(model_path: str, api_spec_url: str, output_file: str, p_s
                 if (p_system_component is None or system_component_name == p_system_component):            
                     print ("Processing System-Component: " + system_component_name)
 
-                    api_spec_json = get_api_spec(api_spec_url, system_name, system_component_name)
+                    api_spec_json:dict = get_api_spec(api_spec_url, system_name, system_component_name)
+                    
+                    print ("got api spec json: " + str(len(api_spec_json)))
                     
                     add_version(api_spec_json, "1.0.0")
                     
@@ -119,10 +121,8 @@ def download_api_specs(model_path: str, api_spec_url: str, output_file: str, p_s
                     remove_json_element(api_spec_json, "recommendedSchema")
                     remove_json_element(api_spec_json, "specificData")
                     
-                    api_spec_json_str = json.dumps(api_spec_json, indent=4)     
+                    api_spec_json_str = json.dumps(api_spec_json, indent=4)
                     
-                    print ("api spec json as string: " + api_spec_json_str)                 
-
                     api_output_file = output_file.replace("{system}", system_name).replace("{system-component}", system_component_name)
                     with open(api_output_file, 'w') as file:
                         file.write(api_spec_json_str)
