@@ -44,7 +44,7 @@ Note that a `.` is used to denote nested fields in the YAML recipe.
 |-------|-------------|---------|
 | **env** <br>string | The environment that all assets produced by this connector belong to | `PROD` 
 | **api_model_path** <br>string | File path to folder or file to ingest, or URL to a remote file over which to retrieve the model information of the arch repo  |
-| **api_relationship_path** <br>string | File path to folder or file to ingest, or URL to a remote file over which to retrieve the reliationship information of the arch repo. You can use the placeholder `<system>`, which gets automatically replaced by the given provider system to use (see next parameter). |
+| **api_relationship_path** <br>string | File path to folder or file to ingest, or URL to a remote file over which to retrieve the reliationship information of the arch repo. You can use the placeholder `{system}`, which gets automatically replaced by the given provider system to use (see next parameter). |
 | **provider_system** <br>string | the system to retrieve the relationships to/from, optional, if not set all systems are retrieved |
 | **platform_instance** <br>string | The instance of the platform that all assets produced by this recipe belong to |
 | **platform** <br>string | the platform type that all assets produced belong to |  |

@@ -2,6 +2,9 @@ source:
   type: openapi-spec-source.openapi_spec_source.OpenApiSpecSource
   config:
     env: "env"
-    path: "file:///Users/guido.schmutz/Downloads/openapi.json"
+    api_model_path: "filepath or url to the arch repo model resource"
+    api_spec_path: "filepath or url to the arch repo Open API spec resource (supports {system} and {system-component} placeholder to refer to system/system-component)"
+    system: "the system to process, if left empty then all systems in the arch repo model are processed"
+    system_component: "the system component to process, if left empty, then all system components in the system are processed"
     platform_instance: ""
     platform: "OpenApi"

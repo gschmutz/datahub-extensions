@@ -42,7 +42,10 @@ Note that a `.` is used to denote nested fields in the YAML recipe.
 | Field | Description | Default |
 |-------|-------------|---------|
 | **env** <br>string | The environment that all assets produced by this connector belong to | `PROD` 
-| **path** <br>string | File path to file with the OpenAPI Specification, or URL to an OpenAPI Specification. |
+| **api_model_path** <br>string | File path to file with the Arch Repo Model, or URL to the Arch Repo Model REST resource. |
+| **api_spec_path** <br>string | File path to file with the OpenAPI Specification, or URL to an OpenAPI Specification. Supports `{system}` and `{system-component}` placeholders to refer to system/system-component being processed. Use `system` and `system_component` config fields to specify which system/system-component(s) should be processed. |
+| **system** <br>string | The system to process, if left empty then all systems in the arch repo model are processed |
+| **system_component** <br>string | The system component to process, if left empty, then all system components for a system are processed |
 | **platform_instance** <br>string | The instance of the platform that all assets produced by this recipe belong to |
 | **platform** <br>string | the platform type that all assets produced belong to |  |
 

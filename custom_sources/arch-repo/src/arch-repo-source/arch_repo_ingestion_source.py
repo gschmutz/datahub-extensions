@@ -88,7 +88,7 @@ class ArchRepoSource(Source):
             return [str(self.source_config.path)]
         
     def get_api_relation(self, path : str, system_name : str) -> Iterable[str]:
-        path = path.replace("<system>", system_name)
+        path = path.replace("{system}", system_name)
         path_parsed = parse.urlparse(path)
         if path_parsed.scheme in ("file", ""):
             path = pathlib.Path(path)
