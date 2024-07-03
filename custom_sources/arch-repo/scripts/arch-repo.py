@@ -112,15 +112,21 @@ def get_api_spec(url: str, system: str, system_component: str):
             print(f"Got an Error {e} when parsing for {system}.{system_component}")
     return api_spec_json
 
-def download_model(model_path: str, model_output_file: str):
-    arch_repo_model_json = get_arch_repo_json(model_path)                            
+def download_model(model_url: str, model_output_file: str):
+    """
+    Downloads the architecture repository model resource and writes it to a file
+    """    
+    arch_repo_model_json = get_arch_repo_json(model_url)                            
     arch_repo_model_str = json.dumps(arch_repo_model_json, indent=4)
     
     with open(model_output_file, 'w') as file:
         file.write(arch_repo_model_str) 
                        
-def download_relations(model_path: str, relations_url: str, relation_output_file: str, p_system: str):
-    arch_repo_model_json = get_arch_repo_json(model_path)
+def download_relations(model_url: str, relations_url: str, relation_output_file: str, p_system: str):
+    """
+    Downloads the architecture repository relationship resource for one or more systems and writes it to a file
+    """    
+    arch_repo_model_json = get_arch_repo_json(model_url)
     for system in arch_repo_model_json["systems"]:
         system_name = system["name"]
         if (p_system is None or system_name == p_system):       
@@ -133,8 +139,11 @@ def download_relations(model_path: str, relations_url: str, relation_output_file
             with open(relation_output_file, 'w') as file:
                 file.write(arch_repo_model_str) 
 
-def download_api_specs(model_path: str, api_spec_url: str, output_file: str, p_system: str = None, p_system_component: str = None):
-    arch_repo_model_json = get_arch_repo_json(model_path)
+def download_api_specs(model_url: str, api_spec_url: str, output_file: str, p_system: str = None, p_system_component: str = None):
+    """
+    Downloads the OpenAIP specification resource for one or more systems and their system component(s) and writes it to a file
+    """    
+    arch_repo_model_json = get_arch_repo_json(model_url)
     for system in arch_repo_model_json["systems"]:
         system_name = system["name"]
         if (p_system is None or system_name == p_system):       
@@ -167,11 +176,12 @@ def download_api_specs(model_path: str, api_spec_url: str, output_file: str, p_s
                             file.write(api_spec_json_str)
                         
 def main():
-    parser = argparse.ArgumentParser(description="An API for downloading Arch Repo Model and Open API specifications")
+    parser = argparse.ArgumentParser(prog="arch-repo.py",
+                                     description="An API for downloading Arch Repo Model, the Arch Repo Relationships or the Open API specifications.")
 
     parser.add_argument('command', type=str, help='the command to execute')
-    parser.add_argument('-mp', '--model-path', type=str, action='store', help='Specify the path to the model REST resource, if command is `download_model` or `download_api_specs`', required=True)
-    parser.add_argument('-relurl', '--relations-url', type=str, action='store', help='Specify the path to the relation REST resource, if command is `download_relation`', required=False)
+    parser.add_argument('-modurl', '--model-url', type=str, action='store', help='Specify the url to the model REST resource, if command is `download_model` or the url or a file path if the command is `download_relation` or `download_api_specs`', required=True)
+    parser.add_argument('-relurl', '--relations-url', type=str, action='store', help='Specify the url to the relation REST resource, if command is `download_relation`', required=False)
     parser.add_argument('-apiurl', '--api-spec-url', type=str, action='store', help='Specify the api-spec url, if command is `download_api_specs`', required=False)
     parser.add_argument('-of', '--output-file', type=str, action='store', help='Specify the output file, if command is `download_model` or `download_relations` or `download_api_specs`', required=True)
     parser.add_argument('-s', '--system', action='store', type=str, help='Specify the system to use, if command is `download_api_spec`', required=False)
@@ -181,11 +191,11 @@ def main():
     args = parser.parse_args()
     
     if (args.command == "download_model"):
-        download_model(model_path=args.model_path, model_output_file=args.output_file)
+        download_model(model_url=args.model_url, model_output_file=args.output_file)
     if (args.command == "download_relations"):
-        download_relations(model_path=args.model_path, relations_url=args.relations_url, relation_output_file=args.output_file, p_system=args.system)
+        download_relations(model_url=args.model_url, relations_url=args.relations_url, relation_output_file=args.output_file, p_system=args.system)
     elif (args.command == "download_api_spec"):
-        download_api_specs(model_path=args.model_path, api_spec_url=args.api_spec_url, output_file=args.output_file, p_system=args.system, p_system_component=args.system_component)
+        download_api_specs(model_url=args.model_url, api_spec_url=args.api_spec_url, output_file=args.output_file, p_system=args.system, p_system_component=args.system_component)
     
 if __name__ == '__main__':
     main()    
