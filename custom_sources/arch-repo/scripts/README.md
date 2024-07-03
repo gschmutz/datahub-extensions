@@ -76,3 +76,5 @@ python arch-repo.py download_api_spec \
 You can either leave `--system-component` empty, and the API spec of all system components for the given system will be downloaded or you can leave both `--system-component` and `--system` and then all API specs for all systems and system components will be downloaded.
 
 Use the placeholder `{system}` and `{system-component}` in the value for `--api-spec-url` and `--output-file` to dynamically create a value for the relevant system and system component.
+
+The script will remove parts of the OpenAPI spec which can not be handled by the parser used in the custom source.
