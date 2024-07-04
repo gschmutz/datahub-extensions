@@ -172,6 +172,15 @@ class ArchRepoSource(Source):
             ),
         ).as_workunit()
 
+    def remove_first_element_if_not_api(self, path: str) -> str:
+        # Split the path by "/"
+        parts = path.split('/')
+    
+        # Ensure there are at least 3 elements (an empty string at the beginning due to the leading slash)
+        if parts[1] != 'api':
+            path = path.removeprefix("/" + parts[1])
+        return path
+
     def construct_jobinout_workunits(self,
                                 job_urn: str,
                                 inlets: List[str] = [],
@@ -246,15 +255,19 @@ class ArchRepoSource(Source):
                 for relation in arch_repo_json:
                     
                     if (relation["relationType"] == "REST_API_RELATION"):
-                    
+                        path = relation["path"][1:]
+                        # not all path in arch repo relations start with /api, some also include the <context> in front, such as /<context>/api. 
+                        # We remove to be consistent with the path in the OpenAPI specs
+                        path = self.remove_first_element_if_not_api(path)
                         dataset_urn = make_dataset_urn_with_platform_instance (platform="OpenApi", 
-                                                                        name=relation["path"][1:].replace("/", "."), 
+                                                                        name=path.replace("/", "."), 
                                                                         platform_instance=self.source_config.platform_instance,
                                                                         env=self.source_config.env)
                         key = relation["consumer"] + "::" + relation["consumerSystem"]
                         consumer_outlets[key].append(dataset_urn)
                         key = relation["provider"] + "::" + relation["providerSystem"]
                         provider_outlets[key].append(dataset_urn)
+                    # TODO: also handle EVENT_RELATION types    
                     if (relation["relationType"] == "EVENT_RELATION"):
                         None
                          
