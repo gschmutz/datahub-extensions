@@ -1,0 +1,1432 @@
+{
+  "systems": [
+    {
+      "name": "Inspecziun",
+      "aliases": [],
+      "systemComponents": [
+        {
+          "name": "inspecziun-core-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "inspecziun-config-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "inspecziun-event-error-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "inspecziun-process-context-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "inspecziun-test-agent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "Agir",
+      "aliases": [
+        "Shared-Services",
+        "Shared"
+      ],
+      "systemComponents": [
+        {
+          "name": "agir-config-server-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "agir-task-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        }
+      ]
+    },
+    {
+      "name": "Applicationplatform",
+      "aliases": [],
+      "systemComponents": [
+        {
+          "name": "applicationplatform-message-contract-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "applicationplatform-archrepo-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "applicationplatform-deploymentlog-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "applicationplatform-govdashboard-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        }
+      ]
+    },
+    {
+      "name": "Notification",
+      "aliases": [
+        "Shared-Services"
+      ],
+      "systemComponents": [
+        {
+          "name": "notification-error-handling-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "notification-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "Payment",
+      "aliases": [
+        "Shared-Services"
+      ],
+      "systemComponents": [
+        {
+          "name": "payment-test-agent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "payment-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "payment-error-handling-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "Shared",
+      "aliases": [
+        "_Shared"
+      ],
+      "systemComponents": []
+    },
+    {
+      "name": "Testar",
+      "aliases": [],
+      "systemComponents": [
+        {
+          "name": "testar-orchestrator-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "Transparenza",
+      "aliases": [],
+      "systemComponents": [
+        {
+          "name": "transparenza-inventory-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "transparenza-process-archive-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "transparenza-config-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "transparenza-testagent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "transparenza-testorchestrator-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "transparenza-catalog-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "transparenza-error-handling-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        }
+      ]
+    },
+    {
+      "name": "DataHub",
+      "aliases": [],
+      "systemComponents": [
+        {
+          "name": "datahub-test-agent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "datahub-postal-address-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "datahub-codeprovider-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "datahub-register-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "datahub-taxud-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "datahub-businesspartner-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "datahub-ivz-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "datahub-aeo-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "datahub-config-server-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "datahub-error-handling-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "datahub-publisher-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "Activ",
+      "aliases": [],
+      "systemComponents": [
+        {
+          "name": "activ-testorchestrator-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "activ-activation-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "activ-config-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "activ-error-handling-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "activ-perimeter-editor-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "activ-perimeter-validation-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "activ-testagent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "Connex",
+      "aliases": [],
+      "systemComponents": [
+        {
+          "name": "connex-config-server-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "connex-error-handling-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "connex-notification-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "connex-process-context-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "connex-pams-adapter-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "connex-businesspartner-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "connex-backoffice-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "connex-boarding-code-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "connex-sap-adapter-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "Controlla",
+      "aliases": [],
+      "systemComponents": [
+        {
+          "name": "controlla-control-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "controlla-config-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "controlla-controlla-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "DocBox",
+      "aliases": [
+        "chartera-output"
+      ],
+      "systemComponents": [
+        {
+          "name": "docbox-b2b-testagent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "docbox-testagent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "docbox-customerdoc-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "docbox-edec-adapter-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "docbox-sap-adapter-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "docbox-adapter-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "docbox-b2b-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "docbox-monitoring-ui",
+          "importer": "GRAFANA",
+          "type": "FRONTEND"
+        },
+        {
+          "name": "docbox-config-server-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "docbox-declaration-generator-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "docbox-doc-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "docbox-storage-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "docbox-errorhandler-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "docbox-oms-adapter-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "docbox-process-archive-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "docbox-process-context-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        }
+      ]
+    },
+    {
+      "name": "Input",
+      "aliases": [],
+      "systemComponents": [
+        {
+          "name": "input-process-context-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "input-testagent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "input-doc-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "input-archive-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "input-config-server-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "input-errorhandler-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "input-process-archive-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "input-monitoring-ui",
+          "importer": "GRAFANA",
+          "type": "FRONTEND"
+        }
+      ]
+    },
+    {
+      "name": "Passarella",
+      "aliases": [
+        "B2BHUB",
+        "B2BHUBV2",
+        "B2BGW"
+      ],
+      "systemComponents": []
+    },
+    {
+      "name": "Periodic",
+      "aliases": [
+        "PSA"
+      ],
+      "systemComponents": [
+        {
+          "name": "periodic-testagent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "periodic-testorchestrator-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "periodic-activation-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "periodic-config-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "periodic-error-handling-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        }
+      ]
+    },
+    {
+      "name": "Quickzoll",
+      "aliases": [],
+      "systemComponents": [
+        {
+          "name": "quickzoll-error-handling-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "quickzoll-declaration-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "quickzoll-config-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "quickzoll-resource-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "Via",
+      "aliases": [
+        "PSVA"
+      ],
+      "systemComponents": [
+        {
+          "name": "via-declaration-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "via-error-handling-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "via-process-archive-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "via-process-context-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "via-resource-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "via-shop-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "via-testagent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "via-checkout-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "via-config-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "Camiuns",
+      "aliases": [
+        "NETS",
+        "EETS"
+      ],
+      "systemComponents": [
+        {
+          "name": "camiuns-inspectionneed-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "camiuns-refund-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "eets-mockeventinjector",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "camiuns-billing-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "camiuns-config-server-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "camiuns-error-handling-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "camiuns-iks-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "camiuns-kpi-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "camiuns-monitoring-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "camiuns-nmts-declaration-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "camiuns-process-archive-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "camiuns-process-context-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "camiuns-vehicleprovision-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "eets-blacklist-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "eets-dsrccontract-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "eets-plausibility-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "eets-riskanalysis-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "eets-scheduling-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "eets-assessment-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "eets-journey-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "eets-provider-interface-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "eets-declaration-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "eets-billing-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "eets-provider-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "camiuns-specialagreement-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "nets-provider-interface-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "camiuns-vehicledata-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "camiuns-replacementvehicle-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "eets-manualtask-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "Passar-Frontend",
+      "aliases": [
+        "pfe",
+        "passar",
+        "Passar Frontend"
+      ],
+      "systemComponents": [
+        {
+          "name": "pfe-errorhandling-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "pfe-admin-server-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "pfe-config-server-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "pfe-declar-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "pfe-test-agent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "pfe-transport-cockpit-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        }
+      ]
+    },
+    {
+      "name": "Stadi",
+      "aliases": [],
+      "systemComponents": [
+        {
+          "name": "stadi-commodity-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "stadi-master-number-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "stadi-config-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "stadi-customs-clearance-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "stadi-declaration-importer-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "stadi-error-handling-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        }
+      ]
+    },
+    {
+      "name": "VSP",
+      "aliases": [
+        "VSP-Inland"
+      ],
+      "systemComponents": [
+        {
+          "name": "vsp-input-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "vsp-notification-mediator-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "vsp-selection-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "vsp-spring-boot-admin-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "vsp-task-mediator-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "vsp-process-archive-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "vsp-process-context-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "vsp-billing-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "vsp-test-agent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "vsp-beer-declaration-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "vsp-beer-refund-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "vsp-assessment-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "vsp-config-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "vsp-document-mediator-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "vsp-event-error-handling-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "vsp-mockeventinjector-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "vsp-refund-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        }
+      ]
+    },
+    {
+      "name": "WVS",
+      "aliases": [
+        "ccn"
+      ],
+      "systemComponents": [
+        {
+          "name": "wvs-scheduling-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "wvs-taxud-simulator-test-agent",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "wvs-testagent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "wvs-assessment-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "wvs-guarantee-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "wvs-manual-procedure-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "wvs-ncts-communication-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "wvs-journey-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "wvs-national-transit-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "wvs-ncts-declaration-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "wvs-communication-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "wvs-national-declaration-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "wvs-mockeventinjector",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "wvs-process-context-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "wvs-testorchestrator-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "wvs-activation-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "wvs-config-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "ccn-bridge-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "ccn-dispatcher-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "wvs-document-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "wvs-errorhandling-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "wvs-process-archive-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "DataAnalytics",
+      "aliases": [
+        "da"
+      ],
+      "systemComponents": []
+    },
+    {
+      "name": "Risico",
+      "aliases": [
+        "rule"
+      ],
+      "systemComponents": [
+        {
+          "name": "risico-gt-feature-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "risico-error-handling-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "risico-gt-producer-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "risico-gt-rule-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "risico-nes-producer-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "risico-nes-rule-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "rule-management-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "rule-results-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "risico-nes-feature-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "risico-gt-simulation-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "risico-nes-simulation-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "risico-process-archive-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "Savida",
+      "aliases": [
+        "dataanalytics"
+      ],
+      "systemComponents": [
+        {
+          "name": "savida-ui-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        }
+      ]
+    },
+    {
+      "name": "Borderguard",
+      "aliases": [
+        "BORDER",
+        "BOGA"
+      ],
+      "systemComponents": [
+        {
+          "name": "boga-core-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "boga-config-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "boga-event-error-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "boga-rpis-adapter-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "boga-traffic-control-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "boga-afv-adapter-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "boga-test-agent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "NES",
+      "aliases": [
+        "icsnes",
+        "ICS"
+      ],
+      "systemComponents": [
+        {
+          "name": "nes-gateway-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "nes-risk-management-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "nes-cr-simulator",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "nes-auditing-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "nes-config-server-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "nes-cr-simulator-v1",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "nes-error-handling-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "nes-timer-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "nes-user-assessment-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        }
+      ]
+    },
+    {
+      "name": "RaMo",
+      "aliases": [
+        "raporta"
+      ],
+      "systemComponents": [
+        {
+          "name": "ramo-control-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "ramo-config-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "ramo-error-handling-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "ramo-process-archive-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        }
+      ]
+    },
+    {
+      "name": "Garanzia",
+      "aliases": [],
+      "systemComponents": [
+        {
+          "name": "garanzia-guarantee-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "garanzia-test-agent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    },
+    {
+      "name": "Autorisaziun",
+      "aliases": [
+        "BVS"
+      ],
+      "systemComponents": [
+        {
+          "name": "autorisaziun-error-handling-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "autorisaziun-message-sim-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "autorisaziun-quota-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "autorisaziun-config-server-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "autorisaziun-quota-publication-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "autorisaziun-request-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "autorisaziun-verification-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "autorisaziun-dynformconfig-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "autorisaziun-fed-office-sim-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "autorisaziun-test-agent-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "autorisaziun-permit-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "autorisaziun-external-permit-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        }
+      ]
+    },
+    {
+      "name": "EBD",
+      "aliases": [],
+      "systemComponents": []
+    },
+    {
+      "name": "AFV",
+      "aliases": [],
+      "systemComponents": []
+    },
+    {
+      "name": "Prezius",
+      "aliases": [],
+      "systemComponents": [
+        {
+          "name": "prezius-error-handling-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "prezius-order-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "prezius-billing-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "prezius-document-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "prezius-hallmarking-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "prezius-input-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "prezius-reporting-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        },
+        {
+          "name": "prezius-validation-scs",
+          "importer": "GRAFANA",
+          "type": "SELF_CONTAINED_SYSTEM"
+        }
+      ]
+    },
+    {
+      "name": "NCTS",
+      "aliases": [],
+      "systemComponents": []
+    },
+    {
+      "name": "DST",
+      "aliases": [],
+      "systemComponents": []
+    },
+    {
+      "name": "Invoicing",
+      "aliases": [
+        "Shared-Services"
+      ],
+      "systemComponents": [
+        {
+          "name": "invoicing-error-handling-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        },
+        {
+          "name": "invoicing-service",
+          "importer": "GRAFANA",
+          "type": "BACKEND_SERVICE"
+        }
+      ]
+    }
+  ]
+}

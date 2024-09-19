@@ -238,7 +238,7 @@ class OpenApiSpecSource(Source):
                 self.handle_schema(schema["additionalProperties"], property_name, full_name, canonical_schema)
 
         elif (schema["type"] == "list"):
-            print("===>Set_metadata: LIST ")
+            logger.info("===>Set_metadata: LIST ")
 
             for item in schema:
                 self.handle_schema(item, "item", prefix, canonical_schema)
@@ -310,7 +310,7 @@ class OpenApiSpecSource(Source):
         specification: dict = {} 
         openapi_path = path.replace("{system}", system).replace("{system-component}", system_component)
         
-        print ("path to OpenAPI Spec: " + openapi_path)
+        #print ("path to OpenAPI Spec: " + openapi_path)
 
         try:
             parser = ResolvingParser(openapi_path, 

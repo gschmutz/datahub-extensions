@@ -1,0 +1,757 @@
+[
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunArrivalEvaluatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-process-context-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunArrivalEvaluatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-testagent-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunArrivalEvaluatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunArrivalEvaluatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-process-context-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunArrivalEvaluatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-testagent-service",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunArrivalEvaluatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunDecisionControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunDecisionControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunDecisionControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunDecisionControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Borderguard",
+    "consumer": "boga-core-service",
+    "providerSystem": "Borderguard",
+    "provider": "boga-test-agent-service",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "Borderguard",
+    "provider": "boga-test-agent-service",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "Borderguard",
+    "provider": "boga-test-agent-service",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "Borderguard",
+    "provider": "boga-test-agent-service",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "Borderguard",
+    "provider": "boga-test-agent-service",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-process-context-scs",
+    "providerSystem": "Borderguard",
+    "provider": "boga-test-agent-service",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Borderguard",
+    "consumer": "boga-core-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-process-context-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Borderguard",
+    "consumer": "boga-core-service",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-process-context-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunDecisionNoControlTakenEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunFinalInspectionCaseToControlNeededEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunGoodsActivationEvaluatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunGoodsActivationEvaluatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunGoodsActivationEvaluatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunGoodsActivationEvaluatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunGoodsActivationEvaluatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunGoodsActivationEvaluatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunInspectionCaseCreatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunInspectionCasePreparedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-borderpanel-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunInspectionCaseUpdatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunInspectionCaseUpdatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Borderguard",
+    "consumer": "boga-core-service",
+    "providerSystem": "Borderguard",
+    "provider": "boga-test-agent-service",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "Borderguard",
+    "provider": "boga-test-agent-service",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "Borderguard",
+    "provider": "boga-test-agent-service",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "Borderguard",
+    "provider": "boga-test-agent-service",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "Borderguard",
+    "provider": "boga-test-agent-service",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Borderguard",
+    "consumer": "boga-core-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Borderguard",
+    "consumer": "boga-core-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Borderguard",
+    "consumer": "boga-core-service",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunInspectionCompletedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Borderguard",
+    "consumer": "boga-core-service",
+    "providerSystem": "Borderguard",
+    "provider": "boga-test-agent-service",
+    "messageType": "InspecziunNumberplateValueEnteredEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Borderguard",
+    "consumer": "boga-core-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-borderpanel-scs",
+    "messageType": "InspecziunNumberplateValueEnteredEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Activ",
+    "consumer": "activ-activation-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunSelectionResultAvailableEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunSelectionResultAvailableEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-process-context-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunSelectionResultAvailableEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-testagent-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "messageType": "InspecziunSelectionResultAvailableEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Activ",
+    "consumer": "activ-activation-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "messageType": "InspecziunSelectionResultAvailableEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "messageType": "InspecziunSelectionResultAvailableEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-process-context-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "messageType": "InspecziunSelectionResultAvailableEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-testagent-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "messageType": "InspecziunSelectionResultAvailableEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Activ",
+    "consumer": "activ-activation-service",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunSelectionResultAvailableEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunSelectionResultAvailableEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-process-context-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunSelectionResultAvailableEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-testagent-service",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunSelectionResultAvailableEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-borderpanel-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-borderpanel-scs",
+    "messageType": "InspecziunSelectionTaskChangedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-borderpanel-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-borderpanel-scs",
+    "messageType": "InspecziunStationConfigurationChangedEvent"
+  },
+  {
+    "relationType": "COMMAND_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-borderpanel-scs",
+    "messageType": "InspecziunDeclareInspectionNeedCommand"
+  },
+  {
+    "relationType": "COMMAND_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "messageType": "InspecziunDeclareInspectionNeedCommand"
+  },
+  {
+    "relationType": "COMMAND_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "Risico",
+    "provider": "risico-gt-rule-service",
+    "messageType": "InspecziunDeclareInspectionNeedCommand"
+  },
+  {
+    "relationType": "COMMAND_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-guarantee-service",
+    "messageType": "InspecziunDeclareInspectionNeedCommand"
+  },
+  {
+    "relationType": "COMMAND_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-mockeventinjector",
+    "messageType": "InspecziunDeclareInspectionNeedCommand"
+  },
+  {
+    "relationType": "COMMAND_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-national-declaration-scs",
+    "messageType": "InspecziunDeclareInspectionNeedCommand"
+  },
+  {
+    "relationType": "COMMAND_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-national-transit-scs",
+    "messageType": "InspecziunDeclareInspectionNeedCommand"
+  },
+  {
+    "relationType": "COMMAND_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "WVS",
+    "provider": "wvs-ncts-declaration-scs",
+    "messageType": "InspecziunDeclareInspectionNeedCommand"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-borderpanel-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "method": "GET",
+    "path": "/api/v3/inspectioncases/19ae9397-62e2-4eb5-943e-ee3a3b485d71"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-borderpanel-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "method": "GET",
+    "path": "/api/v3/journeys/pact_jrn1/inspectioncase"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Borderguard",
+    "consumer": "boga-core-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "method": "POST",
+    "path": "/api/v2/inspectionneeds/transportmean"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-mockeventinjector",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-core-scs",
+    "method": "PUT",
+    "path": "/api/v1/inspectioncase/{caseId}/inspectionstatus"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-testorchestrator-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "method": "DELETE",
+    "path": "/api/tests/{testId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Testar",
+    "consumer": "testar-orchestrator-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "method": "PUT",
+    "path": "/api/tests/{testId}/dynamicdata"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-testorchestrator-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "method": "PUT",
+    "path": "/api/tests/{testId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-testorchestrator-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "method": "POST",
+    "path": "/api/tests/{testId}/actions"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Testar",
+    "consumer": "testar-orchestrator-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "method": "PUT",
+    "path": "/api/tests/{testId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Testar",
+    "consumer": "testar-orchestrator-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "method": "GET",
+    "path": "/api/tests/{testId}/report"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Testar",
+    "consumer": "testar-orchestrator-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "method": "DELETE",
+    "path": "/api/tests/{testId}"
+  }
+]

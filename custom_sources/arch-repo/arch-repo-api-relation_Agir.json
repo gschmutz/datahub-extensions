@@ -1,0 +1,695 @@
+[
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-declaration-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "DELETE",
+    "path": "/api/tasks/e8a57568-a6f4-42d7-bb58-9af5706537bc"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "NES",
+    "consumer": "nes-risk-management-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "GET",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-verification-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-verification-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "camiuns-refund-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-assessment-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "nets-provider-interface-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Via",
+    "consumer": "via-error-handling-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Payment",
+    "consumer": "payment-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Stadi",
+    "consumer": "stadi-error-handling-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-assessment-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-assessment-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "nets-provider-interface-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "nets-provider-interface-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Stadi",
+    "consumer": "stadi-error-handling-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-mockeventinjector",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Via",
+    "consumer": "via-error-handling-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-event-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Stadi",
+    "consumer": "stadi-error-handling-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Input",
+    "consumer": "input-errorhandler-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Stadi",
+    "consumer": "stadi-commodity-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Stadi",
+    "consumer": "stadi-commodity-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Transparenza",
+    "consumer": "transparenza-error-handling-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Stadi",
+    "consumer": "stadi-commodity-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "NES",
+    "consumer": "nes-user-assessment-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "GET",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Input",
+    "consumer": "input-errorhandler-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "POST",
+    "path": "/api/tasks/search"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "POST",
+    "path": "/api/tasks/search"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-declaration-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-task-mediator-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-errorhandling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-communication-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DocBox",
+    "consumer": "docbox-errorhandler-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "NES",
+    "consumer": "nes-user-assessment-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-errorhandling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "camiuns-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DocBox",
+    "consumer": "docbox-errorhandler-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-task-mediator-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "POST",
+    "path": "/api/tasks/search"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "camiuns-refund-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Payment",
+    "consumer": "payment-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-task-mediator-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-event-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-task-mediator-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "POST",
+    "path": "/api/tasks/search"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-declaration-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "NES",
+    "consumer": "nes-user-assessment-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Payment",
+    "consumer": "payment-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "camiuns-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-communication-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "camiuns-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-verification-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Transparenza",
+    "consumer": "transparenza-error-handling-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/task-configs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-event-error-handling-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "camiuns-refund-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-declaration-service",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-mockeventinjector",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "POST",
+    "path": "/api/tasks/search"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Input",
+    "consumer": "input-errorhandler-scs",
+    "providerSystem": "Agir",
+    "provider": "agir-task-scs",
+    "method": "PUT",
+    "path": "/api/tasks/{taskId}/state"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Agir",
+    "consumer": "agir-task-scs",
+    "providerSystem": "Notification",
+    "provider": "notification-service",
+    "method": "DELETE",
+    "path": "/api/notifications/{id}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Agir",
+    "consumer": "agir-task-scs",
+    "providerSystem": "Notification",
+    "provider": "notification-service",
+    "method": "POST",
+    "path": "/api/notifications/user"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Agir",
+    "consumer": "agir-task-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/customs-offices"
+  }
+]

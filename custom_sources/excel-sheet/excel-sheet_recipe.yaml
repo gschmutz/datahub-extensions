@@ -1,0 +1,10 @@
+source:
+  type: excel-source.excel_sheet_source.ExcelSource
+  config:
+    env: "PROD"
+    path: "/Users/guido.schmutz/Documents/GitHub/gschmutz/datahub-examples/custom_sources/excel-sheet/EXPORT_Datenkatalog_DE_Filter MwSt.xlsx"
+    table_pattern:
+      deny:
+        - "/1MD/MD.*"  
+    platform_instance: ""
+    platform: "SAP"

@@ -1,7 +1,11 @@
 source:
-  type: openapi-spec-source.openapi_spec_source.OpenApiSpecSource
+  type: openapi-spec-source/prance_openapi_spec_source.OpenApiSpecSource
   config:
     env: "PROD"
-    path: "/Users/guido.schmutz/Downloads/openapi.json"
+    api_model_path: "/Users/guido.schmutz/Documents/GitHub/gschmutz/datahub-extensions/custom_sources/openapi-spec/arch-repo-api-model.json"
+    api_spec_path: "file:///Users/guido.schmutz/Documents/GitHub/gschmutz/datahub-extensions/custom_sources/openapi-spec/openapi_{system}_{system-component}.json"
+    system: "DataHub"
+    system_component: "datahub-codeprovider-service"
+    #system_component:
     platform_instance: ""
     platform: "OpenApi"

@@ -1,0 +1,8 @@
+source:
+  type: process-archive-source.process_archive_source.ProcessArchiveSource
+  config:
+    env: "PROD"
+    path: "/Users/guido.schmutz/Downloads/datahub-restingest/src/main/avdl/bazg/NationalGoodsDeclaration.json"
+    version: "11"
+    platform_instance: ""
+    platform: "PA"

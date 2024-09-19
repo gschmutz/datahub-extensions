@@ -1,0 +1,4582 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Template Service API",
+        "version": "1.0.0",
+        "description": "Fill with a documentation",
+        "contact": {
+            "name": "Marscha,",
+            "url": "https://confluence.eap.bit.admin.ch/display/ARTACZIUNTEAM5/",
+            "email": "marscha@ezv.admin.ch"
+        }
+    },
+    "externalDocs": {
+        "url": "https://confluence.bit.admin.ch/display/VSISYS1/DaziT+Inspecziun"
+    },
+    "servers": [
+        {
+            "url": "https://ref-inspecziun-internal.bazg.admin.ch/inspecziun",
+            "description": "Generated server url"
+        }
+    ],
+    "security": [
+        {
+            "OIDC": [
+                
+            ]
+        }
+    ],
+    "tags": [
+        {
+            "name": "Endpoints for features",
+            "description": "Inspecziun Core Feature Resource"
+        },
+        {
+            "name": "Testing Endpoints for consumer Events",
+            "description": "Inspecziun Event Testing Resource"
+        },
+        {
+            "name": "Productive Endpoints Core Service",
+            "description": "Inspecziun Base Data Resource"
+        },
+        {
+            "name": "Productive Endpoints to modify the inspection status",
+            "description": "Inspecziun InspectionStatus Resource"
+        },
+        {
+            "name": "Productive Endpoints Core Service",
+            "description": "Inspecziun Approved Location Resource"
+        },
+        {
+            "name": "Productive Endpoints to declare inspection needs",
+            "description": "Inspecziun InspectionNeed Resource"
+        },
+        {
+            "name": "Endpoints for lifecycle",
+            "description": "Inspecziun Core Lifecycle Resource"
+        },
+        {
+            "name": "Productive Endpoints for SSE",
+            "description": "Inspecziun SSE Resource"
+        },
+        {
+            "name": "Testing Endpoints for Events",
+            "description": "Inspecziun Event Testing Resource"
+        },
+        {
+            "name": "Productive Endpoints to search or filter inspection cases",
+            "description": "Inspecziun Search View Resource"
+        },
+        {
+            "name": "Productive Endpoints to delete journeys",
+            "description": "Inspecziun DeleteJourneys Resource"
+        },
+        {
+            "name": "Actuator",
+            "description": "Monitor and interact",
+            "externalDocs": {
+                "description": "Spring Boot Actuator Web API Documentation",
+                "url": "https://docs.spring.io/spring-boot/docs/current/actuator-api/html/"
+            }
+        },
+        {
+            "name": "Productive Endpoints retrieve an inspection case",
+            "description": "Inspecziun GetInspectionCase Resource"
+        }
+    ],
+    "paths": {
+        "/api/v1/inspectioncases/{inspectionCaseId}/decision": {
+            "put": {
+                "tags": [
+                    "Productive Endpoints to modify the inspection status"
+                ],
+                "summary": "Close the inspection case with existing selection tasks.",
+                "operationId": "processCloseInspectionCase",
+                "parameters": [
+                    {
+                        "name": "inspectionCaseId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "decisionStatus",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PRELIMINARY",
+                                "FINAL",
+                                "OVERRIDE"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, the update got executed."
+                    },
+                    "400": {
+                        "description": "Bad Request, update value is null or not valid."
+                    },
+                    "500": {
+                        "description": "Internal Server Error, Exception occurred."
+                    }
+                }
+            }
+        },
+        "/api/v1/inspectioncase/{caseId}/inspectionstatus": {
+            "put": {
+                "tags": [
+                    "Productive Endpoints to modify the inspection status"
+                ],
+                "summary": "Set inspectionStatus of inspectionCase.",
+                "operationId": "processInspectionStatusUpdate",
+                "parameters": [
+                    {
+                        "name": "caseId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "InspectionStatusRestDto with the inspection case bundleId.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InspectionStatusRestDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, the update got executed."
+                    },
+                    "400": {
+                        "description": "Bad Request, update value is null or not valid."
+                    },
+                    "500": {
+                        "description": "Internal Server Error, Exception occurred."
+                    }
+                }
+            }
+        },
+        "/api/v1/cases/{caseId}/streams/{streamId}/state": {
+            "put": {
+                "tags": [
+                    "Productive Endpoints for SSE"
+                ],
+                "summary": "Closes stream for the given caseId.",
+                "operationId": "closeStreamForInspectionCase",
+                "parameters": [
+                    {
+                        "name": "caseId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "streamId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StreamStateRestDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found, no open stream found."
+                    }
+                }
+            }
+        },
+        "/api/v1/basedata/localregions": {
+            "get": {
+                "tags": [
+                    "Productive Endpoints Core Service"
+                ],
+                "summary": "Get all local regions.",
+                "operationId": "getAllLocalRegions",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/LocalRegionRestDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Productive Endpoints Core Service"
+                ],
+                "summary": "Loads and saves all CustomsOffices and LocalRegions from Datahub.",
+                "operationId": "loadLocalRegions",
+                "parameters": [
+                    {
+                        "name": "reload",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/v1/basedata/approvedlocations": {
+            "get": {
+                "tags": [
+                    "Productive Endpoints Core Service"
+                ],
+                "summary": "Returns all persisted approved locations.",
+                "operationId": "get_1",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ApprovedLocationRestDto"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found, no approved location found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ApprovedLocationRestDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Productive Endpoints Core Service"
+                ],
+                "summary": "Loads all approved locations from data hub and persists them.",
+                "operationId": "synchronizeWithDatahub",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/v2/inspectionneeds/transportmean": {
+            "post": {
+                "tags": [
+                    "Productive Endpoints to declare inspection needs"
+                ],
+                "summary": "Send InspecziunInspectionNeedDeclaredCommand for a transport mean related need. This includes create, delete and update, as we always replace all needs of the same source system.",
+                "operationId": "sendInspectionNeedForTransportMean",
+                "requestBody": {
+                    "description": "InspectionNeedsForTransportMeanRestDto Record",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InspectionNeedsForTransportMeanRestDto"
+                            },
+                            "example": {
+                                "serviceName": "external-dummy-service",
+                                "inspectionObject": {
+                                    "identificationNumber": "l0902001",
+                                    "nationality": "CH",
+                                    "typeOfIdentification": 30
+                                },
+                                "inspectionNeeds": [
+                                    {
+                                        "criticality": "VERYHIGH",
+                                        "inspectionType": "TRANSPORTMEAN",
+                                        "mandatoryInspection": true,
+                                        "inspectionReasonName": {
+                                            "textDe": "External Entry",
+                                            "textFr": "",
+                                            "textIt": "",
+                                            "textEn": ""
+                                        },
+                                        "inspectionReasonDescription": {
+                                            "description": {
+                                                "textDe": "TransportMean - External Entry.",
+                                                "textFr": "",
+                                                "textIt": "",
+                                                "textEn": ""
+                                            },
+                                            "tags": [
+                                                {
+                                                    "type": "HIGH",
+                                                    "content": {
+                                                        "textDe": "Hoch",
+                                                        "textFr": "",
+                                                        "textIt": "",
+                                                        "textEn": ""
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "inspectionReasonDetail": "reasonDetail",
+                                        "dangerNote": {
+                                            "textDe": "Sehr gef\u00e4hrlich",
+                                            "textFr": "",
+                                            "textIt": "",
+                                            "textEn": ""
+                                        },
+                                        "ruleReference": {
+                                            "type": "RisicoRuleReference",
+                                            "id": "7654",
+                                            "version": "1.0",
+                                            "link": {
+                                                "textDe": "Link DE",
+                                                "textFr": "Link FR",
+                                                "textIt": "Link IT",
+                                                "textEn": "Link EN"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "declareInspectionNeedReferences": {
+                                    "caseReference": {
+                                        "type": "type1",
+                                        "id": "id1"
+                                    }
+                                },
+                                "ambiguousReferences": [
+                                    
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, event got created and sent."
+                    },
+                    "400": {
+                        "description": "Bad Request, check inspection needs and transport mean"
+                    },
+                    "401": {
+                        "description": "Not Authorized, please sign in."
+                    }
+                }
+            }
+        },
+        "/api/v2/inspectionneeds/person": {
+            "post": {
+                "tags": [
+                    "Productive Endpoints to declare inspection needs"
+                ],
+                "summary": "Send InspecziunInspectionNeedDeclaredCommand for a person related need. This includes create, delete and update, as we always replace all needs of the same source system.",
+                "operationId": "sendInspectionNeedForPerson",
+                "requestBody": {
+                    "description": "InspectionNeedsForPersonRestDto Record",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InspectionNeedsForPersonRestDto"
+                            },
+                            "example": {
+                                "serviceName": "external-dummy-service",
+                                "inspectionObject": {
+                                    
+                                },
+                                "inspectionNeeds": [
+                                    {
+                                        "criticality": "VERYHIGH",
+                                        "inspectionType": "PERSON",
+                                        "mandatoryInspection": true,
+                                        "inspectionReasonName": {
+                                            "textDe": "External Entry",
+                                            "textFr": "",
+                                            "textIt": "",
+                                            "textEn": ""
+                                        },
+                                        "inspectionReasonDescription": {
+                                            "description": {
+                                                "textDe": "Person - External Entry.",
+                                                "textFr": "",
+                                                "textIt": "",
+                                                "textEn": ""
+                                            },
+                                            "tags": [
+                                                {
+                                                    "type": "HIGH",
+                                                    "content": {
+                                                        "textDe": "Hoch",
+                                                        "textFr": "",
+                                                        "textIt": "",
+                                                        "textEn": ""
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "inspectionReasonDetail": "reasonDetail",
+                                        "dangerNote": {
+                                            "textDe": "Sehr gef\u00e4hrlich",
+                                            "textFr": "",
+                                            "textIt": "",
+                                            "textEn": ""
+                                        },
+                                        "ruleReference": {
+                                            "type": "RisicoRuleReference",
+                                            "id": "7654",
+                                            "version": "1.0",
+                                            "link": {
+                                                "textDe": "Link DE",
+                                                "textFr": "Link FR",
+                                                "textIt": "Link IT",
+                                                "textEn": "Link EN"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "declareInspectionNeedReferences": {
+                                    "caseReference": {
+                                        "type": "type1",
+                                        "id": "id1"
+                                    }
+                                },
+                                "ambiguousReferences": [
+                                    
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, event got created and sent."
+                    },
+                    "400": {
+                        "description": "Bad Request, check inspection needs and person"
+                    },
+                    "401": {
+                        "description": "Not Authorized, please sign in."
+                    }
+                }
+            }
+        },
+        "/api/v2/inspectionneeds/goodsdeclaration": {
+            "post": {
+                "tags": [
+                    "Productive Endpoints to declare inspection needs"
+                ],
+                "summary": "Send InspecziunInspectionNeedDeclaredCommand for a goodsDeclaration related need. This includes create, delete and update, as we always replace all needs of the same source system.",
+                "operationId": "sendInspectionNeedForGoodsDeclaration",
+                "requestBody": {
+                    "description": "InspectionNeedsForGoodsDeclarationRestDto Record",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InspectionNeedsForGoodsDeclarationRestDto"
+                            },
+                            "example": {
+                                "serviceName": "external-dummy-service",
+                                "inspectionObject": {
+                                    "referenceNumber": "000000000000000001",
+                                    "weight": 0
+                                },
+                                "inspectionNeeds": [
+                                    {
+                                        "criticality": "VERYHIGH",
+                                        "inspectionType": "GOODS",
+                                        "mandatoryInspection": true,
+                                        "inspectionReasonName": {
+                                            "textDe": "External Entry",
+                                            "textFr": "",
+                                            "textIt": "",
+                                            "textEn": ""
+                                        },
+                                        "inspectionReasonDescription": {
+                                            "description": {
+                                                "textDe": "Goods - External Entry.",
+                                                "textFr": "",
+                                                "textIt": "",
+                                                "textEn": ""
+                                            },
+                                            "tags": [
+                                                {
+                                                    "type": "HIGH",
+                                                    "content": {
+                                                        "textDe": "Hoch",
+                                                        "textFr": "",
+                                                        "textIt": "",
+                                                        "textEn": ""
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "inspectionReasonDetail": "reasonDetail",
+                                        "dangerNote": {
+                                            "textDe": "Sehr gef\u00e4hrlich",
+                                            "textFr": "",
+                                            "textIt": "",
+                                            "textEn": ""
+                                        },
+                                        "ruleReference": {
+                                            "type": "RisicoRuleReference",
+                                            "id": "7654",
+                                            "version": "1.0",
+                                            "link": {
+                                                "textDe": "Link DE",
+                                                "textFr": "Link FR",
+                                                "textIt": "Link IT",
+                                                "textEn": "Link EN"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "declareInspectionNeedReferences": {
+                                    "caseReference": {
+                                        "type": "type1",
+                                        "id": "id1"
+                                    }
+                                },
+                                "ambiguousReferences": [
+                                    
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, event got created and sent."
+                    },
+                    "400": {
+                        "description": "Bad Request, check inspection needs and goods declaration"
+                    },
+                    "401": {
+                        "description": "Not Authorized, please sign in."
+                    }
+                }
+            }
+        },
+        "/api/v1/events/consumers/wvsnctsgoodsdeclarationactivated": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for consumer Events"
+                ],
+                "summary": "Send WvsNctsGoodsDeclarationActivatedEvent",
+                "operationId": "consumeWvsNctsGoodsDeclarationActivatedEvent",
+                "parameters": [
+                    {
+                        "name": "referenceNumber",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "21CHNJQA0XK0TGJZN3"
+                        }
+                    },
+                    {
+                        "name": "requestParam",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "NCTS-Goods-Declaration"
+                        }
+                    },
+                    {
+                        "name": "customsOfficeId",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "CH002411"
+                        }
+                    },
+                    {
+                        "name": "activationSource",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "domicileDeparture"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/v1/events/consumers/wvsnationalgoodsdeclarationactivated": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for consumer Events"
+                ],
+                "summary": "Send WvsNationalGoodsDeclarationActivatedEvent",
+                "operationId": "consumeWvsNationalGoodsDeclarationActivatedEvent",
+                "parameters": [
+                    {
+                        "name": "referenceNumber",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "21CHNJQA0XK0TGJZN4"
+                        }
+                    },
+                    {
+                        "name": "requestParam",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "National-Goods-Declaration"
+                        }
+                    },
+                    {
+                        "name": "customsOfficeId",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "CH002411"
+                        }
+                    },
+                    {
+                        "name": "activationSource",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "domicileDeparture"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/v1/events/consumers/wvsjourneyinvalidated/{journeyreferencenumber}": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for consumer Events"
+                ],
+                "summary": "Simulate a WvsJourneyInvalidatedEvent",
+                "operationId": "consumeWvsJourneyInvalidatedEvent",
+                "parameters": [
+                    {
+                        "name": "journeyreferencenumber",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, event got created and sent."
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/api/v1/events/consumers/wvsjourneyaccepted": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for consumer Events"
+                ],
+                "summary": "Send WvsJourneyAcceptedEvent.",
+                "operationId": "consumeJourney",
+                "requestBody": {
+                    "description": "Journey Record",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Journey"
+                            },
+                            "example": {
+                                "journeyReferenceNumber": "2102VnJkr",
+                                "journeyVersion": 1,
+                                "modeOfTransportAtTheBorder": 0,
+                                "borderTransportMean": [
+                                    {
+                                        "typeOfIdentification": 30,
+                                        "identificationNumber": "BE577417",
+                                        "nationality": "CH"
+                                    }
+                                ],
+                                "emptyJourney": false,
+                                "goodsDeclaration": [
+                                    {
+                                        "goodsDeclarationReferenceNumber": "04FU8A79W77X2UI4NQ",
+                                        "goodsDeclarationVersion": 0,
+                                        "goodsDeclarationSystem": "PASSAR",
+                                        "goodsDeclarationType": "SWISS_GDRN"
+                                    },
+                                    {
+                                        "goodsDeclarationReferenceNumber": "04FU8A79W77X2UI5NQ",
+                                        "goodsDeclarationVersion": 0,
+                                        "goodsDeclarationSystem": "PASSAR",
+                                        "goodsDeclarationType": "SWISS_GDRN"
+                                    }
+                                ],
+                                "journeyData": {
+                                    "arrivalLocation": "UNKNOWN",
+                                    "arrivalDateAndTimeEstimated": null
+                                },
+                                "borderCrossingDirection": "ENTRY",
+                                "oppositeReferenceNumber": "12344321",
+                                "customsOfficeId": null
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, event got created and sent."
+                    },
+                    "400": {
+                        "description": "Bad Request, check inspection needs and goods declaration"
+                    },
+                    "401": {
+                        "description": "Not Authorized, please sign in."
+                    },
+                    "500": {
+                        "description": "Internal Server Error, processing of journey data failed."
+                    }
+                }
+            }
+        },
+        "/api/v1/events/consumers/wvsarrivalaccepted": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for consumer Events"
+                ],
+                "summary": "Send WvsArrivalAcceptedEvent",
+                "operationId": "consumeWvsArrivalAcceptedEvent",
+                "parameters": [
+                    {
+                        "name": "reference",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "21CHNJQA0XK0TGJZN4"
+                        }
+                    },
+                    {
+                        "name": "customsOfficeId",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "CH002411"
+                        }
+                    },
+                    {
+                        "name": "approvedLocationId",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "ZO1234567890"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/v1/events/consumers/inspecziuninspectioncaseupdated": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for consumer Events"
+                ],
+                "summary": "Simulate InspecziunInspectionCaseUpdatedEvent",
+                "operationId": "publishInspecziunInspectionCaseUpdatedEvent",
+                "parameters": [
+                    {
+                        "name": "caseId",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "629ad730-b28f-42c3-9ff5-58886b9fb41d"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, event got created and sent."
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/api/tests/events/publishers/wvsjourneyaccepted": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for Events"
+                ],
+                "summary": "Publish PublishWvsJourneyAcceptedRestDto.",
+                "operationId": "publishJourneyAccepted",
+                "requestBody": {
+                    "description": "PublishWvsJourneyAcceptedRestDto Record",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublishWvsJourneyAcceptedRestDto"
+                            },
+                            "example": {
+                                "journeyReferenceNumber": "LUP${__RandomString(5, 123456789)}",
+                                "transportMean": {
+                                    "typeOfIdentification": 30,
+                                    "identificationNumber": "AB1234",
+                                    "nationality": "CH"
+                                },
+                                "goodsDeclarationReferenceNumbers": [
+                                    "2380820"
+                                ],
+                                "borderCrossingDirection": "ENTRY",
+                                "customsOfficeId": null
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request, check body"
+                    },
+                    "405": {
+                        "description": "Method is not implemented"
+                    }
+                }
+            }
+        },
+        "/api/tests/events/publishers/wvsArrivalAcceptedEvent": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for Events"
+                ],
+                "summary": "Publish WvsArrivalAcceptedEvent.",
+                "operationId": "publishWvsArrivalAcceptedEvent",
+                "requestBody": {
+                    "description": "WvsArrivalAcceptedEventDto eventDto",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WvsArrivalAcceptedEventRestDto"
+                            },
+                            "example": {
+                                "arrivalReference": "221108-GTAN-zVhyA",
+                                "approvedLocationId": "ZO1000000101",
+                                "customsOfficeId": "CH001471"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/tests/events/publishers/selectionresultavailable": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for Events"
+                ],
+                "summary": "Publish InspecziunSelectionResultAvailableEvent",
+                "operationId": "publishSelectionResultAvailableEvent",
+                "requestBody": {
+                    "description": "PublishSelectionResultAvailableEventRestDto",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublishSelectionResultAvailableEventRestDto"
+                            },
+                            "example": {
+                                "userId": "myUser",
+                                "inspectionCaseId": "myCaseId",
+                                "journeyVersion": "11",
+                                "stationId": "myStation",
+                                "customsOfficeId": "myOffice",
+                                "decision": "NO_INSPECTION",
+                                "decisionStatus": "PRELIMINARY",
+                                "journeyReferenceNumber": "myRefNr"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request, check body"
+                    },
+                    "405": {
+                        "description": "Method is not implemented"
+                    }
+                }
+            }
+        },
+        "/api/tests/events/publishers/inspecziuninspectionstarted": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for Events"
+                ],
+                "summary": "Publish PublishInspectionStartedRestDto",
+                "operationId": "publishInspectionStartedEvent",
+                "requestBody": {
+                    "description": "PublishInspectionStartedRestDto",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublishInspectionStartedRestDto"
+                            },
+                            "example": {
+                                "referenceNumber": "01234567890",
+                                "referenceType": "journeyRef",
+                                "customsOfficeId": "string",
+                                "associatedUserId": "string",
+                                "inspectionObjects": [
+                                    {
+                                        "inspectionNeeds": [
+                                            {
+                                                "inspectionType": "UNKNOWN",
+                                                "criticality": "LOW",
+                                                "ruleReference": {
+                                                    "type": "string",
+                                                    "id": "string",
+                                                    "version": "string",
+                                                    "link": "string"
+                                                },
+                                                "inspectionReasonName": {
+                                                    "textDe": "string",
+                                                    "textFr": "string",
+                                                    "textIt": "string",
+                                                    "textEn": "string"
+                                                },
+                                                "inspectionReasonDescription": {
+                                                    "description": {
+                                                        "textDe": "Person - External Entry.",
+                                                        "textFr": "",
+                                                        "textIt": "",
+                                                        "textEn": ""
+                                                    },
+                                                    "tags": [
+                                                        {
+                                                            "type": "HIGH",
+                                                            "content": {
+                                                                "textDe": "Hoch",
+                                                                "textFr": "",
+                                                                "textIt": "",
+                                                                "textEn": ""
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "mandatoryInspection": true
+                                            }
+                                        ],
+                                        "transportMean": {
+                                            "identificationNumber": "string",
+                                            "nationality": "string",
+                                            "typeOfIdentification": 30
+                                        },
+                                        "serviceName": "string"
+                                    }
+                                ],
+                                "inspectionCaseId": "629ad730-b28f-42c3-9ff5-58886b9fb41d",
+                                "inspectionResult": "CLEAR"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request, check body"
+                    },
+                    "405": {
+                        "description": "Method is not implemented"
+                    }
+                }
+            }
+        },
+        "/api/tests/events/publishers/inspecziuninspectionignored": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for Events"
+                ],
+                "summary": "Publish PublishInspectionIgnoredRestDto",
+                "operationId": "publishInspectionIgnoredEvent",
+                "requestBody": {
+                    "description": "PublishInspectionIgnoredRestDto",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublishInspectionIgnoredRestDto"
+                            },
+                            "example": {
+                                "referenceNumber": "01234567890",
+                                "referenceType": "journeyRef",
+                                "customsOfficeId": "string",
+                                "associatedUserId": "string",
+                                "inspectionObjects": [
+                                    {
+                                        "inspectionNeeds": [
+                                            {
+                                                "inspectionType": "UNKNOWN",
+                                                "criticality": "LOW",
+                                                "ruleReference": {
+                                                    "type": "string",
+                                                    "id": "string",
+                                                    "version": "string",
+                                                    "link": "string"
+                                                },
+                                                "inspectionReasonName": {
+                                                    "textDe": "string",
+                                                    "textFr": "string",
+                                                    "textIt": "string",
+                                                    "textEn": "string"
+                                                },
+                                                "inspectionReasonDescription": {
+                                                    "description": {
+                                                        "textDe": "Person - External Entry.",
+                                                        "textFr": "",
+                                                        "textIt": "",
+                                                        "textEn": ""
+                                                    },
+                                                    "tags": [
+                                                        {
+                                                            "type": "HIGH",
+                                                            "content": {
+                                                                "textDe": "Hoch",
+                                                                "textFr": "",
+                                                                "textIt": "",
+                                                                "textEn": ""
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "mandatoryInspection": true
+                                            }
+                                        ],
+                                        "transportMean": {
+                                            "identificationNumber": "string",
+                                            "nationality": "string",
+                                            "typeOfIdentification": 30
+                                        },
+                                        "serviceName": "string"
+                                    }
+                                ],
+                                "inspectionCaseId": "629ad730-b28f-42c3-9ff5-58886b9fb41d",
+                                "inspectionResult": "CLEAR",
+                                "reason": "inspection ignored reason"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request, check body"
+                    },
+                    "405": {
+                        "description": "Method is not implemented"
+                    }
+                }
+            }
+        },
+        "/api/tests/events/publishers/inspecziuninspectioncompleted": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for Events"
+                ],
+                "summary": "Publish PublishInspectionCompletedRestDto",
+                "operationId": "publishInspectionCompletedEvent",
+                "requestBody": {
+                    "description": "PublishInspectionCompletedRestDto",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublishInspectionCompletedRestDto"
+                            },
+                            "example": {
+                                "referenceNumber": "01234567890",
+                                "referenceType": "journeyRef",
+                                "customsOfficeId": "string",
+                                "associatedUserId": "string",
+                                "inspectionObjects": [
+                                    {
+                                        "inspectionNeeds": [
+                                            {
+                                                "inspectionType": "UNKNOWN",
+                                                "criticality": "LOW",
+                                                "ruleReference": {
+                                                    "type": "string",
+                                                    "id": "string",
+                                                    "version": "string",
+                                                    "link": "string"
+                                                },
+                                                "inspectionReasonName": {
+                                                    "textDe": "string",
+                                                    "textFr": "string",
+                                                    "textIt": "string",
+                                                    "textEn": "string"
+                                                },
+                                                "inspectionReasonDescription": {
+                                                    "description": {
+                                                        "textDe": "Person - External Entry.",
+                                                        "textFr": "",
+                                                        "textIt": "",
+                                                        "textEn": ""
+                                                    },
+                                                    "tags": [
+                                                        {
+                                                            "type": "HIGH",
+                                                            "content": {
+                                                                "textDe": "Hoch",
+                                                                "textFr": "",
+                                                                "textIt": "",
+                                                                "textEn": ""
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "mandatoryInspection": true
+                                            }
+                                        ],
+                                        "transportMean": {
+                                            "identificationNumber": "string",
+                                            "nationality": "string",
+                                            "typeOfIdentification": 30
+                                        },
+                                        "serviceName": "string"
+                                    }
+                                ],
+                                "inspectionCaseId": "629ad730-b28f-42c3-9ff5-58886b9fb41d",
+                                "inspectionResult": "CLEAR"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request, check body"
+                    },
+                    "405": {
+                        "description": "Method is not implemented"
+                    }
+                }
+            }
+        },
+        "/api/tests/events/publishers/inspecziuninspectioncaseupdated": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for Events"
+                ],
+                "summary": "Publish InspecziunInspectionCaseUpdatedEvent",
+                "operationId": "publishSelectionResultAvailableEvent_1",
+                "parameters": [
+                    {
+                        "name": "caseId",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "default": "629ad730-b28f-42c3-9ff5-58886b9fb41d"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request, check body"
+                    },
+                    "405": {
+                        "description": "Method is not implemented"
+                    }
+                }
+            }
+        },
+        "/api/tests/events/publishers/inspecziuninspectioncaseclosed": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for Events"
+                ],
+                "summary": "Publish PublishInspectionClosedRestDto",
+                "operationId": "publishInspectionClosedEvent",
+                "requestBody": {
+                    "description": "PublishInspectionClosedRestDto",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublishInspectionClosedRestDto"
+                            },
+                            "example": {
+                                "referenceNumber": "01234567890",
+                                "referenceType": "journeyRef",
+                                "customsOfficeId": "string",
+                                "associatedUserId": "string",
+                                "inspectionCaseId": "629ad730-b28f-42c3-9ff5-58886b9fb41d",
+                                "inspectionResult": "CLEAR"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "500": {
+                        "description": "Internal Server Error, processing of journey data failed."
+                    }
+                }
+            }
+        },
+        "/api/tests/events/publishers/inspecziungoodsactivationevaluated": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for Events"
+                ],
+                "summary": "Publish GoodsActivationEvaluatedEvent",
+                "operationId": "publishGoodsActivationEvaluatedEvent",
+                "requestBody": {
+                    "description": "PublishGoodsActivationEvaluatedEventRestDto",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublishGoodsActivationEvaluatedEventRestDto"
+                            },
+                            "example": {
+                                "goodsActivationReference": "goodsActivationRef",
+                                "decision": "NO_INSPECTION",
+                                "customsOfficeId": "officeId",
+                                "inspectionCaseId": "myCaseId"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request, check body"
+                    },
+                    "405": {
+                        "description": "Method is not implemented"
+                    }
+                }
+            }
+        },
+        "/api/tests/events/publishers/inspecziunarrivalevaluated": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for Events"
+                ],
+                "summary": "Publish ArrivalEvaluatedEvent",
+                "operationId": "publishArrivalEvaluatedEvent",
+                "requestBody": {
+                    "description": "PublishArrivalEvaluatedEventRestDto",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublishArrivalEvaluatedEventRestDto"
+                            },
+                            "example": {
+                                "reference": "ref",
+                                "decision": "NO_INSPECTION",
+                                "customsOfficeId": "officeId",
+                                "inspectionCaseId": "myCaseId"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request, check body"
+                    },
+                    "405": {
+                        "description": "Method is not implemented"
+                    }
+                }
+            }
+        },
+        "/api/tests/events/publishers/declareinspectionneed": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for Events"
+                ],
+                "summary": "Publish InspecziunInspectionNeedDeclaredCommand",
+                "operationId": "publishDeclareInspectionNeed",
+                "requestBody": {
+                    "description": "PublishDeclareInspectionNeedRestDto Record",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublishDeclareInspectionNeedRestDto"
+                            },
+                            "example": {
+                                "inspectionNeeds": [
+                                    {
+                                        "criticality": "LOW",
+                                        "mandatoryInspection": true,
+                                        "type": "INSPECTION",
+                                        "ruleReference": {
+                                            "id": "id",
+                                            "version": "version",
+                                            "type": "type",
+                                            "link": {
+                                                "textDe": "textDe",
+                                                "textFr": "textFr",
+                                                "textIt": "textIt",
+                                                "textEn": "textEn"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "inspectionObjectType": "TRANSPORTMEAN",
+                                "inspectionObjectReference": "AB123",
+                                "journeyReferenceNumbers": [
+                                    "2102VnJkr"
+                                ],
+                                "serviceName": "risico-dummy-service"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, event got created and sent."
+                    },
+                    "400": {
+                        "description": "Bad Request, check body"
+                    },
+                    "405": {
+                        "description": "Method is not implemented"
+                    }
+                }
+            }
+        },
+        "/api/tests/events/publishers/datahubCodeProviderConsumerViewRefreshedEvent": {
+            "post": {
+                "tags": [
+                    "Testing Endpoints for Events"
+                ],
+                "summary": "Publish DatahubCodeProviderConsumerViewRefreshedEvent.",
+                "operationId": "publishDatahubCodeProviderConsumerViewRefreshedEvent",
+                "requestBody": {
+                    "description": "String dataHubConsumerViewName",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string"
+                            },
+                            "example": "approved_places"
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/actuator/togglz/{name}": {
+            "get": {
+                "tags": [
+                    "Actuator"
+                ],
+                "summary": "Actuator web endpoint 'togglz-name'",
+                "operationId": "togglz-name",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/vnd.spring-boot.actuator.v3+json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/vnd.spring-boot.actuator.v2+json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Actuator"
+                ],
+                "summary": "Actuator web endpoint 'togglz-name'",
+                "operationId": "togglz-name_2",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/vnd.spring-boot.actuator.v3+json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/vnd.spring-boot.actuator.v2+json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/journeys/{journeyReferenceNumber}/inspectioncase": {
+            "get": {
+                "tags": [
+                    "Productive Endpoints retrieve an inspection case"
+                ],
+                "summary": "Get inspection case based on a journeyReferenceNumber.",
+                "operationId": "getInspectionCaseByJourneyReferenceNumber",
+                "parameters": [
+                    {
+                        "name": "journeyReferenceNumber",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InspectionCaseRestDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No inspection case found based on the requested journey reference number.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InspectionCaseRestDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/inspectioncases/{id}": {
+            "get": {
+                "tags": [
+                    "Productive Endpoints retrieve an inspection case"
+                ],
+                "summary": "Returns an inspection case for the given caseId.",
+                "operationId": "getInspectionCase",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InspectionCaseRestDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No inspection case found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InspectionCaseRestDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/inspectioncases/searchbynumber": {
+            "get": {
+                "tags": [
+                    "Productive Endpoints to search or filter inspection cases"
+                ],
+                "summary": "Returns all inspection cases by containerReferenceNumber or tmIdentificationNumber or goodsDeclarationReferenceNumber",
+                "operationId": "getCaseSearchViewEntriesByReferenceOrIdentification",
+                "parameters": [
+                    {
+                        "name": "searchTerm",
+                        "in": "query",
+                        "description": "containerReferenceNumber or goodsDeclarationReferenceNumber or tmIdentificationNumber",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 0
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 5
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageInspectionCaseSearchResultEntryRestDto"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request, if the criteria are not valid.",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageInspectionCaseSearchResultEntryRestDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found, no inspection case found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageInspectionCaseSearchResultEntryRestDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/inspectioncases/filter": {
+            "get": {
+                "tags": [
+                    "Productive Endpoints to search or filter inspection cases"
+                ],
+                "summary": "Returns all inspection cases matching the given criteria.",
+                "operationId": "filterInspectionCases",
+                "parameters": [
+                    {
+                        "name": "localRegionId",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "approvedLocationId",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nationality",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "activationZone",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "direction",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sortDirection",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "desc"
+                        }
+                    },
+                    {
+                        "name": "sortColumn",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "activatedAt"
+                        }
+                    },
+                    {
+                        "name": "isActivated",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "activatedFrom",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "activatedTo",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "inspectionStatus",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "uniqueItems": true,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "priorities",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "uniqueItems": true,
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "PRIORITY_1",
+                                    "PRIORITY_2",
+                                    "PRIORITY_3",
+                                    "NONE"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "modeOfTransport",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 0
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 5
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageInspectionCaseSearchResultEntryRestDto"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request, if the criteria are not valid.",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageInspectionCaseSearchResultEntryRestDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found, no inspection case found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageInspectionCaseSearchResultEntryRestDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/containers/{containerReferenceNumber}/inspectioncase": {
+            "get": {
+                "tags": [
+                    "Productive Endpoints retrieve an inspection case"
+                ],
+                "summary": "Get inspection case based on a containerReferenceNumber.",
+                "operationId": "getInspectionCaseByContainerReferenceNumber",
+                "parameters": [
+                    {
+                        "name": "containerReferenceNumber",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InspectionCaseRestDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No inspection case found based on the requested journey reference number.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InspectionCaseRestDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/inspectioncases/search": {
+            "get": {
+                "tags": [
+                    "Productive Endpoints to search or filter inspection cases"
+                ],
+                "summary": "Returns all inspection cases matching the given criteria.",
+                "operationId": "searchInspectionCasesV1",
+                "parameters": [
+                    {
+                        "name": "localRegionId",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "searchTerm",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nationality",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "activationZone",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "direction",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sortDirection",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "desc"
+                        }
+                    },
+                    {
+                        "name": "sortColumn",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "activatedAt"
+                        }
+                    },
+                    {
+                        "name": "isActivated",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "activatedFrom",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "activatedTo",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "inspectionStatus",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "uniqueItems": true,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "priorities",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "uniqueItems": true,
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "PRIORITY_1",
+                                    "PRIORITY_2",
+                                    "PRIORITY_3",
+                                    "NONE"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "modeOfTransport",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 0
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 5
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageInspectionCaseSearchResultEntryRestDto"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request, if the criteria are not valid.",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageInspectionCaseSearchResultEntryRestDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found, no inspection case found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageInspectionCaseSearchResultEntryRestDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/features": {
+            "get": {
+                "tags": [
+                    "Endpoints for features"
+                ],
+                "summary": "Returns the feature states.",
+                "operationId": "getFeatures",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "DEFAULT",
+                                "ALL_ENABLED",
+                                "ALL_DISABLED"
+                            ],
+                            "default": "DEFAULT"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/cases/{caseId}/streams/{streamId}": {
+            "get": {
+                "tags": [
+                    "Productive Endpoints for SSE"
+                ],
+                "summary": "Gets a server event stream for the given caseId.",
+                "operationId": "createStreamForInspectionCase",
+                "parameters": [
+                    {
+                        "name": "caseId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "streamId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/event-stream;charset=UTF-8": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ServerSentEventPublicRestDto"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Not Authorized, please sign in.",
+                        "content": {
+                            "text/event-stream;charset=UTF-8": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ServerSentEventPublicRestDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/basedata/nationalities": {
+            "get": {
+                "tags": [
+                    "Productive Endpoints Core Service"
+                ],
+                "summary": "Returns a list of all nationalities defined in ISO 3166-1 standard.",
+                "operationId": "getNationalities",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "AW",
+                                            "AF",
+                                            "AO",
+                                            "AI",
+                                            "AX",
+                                            "AL",
+                                            "AD",
+                                            "AN",
+                                            "AE",
+                                            "AR",
+                                            "AM",
+                                            "AS",
+                                            "AQ",
+                                            "TF",
+                                            "AG",
+                                            "AU",
+                                            "AT",
+                                            "AZ",
+                                            "BI",
+                                            "BE",
+                                            "BJ",
+                                            "BQ",
+                                            "BF",
+                                            "BD",
+                                            "BG",
+                                            "BH",
+                                            "BS",
+                                            "BA",
+                                            "BL",
+                                            "BY",
+                                            "BZ",
+                                            "BM",
+                                            "BO",
+                                            "BR",
+                                            "BB",
+                                            "BN",
+                                            "BT",
+                                            "BV",
+                                            "BW",
+                                            "CF",
+                                            "CA",
+                                            "CC",
+                                            "CH",
+                                            "CL",
+                                            "CN",
+                                            "CI",
+                                            "CM",
+                                            "CD",
+                                            "CG",
+                                            "CK",
+                                            "CO",
+                                            "KM",
+                                            "CV",
+                                            "CR",
+                                            "CU",
+                                            "CW",
+                                            "CX",
+                                            "KY",
+                                            "CY",
+                                            "CZ",
+                                            "DE",
+                                            "DJ",
+                                            "DM",
+                                            "DK",
+                                            "DO",
+                                            "DZ",
+                                            "EC",
+                                            "EG",
+                                            "ER",
+                                            "EH",
+                                            "ES",
+                                            "EE",
+                                            "ET",
+                                            "FI",
+                                            "FJ",
+                                            "FK",
+                                            "FR",
+                                            "FO",
+                                            "FM",
+                                            "GA",
+                                            "GB",
+                                            "GE",
+                                            "GG",
+                                            "GH",
+                                            "GI",
+                                            "GN",
+                                            "GP",
+                                            "GM",
+                                            "GW",
+                                            "GQ",
+                                            "GR",
+                                            "GD",
+                                            "GL",
+                                            "GT",
+                                            "GF",
+                                            "GU",
+                                            "GY",
+                                            "HK",
+                                            "HM",
+                                            "HN",
+                                            "HR",
+                                            "HT",
+                                            "HU",
+                                            "ID",
+                                            "IM",
+                                            "IN",
+                                            "IO",
+                                            "IE",
+                                            "IR",
+                                            "IQ",
+                                            "IS",
+                                            "IL",
+                                            "IT",
+                                            "JM",
+                                            "JE",
+                                            "JO",
+                                            "JP",
+                                            "KZ",
+                                            "KE",
+                                            "KG",
+                                            "KH",
+                                            "KI",
+                                            "KN",
+                                            "KR",
+                                            "KW",
+                                            "LA",
+                                            "LB",
+                                            "LR",
+                                            "LY",
+                                            "LC",
+                                            "LI",
+                                            "LK",
+                                            "LS",
+                                            "LT",
+                                            "LU",
+                                            "LV",
+                                            "MO",
+                                            "MF",
+                                            "MA",
+                                            "MC",
+                                            "MD",
+                                            "MG",
+                                            "MV",
+                                            "MX",
+                                            "MH",
+                                            "MK",
+                                            "ML",
+                                            "MT",
+                                            "MM",
+                                            "ME",
+                                            "MN",
+                                            "MP",
+                                            "MZ",
+                                            "MR",
+                                            "MS",
+                                            "MQ",
+                                            "MU",
+                                            "MW",
+                                            "MY",
+                                            "YT",
+                                            "NA",
+                                            "NC",
+                                            "NE",
+                                            "NF",
+                                            "NG",
+                                            "NI",
+                                            "NU",
+                                            "NL",
+                                            "NO",
+                                            "NP",
+                                            "NR",
+                                            "NZ",
+                                            "OM",
+                                            "PK",
+                                            "PA",
+                                            "PN",
+                                            "PE",
+                                            "PH",
+                                            "PW",
+                                            "PG",
+                                            "PL",
+                                            "PR",
+                                            "KP",
+                                            "PT",
+                                            "PY",
+                                            "PS",
+                                            "PF",
+                                            "QA",
+                                            "RE",
+                                            "RO",
+                                            "RU",
+                                            "RW",
+                                            "SA",
+                                            "SD",
+                                            "SN",
+                                            "SG",
+                                            "GS",
+                                            "SH",
+                                            "SJ",
+                                            "SB",
+                                            "SL",
+                                            "SV",
+                                            "SM",
+                                            "SO",
+                                            "PM",
+                                            "RS",
+                                            "SS",
+                                            "ST",
+                                            "SR",
+                                            "SK",
+                                            "SI",
+                                            "SE",
+                                            "SZ",
+                                            "SX",
+                                            "SC",
+                                            "SY",
+                                            "TC",
+                                            "TD",
+                                            "TG",
+                                            "TH",
+                                            "TJ",
+                                            "TK",
+                                            "TM",
+                                            "TL",
+                                            "TO",
+                                            "TT",
+                                            "TN",
+                                            "TR",
+                                            "TV",
+                                            "TW",
+                                            "TZ",
+                                            "UG",
+                                            "UA",
+                                            "UM",
+                                            "UY",
+                                            "US",
+                                            "UZ",
+                                            "VA",
+                                            "VC",
+                                            "VE",
+                                            "VG",
+                                            "VI",
+                                            "VN",
+                                            "VU",
+                                            "WF",
+                                            "WS",
+                                            "XK",
+                                            "YE",
+                                            "ZA",
+                                            "ZM",
+                                            "ZW",
+                                            "XX"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/basedata/localregions/{localRegionId}/approvedlocations": {
+            "get": {
+                "tags": [
+                    "Productive Endpoints Core Service"
+                ],
+                "summary": "Returns persisted approved locations by local region id.",
+                "operationId": "get",
+                "parameters": [
+                    {
+                        "name": "localRegionId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ApprovedLocationRestDto"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found, no approved location found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ApprovedLocationRestDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/basedata/inspectiontypes": {
+            "get": {
+                "tags": [
+                    "Productive Endpoints Core Service"
+                ],
+                "summary": "Returns a list of all inspection types.",
+                "operationId": "getInspectionTypes",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "UNKNOWN",
+                                            "DISCREPANCY",
+                                            "GOODS",
+                                            "PERSON",
+                                            "TRANSPORTMEAN"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/basedata/customsoffices": {
+            "get": {
+                "tags": [
+                    "Productive Endpoints Core Service"
+                ],
+                "summary": "Get all customs offices.",
+                "operationId": "getAllCustomsOffices",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CustomsOfficeRestDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/configuration": {
+            "get": {
+                "tags": [
+                    "configuration-controller"
+                ],
+                "operationId": "getConfiguration",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConfigurationRestDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/actuator": {
+            "get": {
+                "tags": [
+                    "Actuator"
+                ],
+                "summary": "Actuator root web endpoint",
+                "operationId": "links",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/vnd.spring-boot.actuator.v3+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "$ref": "#/components/schemas/Link"
+                                        }
+                                    }
+                                }
+                            },
+                            "application/vnd.spring-boot.actuator.v2+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "$ref": "#/components/schemas/Link"
+                                        }
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "$ref": "#/components/schemas/Link"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/actuator/togglz": {
+            "get": {
+                "tags": [
+                    "Actuator"
+                ],
+                "summary": "Actuator web endpoint 'togglz'",
+                "operationId": "togglz",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/vnd.spring-boot.actuator.v3+json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/vnd.spring-boot.actuator.v2+json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/actuator/prometheus": {
+            "get": {
+                "tags": [
+                    "Actuator"
+                ],
+                "summary": "Actuator web endpoint 'prometheus'",
+                "operationId": "prometheus",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain;version=0.0.4;charset=utf-8": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/openmetrics-text;version=1.0.0;charset=utf-8": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/actuator/info": {
+            "get": {
+                "tags": [
+                    "Actuator"
+                ],
+                "summary": "Actuator web endpoint 'info'",
+                "operationId": "info",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/vnd.spring-boot.actuator.v3+json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/vnd.spring-boot.actuator.v2+json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/actuator/health": {
+            "get": {
+                "tags": [
+                    "Actuator"
+                ],
+                "summary": "Actuator web endpoint 'health'",
+                "operationId": "health",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/vnd.spring-boot.actuator.v3+json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/vnd.spring-boot.actuator.v2+json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/actuator/health/**": {
+            "get": {
+                "tags": [
+                    "Actuator"
+                ],
+                "summary": "Actuator web endpoint 'health-path'",
+                "operationId": "health-path",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/vnd.spring-boot.actuator.v3+json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/vnd.spring-boot.actuator.v2+json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/lifecycles/terminatedInspectionCases": {
+            "delete": {
+                "tags": [
+                    "Endpoints for lifecycle"
+                ],
+                "summary": "Trigger the lifecycle batch job for terminatedInspectionCases.",
+                "operationId": "triggerDeleteTerminateInspectionObjectsUseCase",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/v1/lifecycles/expiredInspectionObjects": {
+            "delete": {
+                "tags": [
+                    "Endpoints for lifecycle"
+                ],
+                "summary": "Trigger the lifecycle batch job for expired inspectionObjects.",
+                "operationId": "triggerDeleteExpiredInspectionObjectsUseCase",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/v1/lifecycles/expiredInspectionCases": {
+            "delete": {
+                "tags": [
+                    "Endpoints for lifecycle"
+                ],
+                "summary": "Trigger the lifecycle batch job for expired inspectionCases.",
+                "operationId": "triggerDeleteExpiredInspectionCasesUseCase",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/v1/journeys": {
+            "delete": {
+                "tags": [
+                    "Productive Endpoints to delete journeys"
+                ],
+                "summary": "Delete all given journeys.",
+                "operationId": "deleteJourneys",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/v1/journeys/{journeyReference}": {
+            "delete": {
+                "tags": [
+                    "Productive Endpoints to delete journeys"
+                ],
+                "summary": "Delete the given journey.",
+                "operationId": "deleteJourney",
+                "parameters": [
+                    {
+                        "name": "journeyReference",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "InspectionStatusRestDto": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "INSPECTION_SETUP",
+                            "INSPECTION_NEEDED",
+                            "INSPECTION_NOT_NEEDED",
+                            "INSPECTION_RUNNING",
+                            "INSPECTION_PLANNED",
+                            "INSPECTION_SUSPENDED",
+                            "INSPECTION_IGNORED",
+                            "INSPECTION_COMPLETED",
+                            "INSPECTION_CLOSED"
+                        ]
+                    },
+                    "reason": {
+                        "type": "string"
+                    }
+                }
+            },
+            "StreamStateRestDto": {
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "type": "string",
+                        "enum": [
+                            "CLOSED"
+                        ]
+                    }
+                }
+            },
+            "DeclareInspectionNeedReferencesRestDto": {
+                "type": "object",
+                "properties": {
+                    "caseReference": {
+                        "$ref": "#/components/schemas/InspecziunCaseReferenceRestDto"
+                    }
+                }
+            },
+            "InspectionNeedRestDto": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "ORDER",
+                            "INSPECTION"
+                        ]
+                    },
+                    "inspectionType": {
+                        "type": "string",
+                        "enum": [
+                            "UNKNOWN",
+                            "DISCREPANCY",
+                            "GOODS",
+                            "PERSON",
+                            "TRANSPORTMEAN"
+                        ]
+                    },
+                    "criticality": {
+                        "type": "string",
+                        "enum": [
+                            "LOW",
+                            "MEDIUM",
+                            "CONSIDERABLE",
+                            "HIGH",
+                            "VERYHIGH"
+                        ]
+                    },
+                    "ruleReference": {
+                        "$ref": "#/components/schemas/RuleReferenceRestDto"
+                    },
+                    "inspectionReasonName": {
+                        "$ref": "#/components/schemas/TranslatedStringRestDto"
+                    },
+                    "dangerNote": {
+                        "$ref": "#/components/schemas/TranslatedStringRestDto"
+                    },
+                    "inspectionReasonDetail": {
+                        "type": "string"
+                    },
+                    "inspectionReasonDescription": {
+                        "$ref": "#/components/schemas/InspectionReasonDescriptionRestDto"
+                    },
+                    "mandatoryInspection": {
+                        "type": "boolean"
+                    },
+                    "internal": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "InspectionNeedTagRestDto": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "INFO",
+                            "LOW",
+                            "MEDIUM",
+                            "HIGH"
+                        ]
+                    },
+                    "content": {
+                        "$ref": "#/components/schemas/TranslatedStringRestDto"
+                    }
+                }
+            },
+            "InspectionNeedsForTransportMeanRestDto": {
+                "type": "object",
+                "properties": {
+                    "serviceName": {
+                        "type": "string"
+                    },
+                    "inspectionObject": {
+                        "$ref": "#/components/schemas/TransportMeanRestDto"
+                    },
+                    "inspectionNeeds": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InspectionNeedRestDto"
+                        }
+                    },
+                    "ambiguousReferences": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/JourneyReferenceRestDto"
+                        }
+                    },
+                    "declareInspectionNeedReferences": {
+                        "$ref": "#/components/schemas/DeclareInspectionNeedReferencesRestDto"
+                    }
+                }
+            },
+            "InspectionReasonDescriptionRestDto": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "$ref": "#/components/schemas/TranslatedStringRestDto"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InspectionNeedTagRestDto"
+                        }
+                    }
+                }
+            },
+            "InspecziunCaseReferenceRestDto": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "JourneyReferenceRestDto": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "journeyVersion": {
+                        "type": "string"
+                    },
+                    "journeyReferenceNumber": {
+                        "type": "string"
+                    }
+                }
+            },
+            "RuleReferenceRestDto": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string"
+                    },
+                    "link": {
+                        "$ref": "#/components/schemas/TranslatedStringRestDto"
+                    }
+                }
+            },
+            "TranslatedStringRestDto": {
+                "type": "object",
+                "properties": {
+                    "textDe": {
+                        "type": "string"
+                    },
+                    "textFr": {
+                        "type": "string"
+                    },
+                    "textIt": {
+                        "type": "string"
+                    },
+                    "textEn": {
+                        "type": "string"
+                    }
+                }
+            },
+            "TransportMeanRestDto": {
+                "type": "object",
+                "properties": {
+                    "typeOfIdentification": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "identificationNumber": {
+                        "type": "string"
+                    },
+                    "nationality": {
+                        "type": "string"
+                    }
+                }
+            },
+            "InspectionNeedsForPersonRestDto": {
+                "type": "object",
+                "properties": {
+                    "serviceName": {
+                        "type": "string"
+                    },
+                    "inspectionObject": {
+                        "$ref": "#/components/schemas/PersonRestDto"
+                    },
+                    "inspectionNeeds": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InspectionNeedRestDto"
+                        }
+                    },
+                    "ambiguousReferences": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/JourneyReferenceRestDto"
+                        }
+                    },
+                    "declareInspectionNeedReferences": {
+                        "$ref": "#/components/schemas/DeclareInspectionNeedReferencesRestDto"
+                    }
+                }
+            },
+            "PersonRestDto": {
+                "type": "object"
+            },
+            "GoodsDeclarationRestDto": {
+                "type": "object",
+                "properties": {
+                    "referenceNumber": {
+                        "type": "string"
+                    },
+                    "link": {
+                        "type": "string"
+                    },
+                    "weight": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            },
+            "InspectionNeedsForGoodsDeclarationRestDto": {
+                "type": "object",
+                "properties": {
+                    "serviceName": {
+                        "type": "string"
+                    },
+                    "inspectionObject": {
+                        "$ref": "#/components/schemas/GoodsDeclarationRestDto"
+                    },
+                    "inspectionNeeds": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InspectionNeedRestDto"
+                        }
+                    },
+                    "ambiguousReferences": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/JourneyReferenceRestDto"
+                        }
+                    },
+                    "declareInspectionNeedReferences": {
+                        "$ref": "#/components/schemas/DeclareInspectionNeedReferencesRestDto"
+                    }
+                }
+            },
+            "BorderTransportMean": {
+                "type": "object",
+                "properties": {
+                    "typeOfIdentification": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "identificationNumber": {
+                        "type": "string"
+                    },
+                    "nationality": {
+                        "type": "string"
+                    },
+                    "optionalTypeOfIdentification": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "optionalIdentificationNumber": {
+                        "type": "string"
+                    },
+                    "optionalNationality": {
+                        "type": "string"
+                    },
+                    "schema": {
+                        "$ref": "#/components/schemas/Schema"
+                    },
+                    "specificData": {
+                        "$ref": "#/components/schemas/SpecificData"
+                    }
+                }
+            },
+            "ConversionObject": {
+                "type": "object",
+                "properties": {
+                    "recommendedSchema": {
+                        "$ref": "#/components/schemas/Schema"
+                    },
+                    "logicalTypeName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "FastReaderBuilder": {
+                "type": "object",
+                "properties": {
+                    "keyClassEnabled": {
+                        "type": "boolean"
+                    },
+                    "classPropEnabled": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Field": {
+                "type": "object",
+                "properties": {
+                    "objectProps": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "GoodsDeclaration": {
+                "type": "object",
+                "properties": {
+                    "goodsDeclarationReferenceNumber": {
+                        "type": "string"
+                    },
+                    "goodsDeclarationVersion": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "goodsDeclarationSystem": {
+                        "type": "string",
+                        "enum": [
+                            "PASSAR",
+                            "EDEC",
+                            "NCTS"
+                        ]
+                    },
+                    "goodsDeclarationType": {
+                        "type": "string"
+                    },
+                    "optionalGoodsDeclarationReferenceNumber": {
+                        "type": "string"
+                    },
+                    "optionalGoodsDeclarationVersion": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "optionalGoodsDeclarationSystem": {
+                        "type": "string",
+                        "enum": [
+                            "PASSAR",
+                            "EDEC",
+                            "NCTS"
+                        ]
+                    },
+                    "optionalGoodsDeclarationType": {
+                        "type": "string"
+                    },
+                    "schema": {
+                        "$ref": "#/components/schemas/Schema"
+                    },
+                    "specificData": {
+                        "$ref": "#/components/schemas/SpecificData"
+                    }
+                }
+            },
+            "Journey": {
+                "type": "object",
+                "properties": {
+                    "journeyReferenceNumber": {
+                        "type": "string"
+                    },
+                    "journeyVersion": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "modeOfTransportAtTheBorder": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "borderTransportMean": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BorderTransportMean"
+                        }
+                    },
+                    "emptyJourney": {
+                        "type": "boolean"
+                    },
+                    "goodsDeclaration": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/GoodsDeclaration"
+                        }
+                    },
+                    "journeyData": {
+                        "$ref": "#/components/schemas/JourneyData"
+                    },
+                    "borderCrossingDirection": {
+                        "type": "string",
+                        "enum": [
+                            "UNKNOWN",
+                            "ENTRY",
+                            "EXIT"
+                        ]
+                    },
+                    "oppositeReferenceNumber": {
+                        "type": "string"
+                    },
+                    "customsOfficeId": {
+                        "type": "string"
+                    },
+                    "initiatedByCustoms": {
+                        "type": "boolean"
+                    },
+                    "previouslyActivated": {
+                        "type": "boolean"
+                    },
+                    "optionalModeOfTransportAtTheBorder": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "optionalBorderTransportMean": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BorderTransportMean"
+                        }
+                    },
+                    "optionalEmptyJourney": {
+                        "type": "boolean"
+                    },
+                    "optionalJourneyData": {
+                        "$ref": "#/components/schemas/JourneyData"
+                    },
+                    "optionalBorderCrossingDirection": {
+                        "type": "string",
+                        "enum": [
+                            "UNKNOWN",
+                            "ENTRY",
+                            "EXIT"
+                        ]
+                    },
+                    "optionalCustomsOfficeId": {
+                        "type": "string"
+                    },
+                    "optionalInitiatedByCustoms": {
+                        "type": "boolean"
+                    },
+                    "optionalPreviouslyActivated": {
+                        "type": "boolean"
+                    },
+                    "optionalJourneyVersion": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "optionalJourneyReferenceNumber": {
+                        "type": "string"
+                    },
+                    "optionalOppositeReferenceNumber": {
+                        "type": "string"
+                    },
+                    "schema": {
+                        "$ref": "#/components/schemas/Schema"
+                    },
+                    "specificData": {
+                        "$ref": "#/components/schemas/SpecificData"
+                    },
+                    "optionalGoodsDeclaration": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/GoodsDeclaration"
+                        }
+                    }
+                }
+            },
+            "JourneyData": {
+                "type": "object",
+                "properties": {
+                    "arrivalLocation": {
+                        "type": "string"
+                    },
+                    "arrivalDateAndTimeEstimated": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "optionalArrivalLocation": {
+                        "type": "string"
+                    },
+                    "optionalArrivalDateAndTimeEstimated": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "schema": {
+                        "$ref": "#/components/schemas/Schema"
+                    },
+                    "specificData": {
+                        "$ref": "#/components/schemas/SpecificData"
+                    }
+                }
+            },
+            "LogicalType": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Schema": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "RECORD",
+                            "ENUM",
+                            "ARRAY",
+                            "MAP",
+                            "UNION",
+                            "FIXED",
+                            "STRING",
+                            "BYTES",
+                            "INT",
+                            "LONG",
+                            "FLOAT",
+                            "DOUBLE",
+                            "BOOLEAN",
+                            "NULL"
+                        ]
+                    },
+                    "logicalType": {
+                        "$ref": "#/components/schemas/LogicalType"
+                    },
+                    "enumSymbols": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "enumDefault": {
+                        "type": "string"
+                    },
+                    "doc": {
+                        "type": "string"
+                    },
+                    "fixedSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "union": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "fields": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Field"
+                        }
+                    },
+                    "error": {
+                        "type": "boolean"
+                    },
+                    "elementType": {
+                        "$ref": "#/components/schemas/Schema"
+                    },
+                    "fullName": {
+                        "type": "string"
+                    },
+                    "aliases": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "valueType": {
+                        "$ref": "#/components/schemas/Schema"
+                    },
+                    "namespace": {
+                        "type": "string"
+                    },
+                    "types": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Schema"
+                        }
+                    },
+                    "nullable": {
+                        "type": "boolean"
+                    },
+                    "objectProps": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "SpecificData": {
+                "type": "object",
+                "properties": {
+                    "classLoader": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "registeredAsParallelCapable": {
+                                "type": "boolean"
+                            },
+                            "parent": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "registeredAsParallelCapable": {
+                                        "type": "boolean"
+                                    },
+                                    "unnamedModule": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "descriptor": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "open": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "automatic": {
+                                                        "type": "boolean"
+                                                    }
+                                                }
+                                            },
+                                            "named": {
+                                                "type": "boolean"
+                                            },
+                                            "annotations": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "declaredAnnotations": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "packages": {
+                                                "uniqueItems": true,
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "layer": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "definedPackages": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "annotations": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "declaredAnnotations": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "sealed": {
+                                                    "type": "boolean"
+                                                },
+                                                "specificationTitle": {
+                                                    "type": "string"
+                                                },
+                                                "specificationVersion": {
+                                                    "type": "string"
+                                                },
+                                                "specificationVendor": {
+                                                    "type": "string"
+                                                },
+                                                "implementationTitle": {
+                                                    "type": "string"
+                                                },
+                                                "implementationVersion": {
+                                                    "type": "string"
+                                                },
+                                                "implementationVendor": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "defaultAssertionStatus": {
+                                        "type": "boolean",
+                                        "writeOnly": true
+                                    }
+                                }
+                            },
+                            "unnamedModule": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "descriptor": {
+                                        "type": "object",
+                                        "properties": {
+                                            "open": {
+                                                "type": "boolean"
+                                            },
+                                            "automatic": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "named": {
+                                        "type": "boolean"
+                                    },
+                                    "annotations": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "declaredAnnotations": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "packages": {
+                                        "uniqueItems": true,
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "layer": {
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "definedPackages": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "annotations": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        },
+                                        "declaredAnnotations": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        },
+                                        "sealed": {
+                                            "type": "boolean"
+                                        },
+                                        "specificationTitle": {
+                                            "type": "string"
+                                        },
+                                        "specificationVersion": {
+                                            "type": "string"
+                                        },
+                                        "specificationVendor": {
+                                            "type": "string"
+                                        },
+                                        "implementationTitle": {
+                                            "type": "string"
+                                        },
+                                        "implementationVersion": {
+                                            "type": "string"
+                                        },
+                                        "implementationVendor": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "defaultAssertionStatus": {
+                                "type": "boolean",
+                                "writeOnly": true
+                            }
+                        }
+                    },
+                    "conversions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ConversionObject"
+                        }
+                    },
+                    "fastReaderEnabled": {
+                        "type": "boolean"
+                    },
+                    "fastReaderBuilder": {
+                        "$ref": "#/components/schemas/FastReaderBuilder"
+                    },
+                    "customCoders": {
+                        "type": "boolean",
+                        "writeOnly": true
+                    }
+                }
+            },
+            "PublishWvsJourneyAcceptedRestDto": {
+                "type": "object",
+                "properties": {
+                    "journeyReferenceNumber": {
+                        "type": "string"
+                    },
+                    "transportMean": {
+                        "$ref": "#/components/schemas/TransportMeanRestDto"
+                    },
+                    "goodsDeclarationReferenceNumbers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "processDirection": {
+                        "type": "string",
+                        "enum": [
+                            "TRANSIT",
+                            "TRANSIT_EXPORT_CH",
+                            "TRANSIT_IMPORT_CH",
+                            "EXPORT_CH",
+                            "IMPORT_CH",
+                            "UNKNOWN"
+                        ]
+                    },
+                    "localReferenceNumber": {
+                        "type": "string"
+                    },
+                    "customsOfficeId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "WvsArrivalAcceptedEventRestDto": {
+                "type": "object",
+                "properties": {
+                    "arrivalReference": {
+                        "type": "string"
+                    },
+                    "customsOfficeId": {
+                        "type": "string"
+                    },
+                    "approvedLocationId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PublishSelectionResultAvailableEventRestDto": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "string"
+                    },
+                    "inspectionCaseId": {
+                        "type": "string"
+                    },
+                    "journeyVersion": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "journeyReferenceNumber": {
+                        "type": "string"
+                    },
+                    "stationId": {
+                        "type": "string"
+                    },
+                    "customsOfficeId": {
+                        "type": "string"
+                    },
+                    "decision": {
+                        "type": "string",
+                        "enum": [
+                            "NEEDS_INSPECTION",
+                            "NO_INSPECTION",
+                            "CANCELED"
+                        ]
+                    },
+                    "decisionStatus": {
+                        "type": "string",
+                        "enum": [
+                            "PRELIMINARY",
+                            "FINAL",
+                            "OVERRIDE"
+                        ]
+                    },
+                    "trafficDirection": {
+                        "type": "string",
+                        "enum": [
+                            "ENTRY",
+                            "EXIT",
+                            "UNKNOWN"
+                        ]
+                    }
+                }
+            },
+            "InspectionObjectRestDto": {
+                "type": "object",
+                "properties": {
+                    "serviceName": {
+                        "type": "string"
+                    },
+                    "goodsDeclaration": {
+                        "$ref": "#/components/schemas/GoodsDeclarationRestDto"
+                    },
+                    "person": {
+                        "$ref": "#/components/schemas/PersonRestDto"
+                    },
+                    "transportMean": {
+                        "$ref": "#/components/schemas/TransportMeanRestDto"
+                    },
+                    "inspectionNeeds": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InspectionNeedRestDto"
+                        }
+                    }
+                }
+            },
+            "PublishInspectionStartedRestDto": {
+                "type": "object",
+                "properties": {
+                    "referenceNumber": {
+                        "type": "string"
+                    },
+                    "containerType": {
+                        "type": "string",
+                        "enum": [
+                            "JOURNEY",
+                            "ARRIVAL",
+                            "GOODS_DECLARATION_ACTIVATION",
+                            "UNKNOWN"
+                        ]
+                    },
+                    "customsOfficeId": {
+                        "type": "string"
+                    },
+                    "associatedUserId": {
+                        "type": "string"
+                    },
+                    "inspectionObjects": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InspectionObjectRestDto"
+                        }
+                    },
+                    "inspectionCaseId": {
+                        "type": "string"
+                    },
+                    "inspectionResult": {
+                        "type": "string",
+                        "enum": [
+                            "CLEAR",
+                            "FINDINGS"
+                        ]
+                    }
+                }
+            },
+            "PublishInspectionIgnoredRestDto": {
+                "type": "object",
+                "properties": {
+                    "referenceNumber": {
+                        "type": "string"
+                    },
+                    "containerType": {
+                        "type": "string",
+                        "enum": [
+                            "JOURNEY",
+                            "ARRIVAL",
+                            "GOODS_DECLARATION_ACTIVATION",
+                            "UNKNOWN"
+                        ]
+                    },
+                    "customsOfficeId": {
+                        "type": "string"
+                    },
+                    "associatedUserId": {
+                        "type": "string"
+                    },
+                    "inspectionObjects": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InspectionObjectRestDto"
+                        }
+                    },
+                    "inspectionCaseId": {
+                        "type": "string"
+                    },
+                    "inspectionResult": {
+                        "type": "string",
+                        "enum": [
+                            "CLEAR",
+                            "FINDINGS"
+                        ]
+                    },
+                    "reason": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PublishInspectionCompletedRestDto": {
+                "type": "object",
+                "properties": {
+                    "referenceNumber": {
+                        "type": "string"
+                    },
+                    "containerType": {
+                        "type": "string",
+                        "enum": [
+                            "JOURNEY",
+                            "ARRIVAL",
+                            "GOODS_DECLARATION_ACTIVATION",
+                            "UNKNOWN"
+                        ]
+                    },
+                    "customsOfficeId": {
+                        "type": "string"
+                    },
+                    "associatedUserId": {
+                        "type": "string"
+                    },
+                    "inspectionObjects": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InspectionObjectRestDto"
+                        }
+                    },
+                    "inspectionCaseId": {
+                        "type": "string"
+                    },
+                    "inspectionResult": {
+                        "type": "string",
+                        "enum": [
+                            "CLEAR",
+                            "FINDINGS"
+                        ]
+                    }
+                }
+            },
+            "PublishInspectionClosedRestDto": {
+                "type": "object",
+                "properties": {
+                    "referenceNumber": {
+                        "type": "string"
+                    },
+                    "containerType": {
+                        "type": "string",
+                        "enum": [
+                            "JOURNEY",
+                            "ARRIVAL",
+                            "GOODS_DECLARATION_ACTIVATION",
+                            "UNKNOWN"
+                        ]
+                    },
+                    "customsOfficeId": {
+                        "type": "string"
+                    },
+                    "associatedUserId": {
+                        "type": "string"
+                    },
+                    "inspectionCaseId": {
+                        "type": "string"
+                    },
+                    "inspectionResult": {
+                        "type": "string",
+                        "enum": [
+                            "CLEAR",
+                            "FINDINGS"
+                        ]
+                    }
+                }
+            },
+            "PublishGoodsActivationEvaluatedEventRestDto": {
+                "type": "object",
+                "properties": {
+                    "goodsActivationReference": {
+                        "type": "string"
+                    },
+                    "customsOfficeId": {
+                        "type": "string"
+                    },
+                    "decision": {
+                        "type": "string",
+                        "enum": [
+                            "NEEDS_INSPECTION",
+                            "NO_INSPECTION",
+                            "CANCELED"
+                        ]
+                    },
+                    "inspectionCaseId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PublishArrivalEvaluatedEventRestDto": {
+                "type": "object",
+                "properties": {
+                    "reference": {
+                        "type": "string"
+                    },
+                    "customsOfficeId": {
+                        "type": "string"
+                    },
+                    "decision": {
+                        "type": "string",
+                        "enum": [
+                            "NEEDS_INSPECTION",
+                            "NO_INSPECTION",
+                            "CANCELED"
+                        ]
+                    },
+                    "inspectionCaseId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PublishDeclareInspectionNeedRestDto": {
+                "type": "object",
+                "properties": {
+                    "inspectionObjectType": {
+                        "type": "string",
+                        "enum": [
+                            "TRANSPORTMEAN",
+                            "GOODS",
+                            "PERSON"
+                        ]
+                    },
+                    "inspectionObjectReference": {
+                        "type": "string"
+                    },
+                    "inspectionNeeds": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InspectionNeedRestDto"
+                        }
+                    },
+                    "journeyReferenceNumbers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "serviceName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ApprovedLocationRestDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "operatorOriginalName": {
+                        "type": "string"
+                    },
+                    "street": {
+                        "type": "string"
+                    },
+                    "houseNumber": {
+                        "type": "string"
+                    },
+                    "zipCode": {
+                        "type": "string"
+                    },
+                    "place": {
+                        "type": "string"
+                    },
+                    "observingDesk": {
+                        "type": "string"
+                    },
+                    "contactFirstname": {
+                        "type": "string"
+                    },
+                    "contactLastname": {
+                        "type": "string"
+                    },
+                    "contactPhoneNumber": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ContainerRestDto": {
+                "type": "object",
+                "properties": {
+                    "reference": {
+                        "type": "string"
+                    },
+                    "link": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "JOURNEY",
+                            "ARRIVAL",
+                            "GOODS_DECLARATION_ACTIVATION",
+                            "UNKNOWN"
+                        ]
+                    }
+                }
+            },
+            "InspectionCaseRestDto": {
+                "type": "object",
+                "properties": {
+                    "caseId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "container": {
+                        "$ref": "#/components/schemas/ContainerRestDto"
+                    },
+                    "inspectionObjects": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InspectionObjectRestDto"
+                        }
+                    },
+                    "transportMean": {
+                        "$ref": "#/components/schemas/TransportMeanRestDto"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserRestDto"
+                    },
+                    "decision": {
+                        "type": "string",
+                        "enum": [
+                            "NEEDS_INSPECTION",
+                            "NO_INSPECTION",
+                            "CANCELED"
+                        ]
+                    },
+                    "decisionStatus": {
+                        "type": "string",
+                        "enum": [
+                            "PRELIMINARY",
+                            "FINAL",
+                            "OVERRIDE"
+                        ]
+                    },
+                    "emptyJourney": {
+                        "type": "boolean"
+                    },
+                    "hasJourney": {
+                        "type": "boolean"
+                    },
+                    "weight": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "goodsDeclarationCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "activationZone": {
+                        "type": "string"
+                    },
+                    "activatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "inspectionStatus": {
+                        "type": "string",
+                        "enum": [
+                            "INSPECTION_SETUP",
+                            "INSPECTION_NEEDED",
+                            "INSPECTION_NOT_NEEDED",
+                            "INSPECTION_RUNNING",
+                            "INSPECTION_PLANNED",
+                            "INSPECTION_SUSPENDED",
+                            "INSPECTION_IGNORED",
+                            "INSPECTION_COMPLETED",
+                            "INSPECTION_CLOSED"
+                        ]
+                    },
+                    "inspectionIgnoredReason": {
+                        "type": "string"
+                    },
+                    "priority": {
+                        "type": "string",
+                        "enum": [
+                            "PRIORITY_1",
+                            "PRIORITY_2",
+                            "PRIORITY_3",
+                            "NONE"
+                        ]
+                    },
+                    "mandatoryInspection": {
+                        "type": "boolean"
+                    },
+                    "approvedLocation": {
+                        "$ref": "#/components/schemas/ApprovedLocationRestDto"
+                    }
+                }
+            },
+            "UserRestDto": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "InspectionCaseSearchResultEntryRestDto": {
+                "type": "object",
+                "properties": {
+                    "tmIdentificationNumber": {
+                        "type": "string"
+                    },
+                    "tmNationality": {
+                        "type": "string"
+                    },
+                    "tmTypeOfIdentification": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "modeOfTransport": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "caseId": {
+                        "type": "string"
+                    },
+                    "trafficDirection": {
+                        "type": "string"
+                    },
+                    "activatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "activationZone": {
+                        "type": "string"
+                    },
+                    "trackingZone": {
+                        "type": "string"
+                    },
+                    "criticality": {
+                        "type": "string",
+                        "enum": [
+                            "NONE",
+                            "LOW",
+                            "MEDIUM",
+                            "CONSIDERABLE",
+                            "HIGH",
+                            "VERYHIGH"
+                        ]
+                    },
+                    "localRegionId": {
+                        "type": "string"
+                    },
+                    "inspectionStatus": {
+                        "type": "string",
+                        "enum": [
+                            "INSPECTION_SETUP",
+                            "INSPECTION_NEEDED",
+                            "INSPECTION_NOT_NEEDED",
+                            "INSPECTION_RUNNING",
+                            "INSPECTION_PLANNED",
+                            "INSPECTION_SUSPENDED",
+                            "INSPECTION_IGNORED",
+                            "INSPECTION_COMPLETED",
+                            "INSPECTION_CLOSED"
+                        ]
+                    },
+                    "mandatoryInspection": {
+                        "type": "boolean"
+                    },
+                    "priority": {
+                        "type": "string",
+                        "enum": [
+                            "PRIORITY_1",
+                            "PRIORITY_2",
+                            "PRIORITY_3",
+                            "NONE"
+                        ]
+                    },
+                    "hasDangerNote": {
+                        "type": "boolean"
+                    },
+                    "internal": {
+                        "type": "boolean"
+                    },
+                    "containerReferenceNumber": {
+                        "type": "string"
+                    },
+                    "containerType": {
+                        "type": "string",
+                        "enum": [
+                            "JOURNEY",
+                            "ARRIVAL",
+                            "GOODS_DECLARATION_ACTIVATION",
+                            "UNKNOWN"
+                        ]
+                    },
+                    "approvedLocationOperatorOriginalName": {
+                        "type": "string"
+                    },
+                    "hasOrder": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "PageInspectionCaseSearchResultEntryRestDto": {
+                "type": "object",
+                "properties": {
+                    "totalPages": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalElements": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "pageable": {
+                        "$ref": "#/components/schemas/PageableObject"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "content": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InspectionCaseSearchResultEntryRestDto"
+                        }
+                    },
+                    "number": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "sort": {
+                        "$ref": "#/components/schemas/SortObject"
+                    },
+                    "numberOfElements": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "first": {
+                        "type": "boolean"
+                    },
+                    "last": {
+                        "type": "boolean"
+                    },
+                    "empty": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "PageableObject": {
+                "type": "object",
+                "properties": {
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "offset": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "sort": {
+                        "$ref": "#/components/schemas/SortObject"
+                    },
+                    "paged": {
+                        "type": "boolean"
+                    },
+                    "unpaged": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "SortObject": {
+                "type": "object",
+                "properties": {
+                    "empty": {
+                        "type": "boolean"
+                    },
+                    "sorted": {
+                        "type": "boolean"
+                    },
+                    "unsorted": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ServerSentEventPublicRestDto": {
+                "type": "object"
+            },
+            "LocalRegionRestDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CustomsOfficeRestDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "localRegionId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ConfigurationRestDto": {
+                "type": "object",
+                "properties": {
+                    "authority": {
+                        "type": "string"
+                    },
+                    "applicationUrl": {
+                        "type": "string"
+                    },
+                    "clientId": {
+                        "type": "string"
+                    },
+                    "logoutRedirectUri": {
+                        "type": "string"
+                    },
+                    "mockPams": {
+                        "type": "boolean"
+                    },
+                    "redirectUrl": {
+                        "type": "string"
+                    },
+                    "pamsEnvironment": {
+                        "type": "string"
+                    },
+                    "tokenAwarePatterns": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "useAutoLogin": {
+                        "type": "boolean"
+                    },
+                    "systemName": {
+                        "type": "string"
+                    },
+                    "silentRenew": {
+                        "type": "boolean"
+                    },
+                    "silentRenewUrl": {
+                        "type": "string"
+                    },
+                    "stsServer": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Link": {
+                "type": "object",
+                "properties": {
+                    "href": {
+                        "type": "string"
+                    },
+                    "templated": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "prometheus": {
+                "type": "http",
+                "scheme": "basic"
+            },
+            "OIDC": {
+                "type": "openIdConnect",
+                "description": "OAuth2-Authentication",
+                "openIdConnectUrl": "https://ref-identity-pams.bit.admin.ch/realms/ezv-inspecziun/.well-known/openid-configuration"
+            }
+        }
+    }
+}

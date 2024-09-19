@@ -1,0 +1,2647 @@
+[
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-notification-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "messageType": "DatahubBusinesspartnerBankAccountAddedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-notification-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "messageType": "DatahubBusinesspartnerBankAccountUpdatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-pams-adapter-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "messageType": "DatahubBusinesspartnerCreatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-declaration-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "messageType": "DatahubBusinesspartnerCreatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-pams-adapter-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "messageType": "DatahubBusinesspartnerRoleAddedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-billing-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "messageType": "DatahubBusinesspartnerRoleAddedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-pams-adapter-service",
+    "providerSystem": "Connex",
+    "provider": "connex-pams-adapter-service",
+    "messageType": "DatahubBusinesspartnerRoleRemovedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-pams-adapter-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "messageType": "DatahubBusinesspartnerRoleRemovedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-pams-adapter-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "messageType": "DatahubBusinesspartnerRoleStatusUpdatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-billing-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "messageType": "DatahubBusinesspartnerRoleStatusUpdatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-pams-adapter-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "messageType": "DatahubBusinesspartnerUpdatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-declaration-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "messageType": "DatahubBusinesspartnerUpdatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-codeprovider-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "messageType": "DatahubCodeProviderConsumerViewDependenciesUpdatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-external-permit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "messageType": "DatahubCodeProviderConsumerViewRefreshedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Borderguard",
+    "consumer": "boga-core-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "messageType": "DatahubCodeProviderConsumerViewRefreshedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-publisher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "messageType": "DatahubCodeProviderConsumerViewRefreshedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "messageType": "DatahubCodeProviderConsumerViewRefreshedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-external-permit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "messageType": "DatahubCodeProviderConsumerViewRefreshedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Borderguard",
+    "consumer": "boga-core-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "messageType": "DatahubCodeProviderConsumerViewRefreshedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-publisher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "messageType": "DatahubCodeProviderConsumerViewRefreshedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "messageType": "DatahubCodeProviderConsumerViewRefreshedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-external-permit-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "messageType": "DatahubCodeProviderConsumerViewRefreshedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Borderguard",
+    "consumer": "boga-core-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "messageType": "DatahubCodeProviderConsumerViewRefreshedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-publisher-service",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "messageType": "DatahubCodeProviderConsumerViewRefreshedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "Inspecziun",
+    "provider": "inspecziun-test-agent-service",
+    "messageType": "DatahubCodeProviderConsumerViewRefreshedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-codeprovider-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "messageType": "DatahubCodeProviderCustomObjectsListPageReceivedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-codeprovider-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "messageType": "DatahubCodeProviderCustomObjectsListReceivedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "messageType": "DatahubCodeProviderCustomObjectsRefreshedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-codeprovider-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "messageType": "DatahubCodeProviderCustomObjectsTableUpdatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-codeprovider-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "messageType": "DatahubCodeProviderExternalObjectsBlockReceivedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-codeprovider-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "messageType": "DatahubCodeProviderExternalObjectsReceivedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-codeprovider-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "messageType": "DatahubCodeProviderExternalObjectsTableUpdatedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-publisher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "messageType": "DatahubConsumerViewRefreshedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-declaration-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-ivz-service",
+    "messageType": "DatahubVehicleRegistrationChangedEvent"
+  },
+  {
+    "relationType": "EVENT_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-plausibility-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-ivz-service",
+    "messageType": "DatahubVehicleRegistrationChangedEvent"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-declar-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/passar/customs-offices-codelists"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-transport-cockpit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/10"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/10"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-document-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/10"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-guarantee-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/10"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/10"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/10"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/10"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/10"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/10"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/10"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-transport-cockpit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/X"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/X"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-document-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/X"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-guarantee-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/X"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/X"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/X"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/X"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/X"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/X"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/NCL2000/items/X"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Activ",
+    "consumer": "activ-activation-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/{codelistName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "ccn-dispatcher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/{codelistName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-document-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/{codelistName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-guarantee-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/{codelistName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Activ",
+    "consumer": "activ-activation-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/customs-offices"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Activ",
+    "consumer": "activ-perimeter-validation-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/customs-offices"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Periodic",
+    "consumer": "periodic-activation-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/customs-offices"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/9013.2000"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/9013.2000"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/9013.2000"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/9013.2001"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/9013.2001"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/9013.2001"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-external-permit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/{tn8Num}/control-codes"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-quota-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/{tn8Num}/control-codes"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-quota-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/{tnr}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-request-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/{tnr}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-verification-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/{tnr}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-request-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/{tnr}/purposes"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-verification-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/{tnr}/purposes"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-transport-cockpit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/list/{listName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-document-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/list/{listName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/list/{listName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/list/{listName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/list/{listName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/list/{listName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-transport-cockpit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/lists/{list-name}/items/{item-name}/values/{item-value}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-document-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/lists/{list-name}/items/{item-name}/values/{item-value}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-guarantee-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/lists/{list-name}/items/{item-name}/values/{item-value}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/lists/{list-name}/items/{item-name}/values/{item-value}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/lists/{list-name}/items/{item-name}/values/{item-value}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/lists/{list-name}/items/{item-name}/values/{item-value}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/lists/{list-name}/items/{item-name}/values/{item-value}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "ccn-dispatcher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/passar/customs-offices-codelists"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-guarantee-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/passar/customs-offices-codelists"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/passar/customs-offices-codelists"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-quota-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-verification-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "ccn-dispatcher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-declar-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-transport-cockpit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-beer-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-billing-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-document-mediator-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-refund-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-document-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "ccn-dispatcher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-declar-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-transport-cockpit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-beer-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-billing-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-document-mediator-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-refund-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "ccn-dispatcher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-declar-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-transport-cockpit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-beer-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-billing-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-document-mediator-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-refund-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-document-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-declar-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles/{roleId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles/{roleId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-document-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles/{roleId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-guarantee-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles/{roleId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles/{roleId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles/{roleId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-declaration-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-ivz-service",
+    "method": "GET",
+    "path": "/api/vehicles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "ccn-dispatcher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/approved-places"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-transport-cockpit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/approved-places"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/approved-places"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-document-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/approved-places"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-guarantee-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/approved-places"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/approved-places"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/approved-places"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "camiuns-inspectionneed-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "ccn-dispatcher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-declar-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Prezius",
+    "consumer": "prezius-reporting-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-declaration-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-ivz-service",
+    "method": "POST",
+    "path": "/api/vehicles/searches/plates"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-plausibility-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-ivz-service",
+    "method": "GET",
+    "path": "/api/vehicles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-businesspartner-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{idType}/{id}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "camiuns-specialagreement-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-ivz-service",
+    "method": "POST",
+    "path": "/api/vehicles/searches/vins"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-external-permit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/{codelistName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-refund-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/customobjects/{listName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-pams-adapter-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles/{roleId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles/{roleId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles/{roleId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles/{roleId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Garanzia",
+    "consumer": "garanzia-guarantee-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles/{roleId}/contacts"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-test-agent-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "PUT",
+    "path": "/api/v5/businesspartner/sync"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/list/{listName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/lists/{list-name}/items/{item-name}/values/{item-value}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-document-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-permit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/lists/{list-name}/items/{item-name}/values/{item-value}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/lists/{list-name}/items/{item-name}/values/{item-value}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/{tnr}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-external-permit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner/with-name"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "camiuns-vehicleprovision-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-ivz-service",
+    "method": "POST",
+    "path": "/api/vehicles/searches/vins"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-guarantee-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-guarantee-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-external-permit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/countries/with-group-assignments"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-external-permit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/{tnr}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Prezius",
+    "consumer": "prezius-billing-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-role/{role}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Prezius",
+    "consumer": "prezius-reporting-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-role/{role}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Prezius",
+    "consumer": "prezius-document-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Prezius",
+    "consumer": "prezius-order-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Testar",
+    "consumer": "testar-orchestrator-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-test-agent-service",
+    "method": "PUT",
+    "path": "/api/tests/{testId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-declar-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/{codelistName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/{codelistName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/{tnr}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-refund-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-assessment-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/fueltypes"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-businesspartner-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-postal-address-service",
+    "method": "GET",
+    "path": "/api/address/autocomplete"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-postal-address-service",
+    "method": "GET",
+    "path": "/api/address/autocomplete"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/approved-places"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/{codelistName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/{codelistName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/{codelistName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/{codelistName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-publisher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/passar"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-register-service",
+    "method": "GET",
+    "path": "/api/company/{id}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-register-service",
+    "method": "GET",
+    "path": "/api/company/{id}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Inspecziun",
+    "consumer": "inspecziun-core-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/customs-offices"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-register-service",
+    "method": "GET",
+    "path": "/api/company/{id}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-businesspartner-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-register-service",
+    "method": "GET",
+    "path": "/api/company/{mainUnitUid}/local-units/{localUnitId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-publisher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/consumer-views-status"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-publisher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/countries/masterdata"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-publisher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/countries/masterdata/schema"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-assessment-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/lsva/euroclasses"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-assessment-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/lsva/tariffs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-billing-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/lsva/tariffs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-declaration-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/lsva/vnedistances"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-publisher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/masterdata"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-guarantee-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/list/{listName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/list/{listName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-publisher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/passar/customs-offices-codelists"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/passar/customs-offices-codelists"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-document-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/passar/customs-offices-codelists"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/passar/customs-offices-codelists"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/passar/customs-offices-codelists"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/passar/customs-offices-codelists"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/passar/customs-offices-codelists"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/passar/customs-offices-codelists"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-declaration-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Stadi",
+    "consumer": "stadi-declaration-importer-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-own-company-id/{companyId}/companyIds"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-aeo-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-role/{role}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-notification-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-businesspartner-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles/{roleId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-notification-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/role-definitions"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-businesspartner-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/approved-places"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/approved-places"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/approved-places"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/tariffs/masterdata"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/tariffs/masterdata"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "camiuns-replacementvehicle-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "camiuns-specialagreement-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-businesspartner-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-notification-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-pams-adapter-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DocBox",
+    "consumer": "docbox-doc-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-assessment-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Garanzia",
+    "consumer": "garanzia-guarantee-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-transport-cockpit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-beer-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-beer-refund-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-billing-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "VSP",
+    "consumer": "vsp-document-mediator-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-document-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Garanzia",
+    "consumer": "garanzia-guarantee-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-name/{name}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-boarding-code-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-publisher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/passar/schema"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-declaration-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-ivz-service",
+    "method": "POST",
+    "path": "/api/vehicles/searches/vins"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-register-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codes/legalformcodes"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Agir",
+    "consumer": "agir-task-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/customs-offices"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-businesspartner-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-postal-address-service",
+    "method": "POST",
+    "path": "/api/address/alternative"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-manual-procedure-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-assessment-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/lsva/nationallimits"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "eets-assessment-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/lsva/tarifforders"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "camiuns-refund-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/lsva/tariffs"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-publisher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/passar/customs-offices-codelists/schema"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/tariffs/masterdata"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Testar",
+    "consumer": "testar-orchestrator-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-test-agent-service",
+    "method": "POST",
+    "path": "/api/tests/{testId}/actions"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/{tnr}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/tariffs/masterdata"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-businesspartner-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codes/{domain}/enum"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-businesspartner-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-register-service",
+    "method": "GET",
+    "path": "/api/company/{id}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-register-service",
+    "method": "GET",
+    "path": "/api/company/{id}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-transport-cockpit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/passar/customs-offices-codelists"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-test-agent-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/change-event/businesspartner-role-status-updated"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-businesspartner-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-register-service",
+    "method": "POST",
+    "path": "/api/company/search"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "camiuns-refund-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Camiuns",
+    "consumer": "camiuns-vehicledata-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Testar",
+    "consumer": "testar-orchestrator-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-test-agent-service",
+    "method": "DELETE",
+    "path": "/api/tests/{testId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Passar-Frontend",
+    "consumer": "pfe-transport-cockpit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/{codelistName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/{codelistName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codelists/{codelistName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "ccn-dispatcher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/list/{listName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/approved-places"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "POST",
+    "path": "/api/approved-places"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Garanzia",
+    "consumer": "garanzia-guarantee-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/codes/countries/{iso2Code}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-test-agent-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/change-event/businesspartner-role-added"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-guarantee-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Prezius",
+    "consumer": "prezius-order-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-role/{role}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Prezius",
+    "consumer": "prezius-billing-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-guarantee-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{companyId}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "DataHub",
+    "consumer": "datahub-publisher-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/tariffs/masterdata/schema"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/list/{listName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-businesspartner-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/role-definitions"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-mockeventinjector",
+    "providerSystem": "DataHub",
+    "provider": "datahub-taxud-service",
+    "method": "GET",
+    "path": "/api/taxud/list/{listName}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-national-transit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-communication-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Borderguard",
+    "consumer": "boga-core-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-codeprovider-service",
+    "method": "GET",
+    "path": "/api/customs-offices"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-ncts-declaration-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "POST",
+    "path": "/api/v4/businesspartner"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Connex",
+    "consumer": "connex-boarding-code-service",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/with-company-id/{idType}/{id}"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "Autorisaziun",
+    "consumer": "autorisaziun-external-permit-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-postal-address-service",
+    "method": "GET",
+    "path": "/api/address/autocomplete"
+  },
+  {
+    "relationType": "REST_API_RELATION",
+    "consumerSystem": "WVS",
+    "consumer": "wvs-journey-scs",
+    "providerSystem": "DataHub",
+    "provider": "datahub-businesspartner-service",
+    "method": "GET",
+    "path": "/api/v4/businesspartner/{bpId}/roles/{roleId}"
+  }
+]

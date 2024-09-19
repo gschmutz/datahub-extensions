@@ -1,0 +1,27 @@
+# Inlined from /metadata-ingestion/examples/data_product/dataproduct.yaml
+id: demo
+domain: urn:li:domain:b1068804-416a-48f6-8868-1c2b5de0abd4
+display_name: Demo
+description: |-
+  This is a data product
+  
+# List of assets that belong to this Data Product
+assets:
+  - urn:li:dataset:(urn:li:dataPlatform:PA,NationalGoodsDeclaration,PROD)
+
+owners:
+  - id: urn:li:corpuser:jdoe
+    type: BUSINESS_OWNER
+
+# Tags associated with this Data Product
+tags:
+  - urn:li:tag:adoption
+
+# Glossary Terms associated with this Data Product
+terms:
+  - urn:li:glossaryTerm:9e352455-5a7d-46c3-b859-cdae330baa39
+
+# Custom Properties
+properties:
+  lifecycle: production
+  sla: 7am every day

@@ -1,0 +1,1645 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Agir Service",
+        "description": "Rest API for Shared Agir Service"
+    },
+    "externalDocs": {
+        "description": "Confluence Documentation",
+        "url": "https://confluence.bit.admin.ch/display/SHARSER/"
+    },
+    "servers": [
+        {
+            "url": "https://ref-agir-internal.bazg.admin.ch/agir",
+            "description": "Generated server url"
+        }
+    ],
+    "security": [
+        {
+            "OIDC": [
+                
+            ]
+        }
+    ],
+    "tags": [
+        {
+            "name": "Task config",
+            "description": "TaskConfig actions"
+        },
+        {
+            "name": "Task",
+            "description": "Ui Task actions"
+        },
+        {
+            "name": "Qd ConfigurationController",
+            "description": "configuration data required for qd-auth library"
+        },
+        {
+            "name": "Task type",
+            "description": "TaskType actions"
+        },
+        {
+            "name": "Task",
+            "description": "Task actions"
+        },
+        {
+            "name": "Employees",
+            "description": "Employees actions"
+        }
+    ],
+    "paths": {
+        "/ui-api/tasks/{taskId}": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Get a task by its identifier",
+                "operationId": "getTaskById",
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "Identifier of the task",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the requested task",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaskDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Task does not exist: Returns error code and error message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Create or update a task based on the current state",
+                "operationId": "createOrUpdateTask",
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "Unique identifier of the task created by the Fachanwendung",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UiTaskDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Returns the created or updated task",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UiTaskDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Delete an existing task",
+                "operationId": "deleteTask",
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task is deleted."
+                    },
+                    "404": {
+                        "description": "Task does not exist: Returns error code and error message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ui-api/tasks/{taskId}/state": {
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Update the state of a task",
+                "operationId": "updateTaskStatus",
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "Identifier of the task",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UiTaskStateDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Returns the updated task",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaskDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Task does not exist: Returns error code and error message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ui-api/task-type/{taskTypeId}/subscriptions/{userId}": {
+            "put": {
+                "tags": [
+                    "Task type"
+                ],
+                "summary": "Subscribe for notification for given task type",
+                "operationId": "subscribe",
+                "parameters": [
+                    {
+                        "name": "taskTypeId",
+                        "in": "path",
+                        "description": "Id of TaskType to subscribe to",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "Id of User",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/CustomsOfficeDto"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Task type"
+                ],
+                "summary": "Unsubscribe from task type",
+                "operationId": "unsubscribe",
+                "parameters": [
+                    {
+                        "name": "taskTypeId",
+                        "in": "path",
+                        "description": "Id of TaskType to unsubscribe from",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "Id of User",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/tasks/{taskId}": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Get a task by its identifier",
+                "operationId": "getTaskById_1",
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "Identifier of the task",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the requested task",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaskDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Task does not exist: Returns error code and error message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Create or update a task based on the current state",
+                "operationId": "createOrUpdateTask_1",
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "Unique identifier of the task created by the Fachanwendung",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TaskDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Returns the created or updated task",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaskDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Delete an existing task",
+                "operationId": "deleteTask_1",
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task is deleted."
+                    },
+                    "404": {
+                        "description": "Task does not exist: Returns error code and error message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tasks/{taskId}/state": {
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Update the state of a task",
+                "operationId": "updateTaskStatus_1",
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "Identifier of the task",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TaskStateDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Returns the updated task",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaskDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Task does not exist: Returns error code and error message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/task-configs": {
+            "put": {
+                "tags": [
+                    "Task config"
+                ],
+                "summary": "Create or update task types",
+                "operationId": "createOrUpdateTaskType",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "description": "List of task type dtos",
+                                "items": {
+                                    "$ref": "#/components/schemas/TaskTypeDto"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TaskTypeDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ui-api/tasks/search": {
+            "post": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Search tasks based on search criteria.",
+                "operationId": "searchByCriteria",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UiTaskCriteria"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageUiTaskDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tasks/search": {
+            "post": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Search tasks based on search criteria.",
+                "operationId": "searchByCriteria_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TaskCriteria"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageTaskDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ui-api/task-type": {
+            "get": {
+                "tags": [
+                    "Task type"
+                ],
+                "summary": "Find all task types the user has the right so see.",
+                "operationId": "findTaskTypes",
+                "parameters": [
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "en",
+                                "de",
+                                "fr",
+                                "it"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TaskTypeSubscriptionDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ui-api/task-type/subscriptions/{userId}": {
+            "get": {
+                "tags": [
+                    "Task type"
+                ],
+                "summary": "Returns the Ids of the taskTypes on which the user is subscribed to",
+                "operationId": "findSubscriptions",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "Id of User",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TaskTypeCustomsOfficeDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ui-api/subscribe/tasks": {
+            "get": {
+                "tags": [
+                    "ui-reactive-task-controller"
+                ],
+                "operationId": "listenToTaskEvents",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/event-stream": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TaskChangedEvent"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ui-api/employees": {
+            "get": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Get all employees",
+                "operationId": "getTaskEmployees",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TaskEmployee"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ui-api/customs-offices": {
+            "get": {
+                "tags": [
+                    "ui-customs-offices-controller"
+                ],
+                "operationId": "getCustomOffices",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CustomsOffices"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ui-api/configuration": {
+            "get": {
+                "tags": [
+                    "Qd ConfigurationController"
+                ],
+                "operationId": "getConfiguration",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/QdConfigurationDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/task-configs/{system}": {
+            "get": {
+                "tags": [
+                    "Task config"
+                ],
+                "summary": "Get all task types of a system",
+                "operationId": "getListOfTaskTypes",
+                "parameters": [
+                    {
+                        "name": "system",
+                        "in": "path",
+                        "description": "Name of the fachanwendung",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TaskTypeDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "TaskCommentDto": {
+                "type": "object",
+                "properties": {
+                    "text": {
+                        "maxLength": 500,
+                        "minLength": 0,
+                        "type": "string"
+                    },
+                    "createdBy": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "UNASSIGNMENT",
+                            "ASSIGNMENT",
+                            "CREATION"
+                        ]
+                    }
+                }
+            },
+            "TaskDetailDto": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "maxLength": 2064,
+                        "minLength": 0,
+                        "type": "string"
+                    }
+                }
+            },
+            "TaskReferenceDto": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "uri": {
+                        "maxLength": 2064,
+                        "minLength": 0,
+                        "type": "string"
+                    }
+                }
+            },
+            "TaskTypeDisplayDto": {
+                "required": [
+                    "displayDomain",
+                    "displayName",
+                    "language",
+                    "title"
+                ],
+                "type": "object",
+                "properties": {
+                    "language": {
+                        "type": "string",
+                        "enum": [
+                            "en",
+                            "de",
+                            "fr",
+                            "it"
+                        ]
+                    },
+                    "displayName": {
+                        "type": "string"
+                    },
+                    "displayDomain": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "TaskTypeDto": {
+                "required": [
+                    "display",
+                    "name",
+                    "system"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "system": {
+                        "type": "string"
+                    },
+                    "manuallyClosable": {
+                        "type": "boolean"
+                    },
+                    "display": {
+                        "maxItems": 4,
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TaskTypeDisplayDto"
+                        }
+                    },
+                    "template": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TaskTypeNotificationTemplateDto"
+                        }
+                    },
+                    "templateSizeValid": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "TaskTypeNotificationTemplateDto": {
+                "required": [
+                    "body",
+                    "language",
+                    "subject"
+                ],
+                "type": "object",
+                "properties": {
+                    "language": {
+                        "type": "string",
+                        "enum": [
+                            "en",
+                            "de",
+                            "fr",
+                            "it"
+                        ]
+                    },
+                    "subject": {
+                        "maxLength": 70,
+                        "minLength": 0,
+                        "type": "string"
+                    },
+                    "body": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UiTaskDto": {
+                "required": [
+                    "due",
+                    "priority",
+                    "references",
+                    "service",
+                    "state",
+                    "system",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "assignee": {
+                        "type": "string"
+                    },
+                    "due": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "priority": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "taskType": {
+                        "$ref": "#/components/schemas/TaskTypeDto"
+                    },
+                    "state": {
+                        "type": "string",
+                        "enum": [
+                            "OPEN",
+                            "ASSIGNED",
+                            "ASSIGNED_TO_ME",
+                            "CLOSED"
+                        ]
+                    },
+                    "system": {
+                        "type": "string"
+                    },
+                    "service": {
+                        "type": "string"
+                    },
+                    "references": {
+                        "maxItems": 2147483647,
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TaskReferenceDto"
+                        }
+                    },
+                    "additionalDetails": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TaskDetailDto"
+                        }
+                    },
+                    "customsOfficeNumber": {
+                        "pattern": "^CH([0-9]){6}$",
+                        "type": "string",
+                        "description": "CH number of the customs office"
+                    },
+                    "taskComments": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TaskCommentDto"
+                        }
+                    }
+                },
+                "description": "Task to be updated or created"
+            },
+            "TaskDto": {
+                "required": [
+                    "due",
+                    "priority",
+                    "references",
+                    "service",
+                    "state",
+                    "system",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "assignee": {
+                        "type": "string"
+                    },
+                    "due": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "priority": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "taskType": {
+                        "$ref": "#/components/schemas/TaskTypeDto"
+                    },
+                    "state": {
+                        "type": "string",
+                        "enum": [
+                            "OPEN",
+                            "INPROGRESS",
+                            "CLOSED"
+                        ]
+                    },
+                    "system": {
+                        "type": "string"
+                    },
+                    "service": {
+                        "type": "string"
+                    },
+                    "references": {
+                        "maxItems": 2147483647,
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TaskReferenceDto"
+                        }
+                    },
+                    "additionalDetails": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TaskDetailDto"
+                        }
+                    },
+                    "customsOffice": {
+                        "pattern": "^CH([0-9]){6}$",
+                        "type": "string",
+                        "description": "CH number of the customs office"
+                    },
+                    "taskComments": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TaskCommentDto"
+                        }
+                    }
+                }
+            },
+            "ErrorResponse": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "string"
+                    },
+                    "errorMessage": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UiTaskStateDto": {
+                "required": [
+                    "state"
+                ],
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "type": "string",
+                        "enum": [
+                            "OPEN",
+                            "ASSIGNED",
+                            "ASSIGNED_TO_ME",
+                            "CLOSED"
+                        ]
+                    }
+                }
+            },
+            "CustomsOfficeDto": {
+                "type": "object",
+                "properties": {
+                    "customsOffice": {
+                        "pattern": "^CH([0-9]){6}$",
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "TaskStateDto": {
+                "required": [
+                    "state"
+                ],
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "type": "string",
+                        "enum": [
+                            "OPEN",
+                            "INPROGRESS",
+                            "CLOSED"
+                        ]
+                    }
+                }
+            },
+            "DisplayDomainDto": {
+                "type": "object",
+                "properties": {
+                    "displayDomain": {
+                        "title": "Language specific name of the Fachbereich",
+                        "type": "string",
+                        "example": "Verbrauchssteuern"
+                    },
+                    "language": {
+                        "title": "Language setting",
+                        "type": "string",
+                        "example": "de"
+                    }
+                }
+            },
+            "TaskDetailSearchCriteriaDto": {
+                "required": [
+                    "name",
+                    "value"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "title": "Name of the task detail",
+                        "type": "string",
+                        "example": "Refund"
+                    },
+                    "value": {
+                        "title": "Value of the task detail",
+                        "type": "string",
+                        "example": "Refund-ID"
+                    }
+                }
+            },
+            "TaskReferenceSearchCriteriaDto": {
+                "required": [
+                    "name",
+                    "uri"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "title": "Name of the task reference",
+                        "type": "string",
+                        "example": "Refund"
+                    },
+                    "uri": {
+                        "title": "Url of the task reference",
+                        "type": "string",
+                        "example": "https://dev-vsp.ezv.admin.ch/biera-refund/..."
+                    }
+                }
+            },
+            "UiTaskCriteria": {
+                "type": "object",
+                "properties": {
+                    "taskId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "assignee": {
+                        "type": "string"
+                    },
+                    "domain": {
+                        "$ref": "#/components/schemas/DisplayDomainDto"
+                    },
+                    "createdFrom": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdUntil": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "dueDateFrom": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "dueDateUntil": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "freeTextSearch": {
+                        "type": "string"
+                    },
+                    "taskTypeList": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    "taskReference": {
+                        "$ref": "#/components/schemas/TaskReferenceSearchCriteriaDto"
+                    },
+                    "taskDetail": {
+                        "$ref": "#/components/schemas/TaskDetailSearchCriteriaDto"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "page": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "customsOfficeNumbers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "uiTaskStates": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "OPEN",
+                                "ASSIGNED",
+                                "ASSIGNED_TO_ME",
+                                "CLOSED"
+                            ]
+                        }
+                    }
+                }
+            },
+            "PageUiTaskDto": {
+                "type": "object",
+                "properties": {
+                    "totalPages": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalElements": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "content": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UiTaskDto"
+                        }
+                    },
+                    "number": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "sort": {
+                        "$ref": "#/components/schemas/SortObject"
+                    },
+                    "numberOfElements": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "first": {
+                        "type": "boolean"
+                    },
+                    "last": {
+                        "type": "boolean"
+                    },
+                    "pageable": {
+                        "$ref": "#/components/schemas/PageableObject"
+                    },
+                    "empty": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "PageableObject": {
+                "type": "object",
+                "properties": {
+                    "offset": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "sort": {
+                        "$ref": "#/components/schemas/SortObject"
+                    },
+                    "paged": {
+                        "type": "boolean"
+                    },
+                    "unpaged": {
+                        "type": "boolean"
+                    },
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "SortObject": {
+                "type": "object",
+                "properties": {
+                    "unsorted": {
+                        "type": "boolean"
+                    },
+                    "empty": {
+                        "type": "boolean"
+                    },
+                    "sorted": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "TaskCriteria": {
+                "type": "object",
+                "properties": {
+                    "taskId": {
+                        "title": "Optional search critera. Exact match search taskId criteria",
+                        "type": "string",
+                        "format": "uuid",
+                        "example": "c9097a60-77b9-47d6-a02e-ff2167eb02cc"
+                    },
+                    "assignee": {
+                        "title": "Optional search critera. Exact match search assignee criteria",
+                        "type": "string",
+                        "example": "Henriette Muster"
+                    },
+                    "domain": {
+                        "$ref": "#/components/schemas/DisplayDomainDto"
+                    },
+                    "taskStates": {
+                        "title": "Optional search critera. Exact match search state criteria",
+                        "type": "array",
+                        "items": {
+                            "title": "Optional search critera. Exact match search state criteria",
+                            "type": "string",
+                            "enum": [
+                                "OPEN",
+                                "INPROGRESS",
+                                "CLOSED"
+                            ]
+                        }
+                    },
+                    "createdFrom": {
+                        "title": "Optional search critera. Compared against > createdAt.",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdUntil": {
+                        "title": "Optional search criteria. Compared against < createdAt.",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "dueDateFrom": {
+                        "title": "Optional search critera. Compared against > due.",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "dueDateUntil": {
+                        "title": "Optional search criteria. Compared against < due.",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "freeTextSearch": {
+                        "title": "Optional search critera. Free text search criteria  match any string of multiple columns and tables displayName, title, description or assignee ",
+                        "type": "string",
+                        "example": "test"
+                    },
+                    "taskType": {
+                        "$ref": "#/components/schemas/TaskTypeSearchCriteriaDto"
+                    },
+                    "taskReference": {
+                        "$ref": "#/components/schemas/TaskReferenceSearchCriteriaDto"
+                    },
+                    "taskDetail": {
+                        "$ref": "#/components/schemas/TaskDetailSearchCriteriaDto"
+                    },
+                    "size": {
+                        "title": "Optional requested page size. Default 20.",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 20
+                    },
+                    "customsOfficeNumbers": {
+                        "title": "Optional requested customs office number.",
+                        "type": "array",
+                        "example": "CH123456",
+                        "items": {
+                            "title": "Optional requested customs office number.",
+                            "type": "string",
+                            "example": "CH123456"
+                        }
+                    },
+                    "page": {
+                        "title": "Optional requested page number. Default 0",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 0
+                    }
+                }
+            },
+            "TaskTypeSearchCriteriaDto": {
+                "title": "Optional search criteria. If applied either name and system have to be filled.",
+                "required": [
+                    "name",
+                    "system"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "title": "Name of the task type",
+                        "type": "string",
+                        "example": "vspbeerrefundchecktask"
+                    },
+                    "system": {
+                        "title": "System of the task type",
+                        "type": "string",
+                        "example": "vsp"
+                    }
+                }
+            },
+            "PageTaskDto": {
+                "type": "object",
+                "properties": {
+                    "totalPages": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalElements": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "content": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TaskDto"
+                        }
+                    },
+                    "number": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "sort": {
+                        "$ref": "#/components/schemas/SortObject"
+                    },
+                    "numberOfElements": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "first": {
+                        "type": "boolean"
+                    },
+                    "last": {
+                        "type": "boolean"
+                    },
+                    "pageable": {
+                        "$ref": "#/components/schemas/PageableObject"
+                    },
+                    "empty": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "TaskTypeSubscriptionDto": {
+                "type": "object",
+                "properties": {
+                    "taskTypeId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "tenant": {
+                        "type": "string"
+                    },
+                    "resource": {
+                        "type": "string"
+                    },
+                    "displayDomain": {
+                        "type": "string"
+                    },
+                    "displayName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "TaskTypeCustomsOfficeDto": {
+                "type": "object",
+                "properties": {
+                    "taskTypeId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "customsOffices": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CustomsOfficeDto"
+                        }
+                    }
+                }
+            },
+            "TaskChangedEvent": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "TASK_CHANGED_EVENT"
+                        ]
+                    }
+                }
+            },
+            "TaskEmployee": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CustomsOffices": {
+                "type": "object",
+                "properties": {
+                    "ndsNum": {
+                        "type": "string"
+                    },
+                    "ndsName": {
+                        "type": "string"
+                    },
+                    "ndsBez": {
+                        "$ref": "#/components/schemas/NdsBez"
+                    },
+                    "ndsVdat": {
+                        "type": "string"
+                    },
+                    "ndsBdat": {
+                        "type": "string"
+                    },
+                    "lkeName": {
+                        "type": "string"
+                    },
+                    "ndsId": {
+                        "type": "string"
+                    },
+                    "lkeId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "NdsBez": {
+                "type": "object",
+                "properties": {
+                    "de": {
+                        "type": "string"
+                    },
+                    "fr": {
+                        "type": "string"
+                    },
+                    "it": {
+                        "type": "string"
+                    },
+                    "en": {
+                        "type": "string"
+                    }
+                }
+            },
+            "QdConfigurationDto": {
+                "type": "object",
+                "properties": {
+                    "applicationUrl": {
+                        "type": "string"
+                    },
+                    "logoutRedirectUri": {
+                        "type": "string"
+                    },
+                    "mockPams": {
+                        "type": "boolean"
+                    },
+                    "pamsEnvironment": {
+                        "type": "string"
+                    },
+                    "tokenAwarePatterns": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "appVersion": {
+                        "type": "string"
+                    },
+                    "authority": {
+                        "type": "string"
+                    },
+                    "clientId": {
+                        "type": "string"
+                    },
+                    "useAutoLogin": {
+                        "type": "boolean"
+                    },
+                    "redirectUrl": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "OIDC": {
+                "type": "openIdConnect",
+                "description": "OAuth2-Authentication",
+                "openIdConnectUrl": "https://ref-identity-pams.bit.admin.ch/realms/ezv-agir/.well-known/openid-configuration"
+            }
+        }
+    }
+}
